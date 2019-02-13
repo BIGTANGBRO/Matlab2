@@ -1,0 +1,17 @@
+		 STUDENT REPORT CARD: 13-Feb-2019 
+
+Student: Lester Mcspadden 
+
+Grade 		 Subject 
+ 37 		 MathsI 
+ 30 		 MathsII 
+ 54 		 PhysicsI 
+ 49 		 PhysicsII 
+ 55 		 Chemistry 
+ 46 		 Econometrics 
+ 53 		 English_Lit 
+ 72 		 Ancient_Greek 
+ 63 		 PhysEd 
+ 53 		 TOK 
+
+51.20 		 Average

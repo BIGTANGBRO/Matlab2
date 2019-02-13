@@ -1,0 +1,17 @@
+		 STUDENT REPORT CARD: 13-Feb-2019 
+
+Student: Dustin Prewett 
+
+Grade 		 Subject 
+ 51 		 MathsI 
+ 70 		 MathsII 
+ 39 		 PhysicsI 
+ 31 		 PhysicsII 
+ 56 		 Chemistry 
+ 51 		 Econometrics 
+ 68 		 English_Lit 
+ 26 		 Ancient_Greek 
+ 55 		 PhysEd 
+ 82 		 TOK 
+
+52.90 		 Average

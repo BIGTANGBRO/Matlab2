@@ -1,0 +1,17 @@
+		 STUDENT REPORT CARD: 13-Feb-2019 
+
+Student: Ola Nyquist 
+
+Grade 		 Subject 
+ 54 		 MathsI 
+ 94 		 MathsII 
+ 68 		 PhysicsI 
+ 52 		 PhysicsII 
+ 64 		 Chemistry 
+ 31 		 Econometrics 
+ 66 		 English_Lit 
+ 55 		 Ancient_Greek 
+ 58 		 PhysEd 
+ 91 		 TOK 
+
+63.30 		 Average

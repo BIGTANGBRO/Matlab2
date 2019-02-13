@@ -1,0 +1,17 @@
+		 STUDENT REPORT CARD: 13-Feb-2019 
+
+Student: Vernon Amell 
+
+Grade 		 Subject 
+ 66 		 MathsI 
+ 50 		 MathsII 
+ 49 		 PhysicsI 
+ 48 		 PhysicsII 
+ 73 		 Chemistry 
+ 41 		 Econometrics 
+ 43 		 English_Lit 
+ 52 		 Ancient_Greek 
+ 98 		 PhysEd 
+ 75 		 TOK 
+
+59.50 		 Average

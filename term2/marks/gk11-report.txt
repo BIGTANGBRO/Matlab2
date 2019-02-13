@@ -1,0 +1,17 @@
+		 STUDENT REPORT CARD: 13-Feb-2019 
+
+Student: Greg Kriebel 
+
+Grade 		 Subject 
+ 61 		 MathsI 
+ 49 		 MathsII 
+ 36 		 PhysicsI 
+ 55 		 PhysicsII 
+ 37 		 Chemistry 
+ 36 		 Econometrics 
+ 69 		 English_Lit 
+ 70 		 Ancient_Greek 
+ 56 		 PhysEd 
+ 56 		 TOK 
+
+52.50 		 Average

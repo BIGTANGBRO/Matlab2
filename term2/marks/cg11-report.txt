@@ -1,0 +1,17 @@
+		 STUDENT REPORT CARD: 13-Feb-2019 
+
+Student: Clyde Guebert 
+
+Grade 		 Subject 
+ 67 		 MathsI 
+ 72 		 MathsII 
+ 72 		 PhysicsI 
+ 48 		 PhysicsII 
+ 61 		 Chemistry 
+ 45 		 Econometrics 
+ 59 		 English_Lit 
+ 75 		 Ancient_Greek 
+100 		 PhysEd 
+ 82 		 TOK 
+
+68.10 		 Average

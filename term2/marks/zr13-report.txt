@@ -1,0 +1,17 @@
+		 STUDENT REPORT CARD: 13-Feb-2019 
+
+Student: Zachary Rottman 
+
+Grade 		 Subject 
+ 59 		 MathsI 
+ 83 		 MathsII 
+ 71 		 PhysicsI 
+ 39 		 PhysicsII 
+ 58 		 Chemistry 
+ 33 		 Econometrics 
+ 42 		 English_Lit 
+ 41 		 Ancient_Greek 
+ 82 		 PhysEd 
+ 71 		 TOK 
+
+57.90 		 Average

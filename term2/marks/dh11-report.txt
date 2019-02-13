@@ -1,0 +1,17 @@
+		 STUDENT REPORT CARD: 13-Feb-2019 
+
+Student: Dustin Heavner 
+
+Grade 		 Subject 
+ 53 		 MathsI 
+ 53 		 MathsII 
+ 65 		 PhysicsI 
+ 62 		 PhysicsII 
+ 67 		 Chemistry 
+ 38 		 Econometrics 
+ 55 		 English_Lit 
+ 83 		 Ancient_Greek 
+ 82 		 PhysEd 
+ 63 		 TOK 
+
+62.10 		 Average

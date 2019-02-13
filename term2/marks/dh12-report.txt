@@ -1,0 +1,17 @@
+		 STUDENT REPORT CARD: 13-Feb-2019 
+
+Student: Dustin Hickmon 
+
+Grade 		 Subject 
+ 62 		 MathsI 
+ 50 		 MathsII 
+ 41 		 PhysicsI 
+ 73 		 PhysicsII 
+ 36 		 Chemistry 
+ 47 		 Econometrics 
+ 60 		 English_Lit 
+ 54 		 Ancient_Greek 
+ 47 		 PhysEd 
+ 69 		 TOK 
+
+53.90 		 Average

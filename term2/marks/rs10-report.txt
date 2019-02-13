@@ -1,0 +1,17 @@
+		 STUDENT REPORT CARD: 13-Feb-2019 
+
+Student: Ricardo Sangster 
+
+Grade 		 Subject 
+ 64 		 MathsI 
+ 61 		 MathsII 
+ 84 		 PhysicsI 
+ 57 		 PhysicsII 
+ 56 		 Chemistry 
+ 44 		 Econometrics 
+ 84 		 English_Lit 
+ 44 		 Ancient_Greek 
+ 69 		 PhysEd 
+ 76 		 TOK 
+
+63.90 		 Average

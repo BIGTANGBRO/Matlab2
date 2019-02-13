@@ -1,0 +1,17 @@
+		 STUDENT REPORT CARD: 13-Feb-2019 
+
+Student: Dan Stansbury 
+
+Grade 		 Subject 
+ 33 		 MathsI 
+ 41 		 MathsII 
+ 60 		 PhysicsI 
+ 48 		 PhysicsII 
+ 57 		 Chemistry 
+ 70 		 Econometrics 
+ 74 		 English_Lit 
+ 27 		 Ancient_Greek 
+ 79 		 PhysEd 
+ 84 		 TOK 
+
+57.30 		 Average

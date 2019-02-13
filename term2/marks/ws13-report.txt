@@ -1,0 +1,17 @@
+		 STUDENT REPORT CARD: 13-Feb-2019 
+
+Student: Wesley Stenson 
+
+Grade 		 Subject 
+ 53 		 MathsI 
+ 76 		 MathsII 
+ 43 		 PhysicsI 
+ 48 		 PhysicsII 
+ 64 		 Chemistry 
+ 41 		 Econometrics 
+ 77 		 English_Lit 
+ 20 		 Ancient_Greek 
+ 31 		 PhysEd 
+ 89 		 TOK 
+
+54.20 		 Average

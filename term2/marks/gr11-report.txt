@@ -1,0 +1,17 @@
+		 STUDENT REPORT CARD: 13-Feb-2019 
+
+Student: Goldie Riordan 
+
+Grade 		 Subject 
+ 63 		 MathsI 
+ 55 		 MathsII 
+ 29 		 PhysicsI 
+ 55 		 PhysicsII 
+ 52 		 Chemistry 
+ 59 		 Econometrics 
+ 53 		 English_Lit 
+ 61 		 Ancient_Greek 
+ 79 		 PhysEd 
+ 62 		 TOK 
+
+56.80 		 Average

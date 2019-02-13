@@ -1,0 +1,17 @@
+		 STUDENT REPORT CARD: 13-Feb-2019 
+
+Student: Elisabeth Woodham 
+
+Grade 		 Subject 
+ 43 		 MathsI 
+ 86 		 MathsII 
+ 76 		 PhysicsI 
+ 50 		 PhysicsII 
+ 60 		 Chemistry 
+ 49 		 Econometrics 
+ 56 		 English_Lit 
+ 42 		 Ancient_Greek 
+ 86 		 PhysEd 
+ 79 		 TOK 
+
+62.70 		 Average

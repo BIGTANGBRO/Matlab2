@@ -4,7 +4,6 @@ clc
 %open source file
 fid=fopen('grades.dat','r');
 %read number of students from first line
-CHAPTER 13. ADVANCED MATLAB 2 9
 n=fscanf(fid,'%d \n',1);
 fscanf(fid,'%*s',3); %skip next 3 strings
 %use loop to read class names into cell array

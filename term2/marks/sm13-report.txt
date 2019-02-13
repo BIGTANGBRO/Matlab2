@@ -1,0 +1,17 @@
+		 STUDENT REPORT CARD: 13-Feb-2019 
+
+Student: Susanne Mersch 
+
+Grade 		 Subject 
+ 47 		 MathsI 
+ 82 		 MathsII 
+ 35 		 PhysicsI 
+ 30 		 PhysicsII 
+ 63 		 Chemistry 
+ 56 		 Econometrics 
+ 45 		 English_Lit 
+ 94 		 Ancient_Greek 
+ 67 		 PhysEd 
+ 91 		 TOK 
+
+61.00 		 Average

@@ -1,0 +1,17 @@
+		 STUDENT REPORT CARD: 13-Feb-2019 
+
+Student: Paige Bunce 
+
+Grade 		 Subject 
+ 66 		 MathsI 
+ 48 		 MathsII 
+ 76 		 PhysicsI 
+ 42 		 PhysicsII 
+ 56 		 Chemistry 
+ 42 		 Econometrics 
+ 83 		 English_Lit 
+ 42 		 Ancient_Greek 
+ 94 		 PhysEd 
+ 77 		 TOK 
+
+62.60 		 Average

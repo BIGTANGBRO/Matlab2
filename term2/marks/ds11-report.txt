@@ -1,0 +1,17 @@
+		 STUDENT REPORT CARD: 13-Feb-2019 
+
+Student: Dan Soderberg 
+
+Grade 		 Subject 
+ 47 		 MathsI 
+ 52 		 MathsII 
+ 66 		 PhysicsI 
+ 64 		 PhysicsII 
+ 46 		 Chemistry 
+ 55 		 Econometrics 
+ 42 		 English_Lit 
+ 48 		 Ancient_Greek 
+100 		 PhysEd 
+ 71 		 TOK 
+
+59.10 		 Average

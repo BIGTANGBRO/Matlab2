@@ -1,0 +1,17 @@
+		 STUDENT REPORT CARD: 13-Feb-2019 
+
+Student: Lewis Murch 
+
+Grade 		 Subject 
+ 58 		 MathsI 
+ 39 		 MathsII 
+ 46 		 PhysicsI 
+ 67 		 PhysicsII 
+ 57 		 Chemistry 
+ 49 		 Econometrics 
+ 34 		 English_Lit 
+ 47 		 Ancient_Greek 
+ 94 		 PhysEd 
+ 66 		 TOK 
+
+55.70 		 Average
