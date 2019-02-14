@@ -1,8 +1,7 @@
-		 STUDENT REPORT CARD: 13-Feb-2019 
+Student report card: 14-Feb-2019 
+Student name: Vernon Amell 
 
-Student: Vernon Amell 
-
-Grade 		 Subject 
+Grades 		 Subject 
  66 		 MathsI 
  50 		 MathsII 
  49 		 PhysicsI 
@@ -13,5 +12,4 @@ Grade 		 Subject
  52 		 Ancient_Greek 
  98 		 PhysEd 
  75 		 TOK 
-
-59.50 		 Average
+Average: 	  59.50 

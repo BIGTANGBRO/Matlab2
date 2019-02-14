@@ -1,8 +1,7 @@
-		 STUDENT REPORT CARD: 13-Feb-2019 
+Student report card: 14-Feb-2019 
+Student name: Elisabeth Woodham 
 
-Student: Elisabeth Woodham 
-
-Grade 		 Subject 
+Grades 		 Subject 
  43 		 MathsI 
  86 		 MathsII 
  76 		 PhysicsI 
@@ -13,5 +12,4 @@ Grade 		 Subject
  42 		 Ancient_Greek 
  86 		 PhysEd 
  79 		 TOK 
-
-62.70 		 Average
+Average: 	  62.70 

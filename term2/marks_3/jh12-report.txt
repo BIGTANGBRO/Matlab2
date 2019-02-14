@@ -1,8 +1,7 @@
-		 STUDENT REPORT CARD: 13-Feb-2019 
+Student report card: 14-Feb-2019 
+Student name: Jillian Hougland 
 
-Student: Jillian Hougland 
-
-Grade 		 Subject 
+Grades 		 Subject 
  46 		 MathsI 
  33 		 MathsII 
  46 		 PhysicsI 
@@ -13,5 +12,4 @@ Grade 		 Subject
  69 		 Ancient_Greek 
  64 		 PhysEd 
  67 		 TOK 
-
-54.70 		 Average
+Average: 	  54.70 

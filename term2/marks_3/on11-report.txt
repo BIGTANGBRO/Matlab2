@@ -1,8 +1,7 @@
-		 STUDENT REPORT CARD: 13-Feb-2019 
+Student report card: 14-Feb-2019 
+Student name: Ola Nyquist 
 
-Student: Ola Nyquist 
-
-Grade 		 Subject 
+Grades 		 Subject 
  54 		 MathsI 
  94 		 MathsII 
  68 		 PhysicsI 
@@ -13,5 +12,4 @@ Grade 		 Subject
  55 		 Ancient_Greek 
  58 		 PhysEd 
  91 		 TOK 
-
-63.30 		 Average
+Average: 	  63.30 

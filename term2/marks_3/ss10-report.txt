@@ -1,8 +1,7 @@
-		 STUDENT REPORT CARD: 13-Feb-2019 
+Student report card: 14-Feb-2019 
+Student name: Shane Sagers 
 
-Student: Shane Sagers 
-
-Grade 		 Subject 
+Grades 		 Subject 
  68 		 MathsI 
  63 		 MathsII 
  47 		 PhysicsI 
@@ -13,5 +12,4 @@ Grade 		 Subject
  46 		 Ancient_Greek 
  99 		 PhysEd 
  67 		 TOK 
-
-58.40 		 Average
+Average: 	  58.40 

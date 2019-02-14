@@ -1,8 +1,7 @@
-		 STUDENT REPORT CARD: 13-Feb-2019 
+Student report card: 14-Feb-2019 
+Student name: Greg Kriebel 
 
-Student: Greg Kriebel 
-
-Grade 		 Subject 
+Grades 		 Subject 
  61 		 MathsI 
  49 		 MathsII 
  36 		 PhysicsI 
@@ -13,5 +12,4 @@ Grade 		 Subject
  70 		 Ancient_Greek 
  56 		 PhysEd 
  56 		 TOK 
-
-52.50 		 Average
+Average: 	  52.50 

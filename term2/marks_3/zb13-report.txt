@@ -1,8 +1,7 @@
-		 STUDENT REPORT CARD: 13-Feb-2019 
+Student report card: 14-Feb-2019 
+Student name: Zachary Byington 
 
-Student: Zachary Byington 
-
-Grade 		 Subject 
+Grades 		 Subject 
  47 		 MathsI 
  73 		 MathsII 
  32 		 PhysicsI 
@@ -13,5 +12,4 @@ Grade 		 Subject
  31 		 Ancient_Greek 
  83 		 PhysEd 
  66 		 TOK 
-
-55.50 		 Average
+Average: 	  55.50 

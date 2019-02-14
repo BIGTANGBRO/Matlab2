@@ -1,8 +1,7 @@
-		 STUDENT REPORT CARD: 13-Feb-2019 
+Student report card: 14-Feb-2019 
+Student name: Dan Soderberg 
 
-Student: Dan Soderberg 
-
-Grade 		 Subject 
+Grades 		 Subject 
  47 		 MathsI 
  52 		 MathsII 
  66 		 PhysicsI 
@@ -13,5 +12,4 @@ Grade 		 Subject
  48 		 Ancient_Greek 
 100 		 PhysEd 
  71 		 TOK 
-
-59.10 		 Average
+Average: 	  59.10 
