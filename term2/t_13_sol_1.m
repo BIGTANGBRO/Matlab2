@@ -9,7 +9,7 @@ fscanf(fid,'%*s',3); %skip next 3 strings
 %use loop to read class names into cell array
 for i=1:10
     classes(i)={fscanf(fid,'%s',1)};
-end
+end 
 %read the marks table row by row
 for i=1:n
     record(i).name=fscanf(fid,'%s',1);

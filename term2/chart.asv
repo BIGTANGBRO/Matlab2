@@ -1,0 +1,17 @@
+clear
+clc
+load('delrin.mat');
+load('al.mat');
+load('cf.mat');
+E_delrin=table2array(G1Copy1(1:551,1));
+F_delrin=table2array(G1Copy1(1:551,2));
+E_cf=table2array(G1(1:202,1));
+F_cf=table2array(G1(1:202,2));
+E_al=table2array(G1CopyCopy(1:344,1));
+F_al=table2array(G1CopyCopy(1:344,1));                   
+strain_delrin=E_delrin./20;
+stress_delrin=F_delrin./(12.19*1.02*0.000000001);
+strain_cf=E_cf./80;
+stress_cf=F_delrin./(12.19*1.02*0.000000001);
+strain_delrin=E_delrin./20;
+stress_delrin=F_delrin./(12.19*1.02*0.000000001);
