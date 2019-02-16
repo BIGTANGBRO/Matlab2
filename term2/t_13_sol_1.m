@@ -4,8 +4,13 @@ clc
 %open source file
 fid=fopen('grades.dat','r');
 %read number of students from first line
+<<<<<<< HEAD
+n=fscanf(fid,'%d \n',1);
+fscanf(fid,'%*s',3);%skip next 3 strings
+=======
 n=fscanf(fid,'%d \n',1)
 fscanf(fid,'%*s',3); %skip next 3 strings
+>>>>>>> cc3cb988d687f9da1191e660b52c0a546388b860
 %use loop to read class names into cell array
 for i=1:10
     classes(i)={fscanf(fid,'%s',1)};
@@ -18,9 +23,12 @@ for i=1:n
     record(i).grades=fscanf(fid,'%d',10); %read into 10x1 array
 end
 fclose(fid); %close file
+
 %create folder for marks and change directory
 mkdir marks
 cd marks
+
+
 for i=1:n
 %create filename based on student alias
     fname=[record(i).alias,'-report.txt'];
