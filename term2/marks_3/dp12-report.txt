@@ -1,8 +1,7 @@
-		 STUDENT REPORT CARD: 13-Feb-2019 
+Student report card: 14-Feb-2019 
+Student name: Dustin Prewett 
 
-Student: Dustin Prewett 
-
-Grade 		 Subject 
+Grades 		 Subject 
  51 		 MathsI 
  70 		 MathsII 
  39 		 PhysicsI 
@@ -13,5 +12,4 @@ Grade 		 Subject
  26 		 Ancient_Greek 
  55 		 PhysEd 
  82 		 TOK 
-
-52.90 		 Average
+Average: 	  52.90 

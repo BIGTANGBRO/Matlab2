@@ -1,8 +1,7 @@
-		 STUDENT REPORT CARD: 13-Feb-2019 
+Student report card: 14-Feb-2019 
+Student name: Clyde Guebert 
 
-Student: Clyde Guebert 
-
-Grade 		 Subject 
+Grades 		 Subject 
  67 		 MathsI 
  72 		 MathsII 
  72 		 PhysicsI 
@@ -13,5 +12,4 @@ Grade 		 Subject
  75 		 Ancient_Greek 
 100 		 PhysEd 
  82 		 TOK 
-
-68.10 		 Average
+Average: 	  68.10 

@@ -4,12 +4,17 @@ clc
 %open source file
 fid=fopen('grades.dat','r');
 %read number of students from first line
+<<<<<<< HEAD
 n=fscanf(fid,'%d \n',1);
 fscanf(fid,'%*s',3);%skip next 3 strings
+=======
+n=fscanf(fid,'%d \n',1)
+fscanf(fid,'%*s',3); %skip next 3 strings
+>>>>>>> cc3cb988d687f9da1191e660b52c0a546388b860
 %use loop to read class names into cell array
 for i=1:10
-classes(i)={fscanf(fid,'%s',1)};
-end
+    classes(i)={fscanf(fid,'%s',1)};
+end 
 %read the marks table row by row
 for i=1:n
     record(i).name=fscanf(fid,'%s',1);
@@ -40,8 +45,8 @@ for i=1:n
         fprintf(fid,'%3d \t\t %s \n',record(i).grades(j),char(classes(j)));
     end
 %calculate and print mean
-fprintf(fid,'\n%5.2f \t\t Average\n',mean(record(i).grades));
-fclose(fid); %close file
+    fprintf(fid,'\n%5.2f \t\t Average\n',mean(record(i).grades));
+    fclose(fid); %close file
 end
 %move back to original directory
 cd ..

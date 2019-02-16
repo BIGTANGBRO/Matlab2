@@ -1,8 +1,7 @@
-		 STUDENT REPORT CARD: 13-Feb-2019 
+Student report card: 14-Feb-2019 
+Student name: Susanne Mersch 
 
-Student: Susanne Mersch 
-
-Grade 		 Subject 
+Grades 		 Subject 
  47 		 MathsI 
  82 		 MathsII 
  35 		 PhysicsI 
@@ -13,5 +12,4 @@ Grade 		 Subject
  94 		 Ancient_Greek 
  67 		 PhysEd 
  91 		 TOK 
-
-61.00 		 Average
+Average: 	  61.00 

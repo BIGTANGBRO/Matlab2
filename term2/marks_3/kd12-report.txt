@@ -1,8 +1,7 @@
-		 STUDENT REPORT CARD: 13-Feb-2019 
+Student report card: 14-Feb-2019 
+Student name: Keri Dimond 
 
-Student: Keri Dimond 
-
-Grade 		 Subject 
+Grades 		 Subject 
  49 		 MathsI 
  54 		 MathsII 
  20 		 PhysicsI 
@@ -13,5 +12,4 @@ Grade 		 Subject
  52 		 Ancient_Greek 
  66 		 PhysEd 
  64 		 TOK 
-
-53.10 		 Average
+Average: 	  53.10 

@@ -1,8 +1,7 @@
-		 STUDENT REPORT CARD: 13-Feb-2019 
+Student report card: 14-Feb-2019 
+Student name: Lester Mcspadden 
 
-Student: Lester Mcspadden 
-
-Grade 		 Subject 
+Grades 		 Subject 
  37 		 MathsI 
  30 		 MathsII 
  54 		 PhysicsI 
@@ -13,5 +12,4 @@ Grade 		 Subject
  72 		 Ancient_Greek 
  63 		 PhysEd 
  53 		 TOK 
-
-51.20 		 Average
+Average: 	  51.20 

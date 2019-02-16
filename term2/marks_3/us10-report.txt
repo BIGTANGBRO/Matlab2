@@ -1,8 +1,7 @@
-		 STUDENT REPORT CARD: 13-Feb-2019 
+Student report card: 14-Feb-2019 
+Student name: Ursula Soden 
 
-Student: Ursula Soden 
-
-Grade 		 Subject 
+Grades 		 Subject 
  47 		 MathsI 
  78 		 MathsII 
  50 		 PhysicsI 
@@ -13,5 +12,4 @@ Grade 		 Subject
  63 		 Ancient_Greek 
 100 		 PhysEd 
  44 		 TOK 
-
-58.70 		 Average
+Average: 	  58.70 

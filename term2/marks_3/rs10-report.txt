@@ -1,8 +1,7 @@
-		 STUDENT REPORT CARD: 13-Feb-2019 
+Student report card: 14-Feb-2019 
+Student name: Ricardo Sangster 
 
-Student: Ricardo Sangster 
-
-Grade 		 Subject 
+Grades 		 Subject 
  64 		 MathsI 
  61 		 MathsII 
  84 		 PhysicsI 
@@ -13,5 +12,4 @@ Grade 		 Subject
  44 		 Ancient_Greek 
  69 		 PhysEd 
  76 		 TOK 
-
-63.90 		 Average
+Average: 	  63.90 

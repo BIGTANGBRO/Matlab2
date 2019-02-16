@@ -1,8 +1,7 @@
-		 STUDENT REPORT CARD: 13-Feb-2019 
+Student report card: 14-Feb-2019 
+Student name: Jolene Southers 
 
-Student: Jolene Southers 
-
-Grade 		 Subject 
+Grades 		 Subject 
  62 		 MathsI 
  47 		 MathsII 
  83 		 PhysicsI 
@@ -13,5 +12,4 @@ Grade 		 Subject
  47 		 Ancient_Greek 
  59 		 PhysEd 
  70 		 TOK 
-
-55.60 		 Average
+Average: 	  55.60 
