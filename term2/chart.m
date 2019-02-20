@@ -38,8 +38,8 @@ for j=1:344
     num=index_al(j);
     stressTT_al(j)=stressT_al(num);
     strainTT_al(j)=strainT_al(num);
-    stressN_al(j)=stress_delrin(num);
-    strainN_al(j)=strain_delrin(num);
+    stressN_al(j)=stress_al(num);
+    strainN_al(j)=strain_al(num);
 end
 
 timecf=table2array(time_cf);
@@ -71,13 +71,10 @@ for j=1:551
 end
 
 
-plot(strainTT_delrin,stressTT_delrin,'-r');
+plot(strainTT_al,stressTT_al,'-r');
 hold on
-plot(strainTT_cf,stressTT_cf,'-k');
-hold on
-plot(strainTT_al,stressTT_al,'-b');
+plot(strainN_al,stressN_al,'-b');
 hold off
-
 
 
 
