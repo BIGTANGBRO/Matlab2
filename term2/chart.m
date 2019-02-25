@@ -73,10 +73,27 @@ end
 
 plot(strainTT_al,stressTT_al,'-r');
 hold on
-plot(strainN_al,stressN_al,'-b');
+plot(strainTT_delrin,stressTT_delrin,'-b');
+hold on
+plot(strainTT_cf,stressTT_cf,'-k')
 hold off
 
 
+plot(strainTT_delrin,stressTT_delrin,'-b');
+hold on
+plot(strainN_delrin,stressN_delrin,'-r')
+hold off
 
+
+plot(strainTT_cf,stressTT_cf,'-b');
+hold on
+plot(strainN_cf,stressN_cf,'-r')
+hold off
+
+
+plot(strainTT_al,stressTT_al,'-b');
+hold on
+plot(strainN_al,stressN_al,'-r')
+hold off
 
 
