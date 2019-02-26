@@ -1,4 +1,4 @@
-
+clc
 clear;
 nSteps=2100;
 dt=0.3;
@@ -28,5 +28,4 @@ for step=0:nSteps
         if (step==0);pause();end
     end
 end
-
 
