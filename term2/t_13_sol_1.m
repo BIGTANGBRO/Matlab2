@@ -4,13 +4,10 @@ clc
 %open source file
 fid=fopen('grades.dat','r');
 %read number of students from first line
-<<<<<<< HEAD
+
 n=fscanf(fid,'%d \n',1);
 fscanf(fid,'%*s',3);%skip next 3 strings
-=======
-n=fscanf(fid,'%d \n',1)
-fscanf(fid,'%*s',3); %skip next 3 strings
->>>>>>> cc3cb988d687f9da1191e660b52c0a546388b860
+
 %use loop to read class names into cell array
 for i=1:10
     classes(i)={fscanf(fid,'%s',1)};
