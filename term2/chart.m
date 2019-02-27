@@ -6,8 +6,8 @@ load('cf.mat');
 load('time_al.mat');
 load('time_delrin.mat');
 load('time_cf.mat');
-E_delrin=table2array(G1Copy1(1:551,1));
-F_delrin=table2array(G1Copy1(1:551,2));
+E_delrin=table2array(G1Copy1(80:551,1));
+F_delrin=table2array(G1Copy1(80:551,2));
 E_cf=table2array(G1(1:202,1));
 F_cf=table2array(G1(1:202,2));
 E_al=table2array(G1CopyCopy(1:344,1));
@@ -56,13 +56,13 @@ for j=1:202
     strainN_cf(j)=strain_cf(num);
 end
 
-timedelrin=table2array(time_delrin);
-for i=1:551
+timedelrin=table2array(time_delrin(80:551,1));
+for i=1:472
     k=char(timedelrin(i,1));
     num_time_delrin(i)=str2num(k(1,[1,2,4,5,7,8]));
 end
 [num_edit_time_delrin,index_delrin]=sort(num_time_delrin);
-for j=1:551
+for j=1:472
     num=index_delrin(j);
     stressTT_delrin(j)=stressT_delrin(num);
     strainTT_delrin(j)=strainT_delrin(num);
@@ -73,15 +73,15 @@ end
 
 plot(strainTT_al,stressTT_al,'-r');
 hold on
-plot(strainTT_delrin,stressTT_delrin,'-b');
+plot(strainTT_delrin-0.06,stressTT_delrin-2.2e7,'-b');
 hold on
 plot(strainTT_cf,stressTT_cf,'-k')
 hold off
 
 
-plot(strainTT_delrin,stressTT_delrin,'-b');
+plot(strainTT_delrin-0.06,stressTT_delrin-2.2e7,'-b');
 hold on
-plot(strainN_delrin,stressN_delrin,'-r')
+plot(strainN_delrin-0.06,stressN_delrin-2.2e7,'-r')
 hold off
 
 
