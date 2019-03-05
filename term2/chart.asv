@@ -71,11 +71,11 @@ for j=1:472
 end
 
 
-plot(strainTT_al,stressTT_al,'-b');
+plot(strainTT_al,stressTT_al,'--');
 hold on
-plot(strainTT_delrin-0.06,stressTT_delrin-2.2e7,'-r');
+plot(strainTT_delrin-0.06,stressTT_delrin-2.2e7,':');
 hold on
-plot(strainTT_cf,stressTT_cf,'-k')
+plot(strainTT_cf,stressTT_cf,'.')
 hold off
 
 
