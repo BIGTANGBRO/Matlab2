@@ -28,4 +28,6 @@ azimuth_angle=0;
 for i=1:200
     VT(i)=angular_velocity*R(i)+Vinf*sin(azimuth_angle);
     Ve(i)=(VT(i)^2+W^2)^0.5;
+end
+
 
