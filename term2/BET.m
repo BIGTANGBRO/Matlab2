@@ -13,4 +13,11 @@ R0=input('input the blade starting radius:');
 Croot=input('input the root chord:');
 Ctip=input('input the tip chord length');
 E=input('input the twist');
+Angular_velocity=input('input the angular velocity:');
+ic=input('input the blade setting angle:');
+Vf=input('input the forward airspeed:');
+Winf=input('input the rate of descent:');
+density=input('input the atmospheric density:');
+
+
 
