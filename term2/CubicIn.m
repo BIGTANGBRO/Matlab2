@@ -3,7 +3,9 @@
 %This function named CubicIn should accept two arrays x and fx.
 
 
-function polyArray=CubicIn(x,fx)%create the function with input of x and y.
+%create the function with input of x and y.
+
+function polyArray=CubicIn(x,fx)
 n=length(x);%find the length of the array
 m=zeros(n,1);%create the array with zeros used after as both the initial and the last values are zero
 mat_h=zeros(n-2);%create the matrix for the collection of h as majority part is zero
@@ -20,7 +22,7 @@ for num1=2:n-1
 end
 
 
-%the matrix for h is special create the 1 and n-2 which contain 2 values
+%the matrix for h is special create the 1 ad n-2 which contain 2 values
 %each. The matrix is 7X7 with hi from 2 to n-1
 mat_h(1,[1,2])=[2*(h(2)+h(1)),h(2)];
 mat_h(n-2,[n-3,n-2])=[h(n-2),2*(h(n-2)+h(n-1))];%the first and the last row are special as it eliminates h1 and h8 as the m1 and mN are both zero so there are 2 values in that row
@@ -40,6 +42,7 @@ for num3=1:n-1
 end%just use loops to fill the arguments
 
 polyArray=[d,c,b,a];%the output is a N-1x4 array as there are n-1 intervals
+
 end
 
 
