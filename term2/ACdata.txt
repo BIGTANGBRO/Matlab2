@@ -1,0 +1,12 @@
+Table of aircraft data														
+Number of items	6													
+Name	Number of engines	Engine type	Seats	Cruise speed (mph)	Max take off weight (lbs)									
+Cessna Skycatcher	1	Propeller	2	125	1320									
+Cessna Caravan675	1	Turboprop	10	214	8000									
+ERJ 145	2	Turbofan	50	518	45415									
+Boeing MD-80	2	Turbofan	172	500	140000									
+Airbus A300-600	2	Turbofan	375	544	363690									
+Concorde BA	2	Turbojet	128	1350	408000									
+End of data file														
+														
+														
