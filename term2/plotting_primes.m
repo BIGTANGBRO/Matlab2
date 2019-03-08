@@ -8,4 +8,4 @@ for i=L:H
     
 end
 p=[L:1:H];
-plot(p,k);
+plot(p,k,'o');

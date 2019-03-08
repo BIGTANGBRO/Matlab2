@@ -17,15 +17,15 @@ if is_equal1==1
     end
     if sum(mat_1)~=sum(mat_2)||sum(mat_1)~=sum(m(1,:))
         is_equal2=0;
-        break
     end
 end
 
-end
+
 if is_equal1==1&&is_equal2==1
     y=1;
 else
     y=0;
+end
 end
 
     
