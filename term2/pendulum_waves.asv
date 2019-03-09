@@ -7,7 +7,7 @@ dx=10;
 alpha=2;
 Lo=20;
 tmax=300;
-dt=0.05;
+dt=0.5;
 theta0=30;
 x=[0:n-1];
 L=Lo-x*tan(alpha*pi/180);
@@ -25,9 +25,5 @@ while t<tmax
         plot3([1,1]*x(i),[0,L(i)*sin(theta(i))],[0,-L(i)*cos(theta(i))],'k');
     end
     hold off
-    view([90,0])
-    axis([0,n*dx,-Lo,Lo,-1.5*Lo,0])
-    pause(max(0.01,dt-0.02))
-end
-
+    view([90,0]
     
