@@ -2,7 +2,7 @@
 clear
 clc
 g=9.81;
-n=10;
+n=1;
 dx=10;
 alpha=2;
 Lo=20;
@@ -28,6 +28,7 @@ while t<tmax
     view([90,0])
     axis([0,n*dx,-Lo,Lo,-1.5*Lo,0])
     pause(max(0.01,dt-0.02))
+    drawnow
 end
 
     
