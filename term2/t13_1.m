@@ -35,4 +35,3 @@ for k =1:28
     fprintf(fid,'Average: \t  %5.2f \n',mean(Student(k).grades));
     fclose(fid);
 end
-cd ..
