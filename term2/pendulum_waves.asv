@@ -1,0 +1,27 @@
+%Pendulum waves
+clear
+clc
+g=9.81;
+L=20;
+tmax=300;
+dt=0.5;
+theta(1)=pi/6;
+x=0;
+t=0;
+n=300
+dtheta=zeros(n);
+d2theta=zeros(n);
+
+for i=1:n-1
+    theta(i+1)=theta(i)+dtheta(i)*dt
+    d2theta(i+1)=-g*sin(theta(i))/L
+    dtheata(i+1)=dtheta(i)+d2theta(i)*dt
+    plot3(x,L*sin(theta(i)),-L*cos(theta(i)),'or');
+    hold on 
+    plot3([1,1]*x,[0,L*sin(theta(i))],[0,-L*cos(theta(i))],'k')
+    hold off
+    view([90,0])
+    pause(0.5);
+end
+
+    
