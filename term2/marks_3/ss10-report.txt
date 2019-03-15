@@ -1,0 +1,15 @@
+Student report card: 13-Mar-2019 
+Student name: Shane Sagers 
+
+Grades 		 Subject 
+ 68 		 MathsI 
+ 63 		 MathsII 
+ 47 		 PhysicsI 
+ 52 		 PhysicsII 
+ 58 		 Chemistry 
+ 36 		 Econometrics 
+ 48 		 English_Lit 
+ 46 		 Ancient_Greek 
+ 99 		 PhysEd 
+ 67 		 TOK 
+Average: 	  58.40 

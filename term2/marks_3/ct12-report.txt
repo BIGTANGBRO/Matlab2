@@ -1,0 +1,15 @@
+Student report card: 13-Mar-2019 
+Student name: Carolina Truelove 
+
+Grades 		 Subject 
+ 55 		 MathsI 
+ 79 		 MathsII 
+ 72 		 PhysicsI 
+ 57 		 PhysicsII 
+ 42 		 Chemistry 
+ 76 		 Econometrics 
+ 58 		 English_Lit 
+ 59 		 Ancient_Greek 
+ 62 		 PhysEd 
+ 76 		 TOK 
+Average: 	  63.60 

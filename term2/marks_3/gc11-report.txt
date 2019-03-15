@@ -1,0 +1,15 @@
+Student report card: 13-Mar-2019 
+Student name: Greg Celaya 
+
+Grades 		 Subject 
+ 24 		 MathsI 
+ 40 		 MathsII 
+ 59 		 PhysicsI 
+ 50 		 PhysicsII 
+ 45 		 Chemistry 
+ 50 		 Econometrics 
+ 73 		 English_Lit 
+ 37 		 Ancient_Greek 
+ 52 		 PhysEd 
+ 54 		 TOK 
+Average: 	  48.40 

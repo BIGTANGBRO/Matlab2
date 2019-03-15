@@ -1,0 +1,15 @@
+Student report card: 13-Mar-2019 
+Student name: Dan Stansbury 
+
+Grades 		 Subject 
+ 33 		 MathsI 
+ 41 		 MathsII 
+ 60 		 PhysicsI 
+ 48 		 PhysicsII 
+ 57 		 Chemistry 
+ 70 		 Econometrics 
+ 74 		 English_Lit 
+ 27 		 Ancient_Greek 
+ 79 		 PhysEd 
+ 84 		 TOK 
+Average: 	  57.30 
