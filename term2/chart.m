@@ -76,24 +76,28 @@ hold on
 plot(strainTT_delrin-0.06,stressTT_delrin-2.2e7,'-b');
 hold on
 plot(strainTT_cf,stressTT_cf,'-k')
+grid on
 hold off
 
 
 plot(strainTT_delrin-0.06,stressTT_delrin-2.2e7,'-b');
 hold on
 plot(strainN_delrin-0.06,stressN_delrin-2.2e7,'-r')
+grid on
 hold off
 
 
 plot(strainTT_cf,stressTT_cf,'-b');
 hold on
 plot(strainN_cf,stressN_cf,'-r')
+grid on
 hold off
 
 
 plot(strainTT_al,stressTT_al,'-b');
 hold on
 plot(strainN_al,stressN_al,'-r')
+grid on
 hold off
 
 
