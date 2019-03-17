@@ -1,0 +1,15 @@
+Student report card: 13-Mar-2019 
+Student name: Ursula Soden 
+
+Grades 		 Subject 
+ 47 		 MathsI 
+ 78 		 MathsII 
+ 50 		 PhysicsI 
+ 57 		 PhysicsII 
+ 44 		 Chemistry 
+ 65 		 Econometrics 
+ 39 		 English_Lit 
+ 63 		 Ancient_Greek 
+100 		 PhysEd 
+ 44 		 TOK 
+Average: 	  58.70 

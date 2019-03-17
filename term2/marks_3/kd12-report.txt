@@ -1,0 +1,15 @@
+Student report card: 13-Mar-2019 
+Student name: Keri Dimond 
+
+Grades 		 Subject 
+ 49 		 MathsI 
+ 54 		 MathsII 
+ 20 		 PhysicsI 
+ 51 		 PhysicsII 
+ 61 		 Chemistry 
+ 58 		 Econometrics 
+ 56 		 English_Lit 
+ 52 		 Ancient_Greek 
+ 66 		 PhysEd 
+ 64 		 TOK 
+Average: 	  53.10 

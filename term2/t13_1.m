@@ -9,6 +9,7 @@ for j=1:29
     end
 end
 fclose(fid1);
+
 for i=1:28
     structure(i).name=data(i+1,1);
     structure(i).surname=data(i+1,2);

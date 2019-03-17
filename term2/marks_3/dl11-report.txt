@@ -1,0 +1,15 @@
+Student report card: 13-Mar-2019 
+Student name: Dean Lareau 
+
+Grades 		 Subject 
+ 50 		 MathsI 
+ 26 		 MathsII 
+ 71 		 PhysicsI 
+ 61 		 PhysicsII 
+ 41 		 Chemistry 
+ 46 		 Econometrics 
+ 34 		 English_Lit 
+ 33 		 Ancient_Greek 
+ 81 		 PhysEd 
+ 64 		 TOK 
+Average: 	  50.70 

@@ -4,7 +4,7 @@ clc
 g=9.81;
 L=20;
 tmax=300;
-dt=0.5;
+dt=0.05;
 theta=pi/6;
 x=0;
 t=0;
@@ -19,7 +19,6 @@ while t<tmax
     hold on 
     plot3([1,1]*x,[0,L*sin(theta)],[0,-L*cos(theta)],'k')
     hold off
-    view([90,0])
     pause(0.5);
 end
 
