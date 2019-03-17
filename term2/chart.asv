@@ -78,8 +78,8 @@ hold on
 plot(strainTT_cf,stressTT_cf,'-k')
 grid on
 legend('Metallic Alloy(Aluminium)','Polymer(Delrin)','Composite(Carbon Fibre)');
-xlabel('True Strain');
-ylabel('True Stress(Pa)')
+xlabel('Strain of Aluminium');
+ylabel('Stress of Aluminium(Pa)')
 hold off
 
 
@@ -88,8 +88,8 @@ hold on
 plot(strainN_delrin-0.06,stressN_delrin-2.2e7,'-r')
 grid on
 legend('True Stress over True Strain','Nominal Stress over Nominal Strain')
-xlabel('Strain of Delrin');
-ylabel('Stress of Delrin(Pa)')
+xlabel('Strain of Aluminium');
+ylabel('Stress of Aluminium(Pa)')
 hold off
 
 
@@ -98,8 +98,8 @@ hold on
 plot(strainN_cf,stressN_cf,'-r')
 grid on
 legend('True Stress over True Strain','Nominal Stress over Nominal Strain')
-xlabel('Strain of Carbon Fibre');
-ylabel('Stress of Carbon Fibre(Pa)')
+xlabel('Strain of Aluminium');
+ylabel('Stress of Aluminium(Pa)')
 hold off
 
 x=[0.09,0.1];
