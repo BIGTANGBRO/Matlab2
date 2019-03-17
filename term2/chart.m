@@ -90,10 +90,17 @@ hold on
 plot(strainN_cf,stressN_cf,'-r')
 hold off
 
-
+x=[0.09,0.1];
+y=[0,2.2*10^8];
+x1=[-0.001,0.0075];
+y1=[0,1.4*10^8];
 plot(strainTT_al,stressTT_al,'-b');
 hold on
-plot(strainN_al,stressN_al,'-r')
+plot(strainN_al,stressN_al,'-r');
+hold on
+plot(x,y);
+hold on
+plot(x1,y1);
 hold off
 
 
