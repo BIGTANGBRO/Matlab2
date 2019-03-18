@@ -14,7 +14,7 @@ E_al=table2array(G1CopyCopy(1:344,1));
 F_al=table2array(G1CopyCopy(1:344,2));                   
 
 strain_delrin=E_delrin./20;
-stress_delrin=F_delrin./(12.19*1.02*0.000000001);
+stress_delrin=F_delrin./(24.6*0.000000001)-1*10^7;
 strain_cf=E_cf./80;
 stress_cf=F_cf./(10.05*0.9*0.000000001);
 strain_al=E_al./50;
@@ -73,7 +73,7 @@ end
 
 plot(strainTT_al,stressTT_al,'-r');
 hold on
-plot(strainTT_delrin-0.06,stressTT_delrin-2.2e7,'-b');
+plot(strainTT_delrin-0.06,stressTT_delrin,'-b');
 hold on
 plot(strainTT_cf,stressTT_cf,'-k')
 grid on
@@ -83,9 +83,9 @@ ylabel('True Stress(Pa)')
 hold off
 
 
-plot(strainTT_delrin-0.06,stressTT_delrin-2.2e7,'-b');
+plot(strainTT_delrin-0.06,stressTT_delrin,'-b');
 hold on
-plot(strainN_delrin-0.06,stressN_delrin-2.2e7,'-r')
+plot(strainN_delrin-0.06,stressN_delrin,'-r')
 grid on
 legend('True Stress over True Strain','Nominal Stress over Nominal Strain')
 xlabel('Strain of Delrin');
