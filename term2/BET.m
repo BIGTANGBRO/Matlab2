@@ -1,5 +1,6 @@
 clc
 clear
+
 fid=fopen('N0012.dat','r');
 trash=fscanf(fid,'%*s',3);
 for i=1:68
@@ -7,6 +8,7 @@ for i=1:68
         AOA_VS_CL_CD(i,j)=fscanf(fid,'%e',1);
     end
 end
+
 N=4;%blade numbers
 D=16.36;%diameter of the blade
 R0=1.55;
@@ -20,6 +22,7 @@ Winf=input('input the rate of descent');
 twist=input('input the twist of the blade');
 density=1.12;
 cut=200;
+
 for i=1:200
     section_chord(i)=Croot+(Ctip-Croot)*i/200;%the width for each small pieces
     R(i)=R0+(D/2-R0)*i/200;%Distance from center, value of R
@@ -55,6 +58,7 @@ polyArray_CL=CubicIn(AOA_list,CL_list);
 polyArray_CD=CubicIn(AOA_list,CD_list);
 %still need to use nested loop to calculate CL and CD for different
 %azimuth_angle.
+
 for i=1:200
     CL(i)=CubicEval(AOA_list,polyArray_CL,ae(i));
     CD(i)=CubicEval(AOA_list,polyArray_CD,ae(i));
