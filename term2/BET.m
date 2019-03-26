@@ -4,7 +4,7 @@ fid=fopen('N0012.dat','r');
 trash=fscanf(fid,'%*s',3);
 for i=1:68
     for j=1:3
-        CL_CD_VS_AOA(i,j)=fscanf(fid,'%e',1);
+        AOA_VS_CL_CD(i,j)=fscanf(fid,'%e',1);
     end
 end
 N=4;%blade numbers
@@ -43,6 +43,26 @@ for i=1:200
     deltaA=atan(W/VT(i));
     ae(i)=ic+(R(i)-R0)/(D/2-R0)+deltaA;%to calculate angle of attack
 end
+
+% use cubic spline to calculate corresponding value of CL and CD specific
+% angle of attack
+CL=[];%initiate lift coefficient
+CD=[];%initiate dray coefficient
+AOA_list=AOA_VS_CL_CD(:,1);
+CL_list=AOA_VS_CL_CD(:,2);
+CD_list=AOA_VS_CL_CD(:,3);
+polyArray_CL=CubicIn(AOA_list,CL_list);
+polyArray_CD=CubicIn(AOA_list,CD_list);
+%still need to use nested loop to calculate CL and CD for different
+%azimuth_angle.
+for i=1:200
+    CL(i)=CubicEval(AOA_list,polyArray_CL,ae(i));
+    CD(i)=CubicEval(AOA_list,polyArray_CD,ae(i));
+end
+
+
+
+    
 
 
 
