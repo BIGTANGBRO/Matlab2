@@ -61,8 +61,10 @@ polyArray_CD=CubicIn(AOA_list,CD_list);
 
 for i=1:200
     CL(i)=CubicEval(AOA_list,polyArray_CL,ae(i));
-    CD(i)=CubicEval(AOA_list,polyArray_CD,ae(i));
+    CD(i)=CubicEval(AOA_list,polyArray_CD,ae(i));%use function created before to find corresponding CD and CL
 end
+
+%use trapz function of calculate double integrals
 
 
 
