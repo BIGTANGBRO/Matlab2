@@ -1,3 +1,7 @@
+%This script is to analyse rotorcrafts and propellers using the way of
+%splitting blade into pieces
+%all the inputs about angles should be in radians except twist(degree)
+
 clc
 clear
 
@@ -8,6 +12,9 @@ for i=1:68
         AOA_VS_CL_CD(i,j)=fscanf(fid,'%e',1);
     end
 end
+%warning: the data in AOA_VS_CL_CD about angle of attack is in unit of
+%degree so when calculating angle of attack below, you should also use
+%degree
 
 N=4;%blade numbers
 D=16.36;%diameter of the blade
@@ -16,13 +23,13 @@ Croot=0.53;
 Ctip=0.53;
 E=-18;%degree linear blade twist
 angular_velocity=27;%rads s^-1
-ic=input('input the blade setting angle');%get the blade setting angle
+ic=input('input the blade setting angle');%get the blade setting angle input will be radian
 Vinf=input('input the forward airspeed');%forwad speed
 Winf=input('input the rate of descent');
-twist=input('input the twist of the blade');
+twist=input('input the twist of the blade')*2*pi/360;%input will be degree so turn in to radian
 density=1.12;
 cut=200;
-azimuth_angle=[0:pi/100:2*pi];
+azimuth_angle=0:pi/100:2*pi;
 
 for i=1:200
     section_chord(i)=Croot+(Ctip-Croot)*i/200;%the width for each small pieces
@@ -46,7 +53,7 @@ for i=1:200
         VT(i,j)=angular_velocity*R(i)+Vinf*sin(azimuth_angle(j));%to calculate tangential velocity
         Ve(i,j)=(VT(i)^2+W^2)^0.5;%to calculate downward velocity;
         deltaA(i,j)=atan(W./VT(i,j));
-        ae(i,j)=ic+(R(i)-R0)/(D/2-R0)+deltaA(i,j);%to calculate angle of attack
+        ae(i,j)=(ic+(R(i)-R0)*twist/(D/2-R0)+deltaA(i,j))*360/(2*pi);%to calculate angle of attack(use degree)
     end
     
 end
@@ -65,8 +72,8 @@ polyArray_CD=CubicIn(AOA_list,CD_list);
 
 for i=1:200
     for j=1:200
-        CL(i,j)=CubicEval(AOA_list,polyArray_CL,ae(i,j));
-        CD(i,j)=CubicEval(AOA_list,polyArray_CD,ae(i,j));%use function created before to find corresponding CD and CL
+        CL(i,j)=cubicEval(AOA_list,polyArray_CL,ae(i,j));
+        CD(i,j)=cubicEval(AOA_list,polyArray_CD,ae(i,j));%use function created before to find corresponding CD and CL
     end
 end
 
@@ -84,7 +91,7 @@ d_Fy=-N*(0.5*density*Ve.^2).*section_chord.*(CD.*cos(deltaA)+CL.*sin(deltaA)).*c
 Fy=trapz(azimuth_angle,trapz(R,d_Fy));
 
 d_T=N*(0.5*density*Ve.^2).*section_chord.*(CD.*cos(deltaA)+CL.*sin(deltaA)).*R./(2*pi);
-T=trapz(azimuth_angle,trapz(R,d_Ft));
+T=trapz(azimuth_angle,trapz(R,d_T));
 
 %calculate diving power
 P=T*angular_velocity;
