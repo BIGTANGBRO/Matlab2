@@ -30,7 +30,7 @@ E=-18;%degree linear blade twist
 angular_velocity=27;%rads s^-1
 density=1.12;%density of air
 cut=200;
-azimuth_angle=0:pi/100:2*pi;
+azimuth_angle=0:pi/100:(2*pi-pi/100);
 
 ic=input('input the blade setting angle');%get the blade setting angle input will be radian
 Vinf=input('input the forward airspeed');%forwad speed
@@ -116,6 +116,17 @@ My=trapz(azimuth_angle,trapz(R,d_My));
 
 %all values are worked out
 
+disp(['The total thrust is',num2str(Fn),'N']);
 
+disp(['The drag force is ',num2str(Fx),'N']);
 
+disp(['The side force is',num2str(Fy),'N']);
+
+disp(['The moment about the rotor hub is',num2str(Fn),'Nm']);
+
+disp(['Average pitching moment is ',num2str(Mx),'Nm']);
+
+disp(['Average rolling moment is',num2str(My),'Nm']);
+
+disp(['The average power to drive the rotor is',num2str(P),'W']);
 
