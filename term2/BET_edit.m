@@ -75,14 +75,14 @@ polyArray_CD=CubicIn(AOA_list,CD_list);
 %this nested loop is to create 200x200 array as both the blade section and
 %the azimuth angle are divided into 200 pieces and 
 %i represents sections and j represents azimuth angle so one row gets
-%value for same section but different azimuth angle and one column
-%represents same azimuth angle but different sections.
+%value for differnet sections but same azimuth angle and one column
+%represents different azimuth angles but same section.
 for i=1:200
     for j=1:200
-        VT(i,j)=angular_velocity*R(i)+Vinf*sin(azimuth_angle(j));%to calculate tangential velocity
-        Ve(i,j)=(VT(i)^2+W^2)^0.5;%to calculate downward velocity;
+        VT(i,j)=angular_velocity*R(j)+Vinf*sin(azimuth_angle(i));%to calculate tangential velocity
+        Ve(i,j)=(VT(i,j)^2+W^2)^0.5;%to calculate downward velocity;
         deltaA(i,j)=atan(W./VT(i,j));
-        ae(i,j)=(ic+(R(i)-R0)*twist/(D/2-R0)+deltaA(i,j))*360/(2*pi);%to calculate angle of attack(use degree)
+        ae(i,j)=(ic+(R(j)-R0)*twist/(D/2-R0)+deltaA(i,j))*360/(2*pi);%to calculate angle of attack(use degree)
         CL(i,j)=cubicEval(AOA_list,polyArray_CL,ae(i,j));
         CD(i,j)=cubicEval(AOA_list,polyArray_CD,ae(i,j));%use function created before to find corresponding CD and CL
     end
