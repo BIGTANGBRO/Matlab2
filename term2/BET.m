@@ -109,10 +109,10 @@ while diff>eps %eps is computational precision
             %Use cubic spline interpolation to find coefficients of drag and
             %lift at each section using cubicEval.m and coeff.m functions used
             %in Cubic Spline Interpolation question
-            polycoeff=coeff(AoA,CL); %calculate polynomial coefficients of interpolant
-            CL_InterpVal(i,j)=cubicEval(AoA,polycoeff,alpha_e); %interpolated CL value
-            polycoeff=coeff(AoA,CD); %calculate polynomial coefficients of interpolant
-            CD_InterpVal(i,j)=cubicEval(AoA,polycoeff,alpha_e); %interpolated CD value
+            polycoeff1=CubicIn(AoA,CL); %calculate polynomial coefficients of interpolant
+            CL_InterpVal(i,j)=cubicEval(AoA,polycoeff1,alpha_e); %interpolated CL value
+            polycoeff2=CubicIn(AoA,CD); %calculate polynomial coefficients of interpolant
+            CD_InterpVal(i,j)=cubicEval(AoA,polycoeff2,alpha_e); %interpolated CD value
         end
     end
     
