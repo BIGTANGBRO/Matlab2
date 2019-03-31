@@ -26,7 +26,6 @@ angular_velocity=27;%rads s^-1
 density=1.12;%density of air
 R_cut=200;
 psi_cut=360;
-azimuth_angle=0:pi/100:2*pi;
 
 ic=input('input the blade setting angle(degree):')*pi/180;%get the blade setting angle,turn it into radian
 Vinf=input('input the forward airspeed(ft/s):');%forwad speed
@@ -57,7 +56,7 @@ polyArray_CD=CubicIn(AOA_list,CD_list);
 [psi,R]=meshgrid(psi,R);
 
 D=5;%set the initial difference
-while D>eps
+while D>2
     %this nested loop is to create 200x360 array as both the blade section are divided by R_cut and
     %the azimuth angle are divided into psi_cut pieces 
     %i represents sections and j represents azimuth angle so one row gets
@@ -77,14 +76,14 @@ while D>eps
             end
             VT(i,j)=angular_velocity*R(i,j)+Vinf*sin(psi(i,j));%to calculate tangential velocity
             Ve(i,j)=(VT(i,j)^2+W^2)^0.5;%to calculate downward velocity;
-            deltaA(i,j)=atan(W./VT(i,j));
+            deltaA(i,j)=atan(W/VT(i,j));
             ae(i,j)=(ic+(R(i,j)-R0)*twist/(D/2-R0)+deltaA(i,j))*360/(2*pi);%to calculate angle of attack(use degree)
             CL(i,j)=cubicEval(AOA_list,polyArray_CL,ae(i,j));
             CD(i,j)=cubicEval(AOA_list,polyArray_CD,ae(i,j));%use function created before to find corresponding CD and CL
         end
     end
     d_Fn=N*(0.5*density*Ve.^2).*section_chord.*(CL.*cos(deltaA)+CD.*sin(deltaA))./(2*pi);
-    Fn=trapz(psi,trapz(R,d_Fn));
+    Fn=trapz(psi(1,:),trapz(R(:,1),d_Fn));
     D=abs(Fn-Fn_init);
     Fn_init=Fn;
 end
