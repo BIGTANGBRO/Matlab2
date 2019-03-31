@@ -53,7 +53,7 @@ polyArray_CL=CubicIn(AOA_list,CL_list);
 polyArray_CD=CubicIn(AOA_list,CD_list);
 
 %use meshgrid to turn 1D array to matrix(R,section_chord,azimuth_angle(psi)
-[~,section_chord]=meshgrid(psi,section_chord);
+[sth,section_chord]=meshgrid(psi,section_chord);
 [psi,R]=meshgrid(psi,R);
 
 D=5;%set the initial difference
@@ -84,7 +84,7 @@ while D>eps
         end
     end
     d_Fn=N*(0.5*density*Ve.^2).*section_chord.*(CL.*cos(deltaA)+CD.*sin(deltaA))./(2*pi);
-    Fn=trapz(psi(1,:),trapz(R(:,1),d_Fn));
+    Fn=trapz(psi,trapz(R,d_Fn));
     D=abs(Fn-Fn_init);
     Fn_init=Fn;
 end
