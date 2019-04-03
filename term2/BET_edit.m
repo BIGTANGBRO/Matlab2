@@ -42,9 +42,7 @@ Fn_init=0;%set the inital totol thrust
 psi=0:2*pi/(psi_cut-1):2*pi;%azimuth_angle
 
 % use cubic spline to calculate corresponding value of CL and CD specific
-% angle of attack
-CL=[];%initiate lift coefficient
-CD=[];%initiate dray coefficient
+% angle of attackz
 AOA_list=AOA_VS_CL_CD(1,:);
 CL_list=AOA_VS_CL_CD(2,:);
 CD_list=AOA_VS_CL_CD(3,:);
@@ -67,23 +65,23 @@ while D>2
     for i=1:R_cut
         for j=1:psi_cut
             if Winf<=0
-                W=Winf/2-1/2*sqrt(Winf^2+8*Fn_init/(pi*density*D^2));
+                W=(Winf/2)-(1/2)*sqrt(Winf^2+8*Fn_init/(pi*density*D^2));
             elseif Winf >sqrt(8*Fn_init/(density*pi*D^2))
-                W=Winf/2+1/2*sqrt(Winf^2-8*Fn_init/(pi*density*D^2));
+                W=(Winf/2)+(1/2)*sqrt(Winf^2-8*Fn_init/(pi*density*D^2));
             else
                 disp('No analytical solution.');
                 break
             end
             VT(i,j)=angular_velocity*R(i,j)+Vinf*sin(psi(i,j));%to calculate tangential velocity
-            Ve(i,j)=(VT(i,j)^2+W^2)^0.5;%to calculate downward velocity;
+            Ve(i,j)=sqrt(VT(i,j)^2+W^2);%to calculate downward velocity;
             deltaA(i,j)=atan(W/VT(i,j));
-            ae(i,j)=(ic+(R(i,j)-R0)*twist/(D/2-R0)+deltaA(i,j))*360/(2*pi);%to calculate angle of attack(use degree)
-            CL(i,j)=cubicEval(AOA_list,polyArray_CL,ae(i,j));
-            CD(i,j)=cubicEval(AOA_list,polyArray_CD,ae(i,j));%use function created before to find corresponding CD and CL
+            ae(i,j)=ic+((R(i,j)-R0)*twist)/(D/2-R0)+deltaA(i,j);%to calculate angle of attack(use degree)
+            CL(i,j)=cubicEval(AOA_list,polyArray_CL,ae(i,j)*180/pi);
+            CD(i,j)=cubicEval(AOA_list,polyArray_CD,ae(i,j)*180/pi);%use function created before to find corresponding CD and CL
         end
     end
-    d_Fn=N*(0.5*density*Ve.^2).*section_chord.*(CL.*cos(deltaA)+CD.*sin(deltaA))./(2*pi);
-    Fn=trapz(psi(1,:),trapz(R(:,1),d_Fn));
+    d_Fn=0.5*density*Ve.^2.*section_chord.*(CL.*cos(deltaA)+CD.*sin(deltaA));
+    Fn=trapz(psi(1,:),trapz(R(:,1),d_Fn))*N/(2*pi);
     D=abs(Fn-Fn_init);
     Fn_init=Fn;
 end
