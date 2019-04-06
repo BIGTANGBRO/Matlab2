@@ -23,9 +23,9 @@ Croot=0.53;
 Ctip=0.53;
 E=-18;%degree linear blade twist
 angular_velocity=27;%rads s^-1
-density=1.12;%density of air
-R_cut=200;
-psi_cut=360;
+density=1.22;%density of air kg/m^3
+R_cut=100;
+psi_cut=180;
 
 ic=input('input the blade setting angle(degree):')*pi/180;%get the blade setting angle,turn it into radian
 Vinf=input('input the forward airspeed(ft/s):');%forwad speed
@@ -54,74 +54,76 @@ polyArray_CD=CubicIn(AOA_list,CD_list);
 [psi,R]=meshgrid(psi,R);
 
 D=5;%set the initial difference
-while D>2
+is_solution=1;
+while D>0.01
     %this nested loop is to create 200x360 array as both the blade section are divided by R_cut and
     %the azimuth angle are divided into psi_cut pieces 
-    %i represents sections and j represents azimuth angle so one row gets
-    %value for differnet sections but same azimuth angle and one column
-    %represents different azimuth angles but same section.
+    %i represents sections and j represents azimuth angle so one column
+    %represents same azimuth angles, different sections.
     %calculate the velocity normal to disc W
-    %need condition to do calculation
+    if Winf<=0
+        W=(0.5*Winf)-0.5*sqrt(Winf^2+8*Fn_init/(pi*density*D^2));
+    elseif Winf >sqrt(8*Fn_init/(density*pi*D^2))
+        W=(0.5*Winf)+0.5*sqrt(Winf^2-8*Fn_init/(pi*density*D^2));
+    else
+        disp('No analytical solution.');
+        is_solution=0;
+        break
+    end
     for i=1:R_cut
         for j=1:psi_cut
-            if Winf<=0
-                W=(Winf/2)-(1/2)*sqrt(Winf^2+8*Fn_init/(pi*density*D^2));
-            elseif Winf >sqrt(8*Fn_init/(density*pi*D^2))
-                W=(Winf/2)+(1/2)*sqrt(Winf^2-8*Fn_init/(pi*density*D^2));
-            else
-                disp('No analytical solution.');
-                break
-            end
-            VT(i,j)=angular_velocity*R(i,j)+Vinf*sin(psi(i,j));%to calculate tangential velocity
-            Ve(i,j)=sqrt(VT(i,j)^2+W^2);%to calculate downward velocity;
-            deltaA(i,j)=atan(W/VT(i,j));
-            ae(i,j)=ic+((R(i,j)-R0)*twist)/(D/2-R0)+deltaA(i,j);%to calculate angle of attack(use degree)
+            VT(i,j)=angular_velocity.*R(i,j)+Vinf.*sin(psi(i,j));%to calculate tangential velocity
+            Ve(i,j)=sqrt(VT(i,j).^2+W.^2);%to calculate downward velocity;
+            deltaA(i,j)=atan(W./VT(i,j));
+            ae(i,j)=ic+((R(i,j)-R0).*twist)./(D/2-R0)+deltaA(i,j);%to calculate angle of attack(use degree)
             CL(i,j)=cubicEval(AOA_list,polyArray_CL,ae(i,j)*180/pi);
             CD(i,j)=cubicEval(AOA_list,polyArray_CD,ae(i,j)*180/pi);%use function created before to find corresponding CD and CL
         end
     end
-    d_Fn=0.5*density*Ve.^2.*section_chord.*(CL.*cos(deltaA)+CD.*sin(deltaA));
-    Fn=trapz(psi(1,:),trapz(R(:,1),d_Fn))*N/(2*pi);
+    d_Fn=0.5.*density.*(Ve.^2).*section_chord.*(CL.*cos(deltaA)+CD.*sin(deltaA));
+    Fn_1=trapz(R(:,1),d_Fn);
+    Fn=trapz(psi(1,:),Fn_1).*N./(2*pi);
     D=abs(Fn-Fn_init);
     Fn_init=Fn;
 end
-
 %use trapz function of calculate double integrals
 %calculate total thrust of the rotor disc
 %fitsr integrate by Radius then by psi
+if is_solution==1
+    d_Fx=N*(0.5*density*Ve.^2).*section_chord.*(CD.*cos(deltaA)+CL.*sin(deltaA)).*sin(psi)./(2*pi);
+    Fx=trapz(psi(1,:),trapz(R(:,1),d_Fx));
 
-d_Fx=N*(0.5*density*Ve.^2).*section_chord.*(CD.*cos(deltaA)+CL.*sin(deltaA)).*sin(psi)./(2*pi);
-Fx=trapz(psi(1,:),trapz(R(:,1),d_Fx));
+	d_Fy=-N*(0.5*density*Ve.^2).*section_chord.*(CD.*cos(deltaA)+CL.*sin(deltaA)).*cos(psi)./(2*pi);
+    Fy=trapz(psi(1,:),trapz(R(:,1),d_Fy));
 
-d_Fy=-N*(0.5*density*Ve.^2).*section_chord.*(CD.*cos(deltaA)+CL.*sin(deltaA)).*cos(psi)./(2*pi);
-Fy=trapz(psi(1,:),trapz(R(:,1),d_Fy));
+    d_T=N*(0.5*density*Ve.^2).*section_chord.*(CD.*cos(deltaA)+CL.*sin(deltaA)).*R./(2*pi);
+    T=trapz(psi(1,:),trapz(R(:,1),d_T));
 
-d_T=N*(0.5*density*Ve.^2).*section_chord.*(CD.*cos(deltaA)+CL.*sin(deltaA)).*R./(2*pi);
-T=trapz(psi(1,:),trapz(R(:,1),d_T));
+    %calculate diving power
+    P=T*angular_velocity;
 
-%calculate diving power
-P=T*angular_velocity;
+    %calculate pitching and rolling moments
+    d_Mx=-N*(0.5*density*Ve.^2).*section_chord.*(CL.*cos(deltaA)+CD.*sin(deltaA)).*R.*cos(psi)./(2*pi);
+    Mx=trapz(psi(1,:),trapz(R(:,1),d_Mx));
 
-%calculate pitching and rolling moments
-d_Mx=-N*(0.5*density*Ve.^2).*section_chord.*(CL.*cos(deltaA)+CD.*sin(deltaA)).*R.*cos(psi)./(2*pi);
-Mx=trapz(psi(1,:),trapz(R(:,1),d_Mx));
+    d_My=-N*(0.5*density*Ve.^2).*section_chord.*(CD.*cos(deltaA)+CL.*sin(deltaA)).*R.*sin(psi)./(2*pi);
+    My=trapz(psi(1,:),trapz(R(:,1),d_My));
 
-d_My=-N*(0.5*density*Ve.^2).*section_chord.*(CD.*cos(deltaA)+CL.*sin(deltaA)).*R.*sin(psi)./(2*pi);
-My=trapz(psi(1,:),trapz(R(:,1),d_My));
+    %all values are worked out
 
-%all values are worked out
+    disp(['The total thrust is',num2str(Fn),'N']);
 
-disp(['The total thrust is',num2str(Fn),'N']);
+    disp(['The drag force is ',num2str(Fx),'N']);
 
-disp(['The drag force is ',num2str(Fx),'N']);
+    disp(['The side force is',num2str(Fy),'N']);
 
-disp(['The side force is',num2str(Fy),'N']);
+    disp(['The moment about the rotor hub is',num2str(Fn),'Nm']);
 
-disp(['The moment about the rotor hub is',num2str(Fn),'Nm']);
+    disp(['Average pitching moment is ',num2str(Mx),'Nm']);
 
-disp(['Average pitching moment is ',num2str(Mx),'Nm']);
+    disp(['Average rolling moment is',num2str(My),'Nm']);
 
-disp(['Average rolling moment is',num2str(My),'Nm']);
-
-disp(['The average power to drive the rotor is',num2str(P),'W']);
-
+    disp(['The average power to drive the rotor is',num2str(P),'W']);
+else
+    disp('Calculation failed');
+end    
