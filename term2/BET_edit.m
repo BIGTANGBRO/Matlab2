@@ -59,9 +59,9 @@ polyArray_CD=CubicIn(AOA_list,CD_list);
 [~,section_chord]=meshgrid(psi,section_chord);
 [psi,R]=meshgrid(psi,R);
 
-D=5;%set the initial difference
+Diff=5;%set the initial difference
 is_solution=1;
-while (D>0.001)
+while (Diff>0.001)
     %this nested loop is to create 200x360 array as both the blade section are divided by R_cut and
     %the azimuth angle are divided into psi_cut pieces 
     %i represents sections and j represents azimuth angle so one column
@@ -79,16 +79,16 @@ while (D>0.001)
     for i=1:R_cut
         for j=1:psi_cut
             VT(i,j)=angular_velocity.*R(i,j)+Vinf.*sin(psi(i,j));%to calculate tangential velocity
-            Ve(i,j)=sqrt(VT(i,j).^2+W.^2);%to calculate downward velocity;
-            deltaA(i,j)=atan(W/VT(i,j));
+            Ve(i,j)=sqrt(VT(i,j)^2+W^2);%to calculate downward velocity;
+            deltaA(i,j)=atan(W./VT(i,j));
             ae(i,j)=ic+((R(i,j)-R0)/(D/2-R0))*twist+deltaA(i,j);%to calculate angle of attack(use degree)
             CL(i,j)=cubicEval(AOA_list,polyArray_CL,(ae(i,j)*180)/pi);
             CD(i,j)=cubicEval(AOA_list,polyArray_CD,(ae(i,j)*180)/pi);%use function created before to find corresponding CD and CL
         end
     end
-    d_Fn=(0.5.*density.*(Ve.^2).*section_chord.*(CL.*cos(deltaA)+CD.*sin(deltaA)));
+    d_Fn=0.5.*density.*(Ve.^2).*section_chord.*(CL.*cos(deltaA)+CD.*sin(deltaA));
     Fn=trapz(psi(1,:),trapz(R(:,1),d_Fn,1),2).*N./(2*pi);
-    D=abs(Fn-Fn_init);
+    Diff=abs(Fn-Fn_init);
     Fn_init=Fn;
 end
 %use trapz function of calculate double integrals
