@@ -122,7 +122,7 @@ if is_solution==1
 
     disp(['The side force is',num2str(Fy),'N']);
 
-    disp(['The moment about the rotor hub is',num2str(Fn),'Nm']);
+    disp(['The moment about the rotor hub is',num2str(T),'Nm']);
 
     disp(['Average pitching moment is ',num2str(Mx),'Nm']);
 
