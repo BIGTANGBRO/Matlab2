@@ -20,7 +20,7 @@ AOA_VS_CL_CD=fscanf(fid,'%e',[3,inf]);%this will be a nx3 array
 R_cut=input('input the slices of blade you want to cut:');
 psi_cut=input('input the slices of aziumuth angle you want to divide:');
 
-clc
+clc%just show the flying condition
 
 %show the user with display settings;
 disp('Here is the flight settings;');
@@ -56,11 +56,12 @@ polyArray_CL=CubicIn(AOA_list,CL_list);
 polyArray_CD=CubicIn(AOA_list,CD_list);
 
 %use meshgrid to turn 1D array to matrix(R,section_chord,azimuth_angle(psi)
+%as the dimension should be constant
 [~,section_chord]=meshgrid(psi,section_chord);
 [psi,R]=meshgrid(psi,R);
 
 Diff=5;%set the initial difference
-is_solution=1;
+is_solution=1;%set a condition for the invalid solution
 while (Diff>0.001)
     %this nested loop is to create 200x360 array as both the blade section are divided by R_cut and
     %the azimuth angle are divided into psi_cut pieces 
@@ -72,10 +73,14 @@ while (Diff>0.001)
     elseif Winf >sqrt(8*Fn_init/(density*pi*D^2))
         W=(0.5*Winf)+0.5*sqrt(Winf^2-8*Fn_init/(pi*density*D^2));
     else
+        %if the w will not have solution,change the state of the
+        %is_solution
         disp('No analytical solution.');
         is_solution=0;
         break
     end
+    %nested loops is used to calculate all the values in the matrix, easier
+    %to be understood than array operations(can also be changed to array operations instead of using loops)
     for i=1:R_cut
         for j=1:psi_cut
             VT(i,j)=angular_velocity.*R(i,j)+Vinf.*sin(psi(i,j));%to calculate tangential velocity
@@ -87,14 +92,14 @@ while (Diff>0.001)
         end
     end
     d_Fn=0.5.*density.*(Ve.^2).*section_chord.*(CL.*cos(deltaA)+CD.*sin(deltaA));
-    Fn=trapz(psi(1,:),trapz(R(:,1),d_Fn,1),2).*N./(2*pi);
-    Diff=abs(Fn-Fn_init);
+    Fn=trapz(psi(1,:),trapz(R(:,1),d_Fn,1),2).*N./(2*pi);%calculate fn in each round until answer goes convergent
+    Diff=abs(Fn-Fn_init);%make the answer convergent
     Fn_init=Fn;
 end
 %use trapz function of calculate double integrals
 %calculate total thrust of the rotor disc
 %fitsr integrate by Radius then by psi
-if is_solution==1
+if is_solution==1%only if analytical solution exists, code below will show
     d_Fx=N*(0.5*density.*Ve.^2).*section_chord.*(CD.*cos(deltaA)-CL.*sin(deltaA)).*sin(psi)./(2*pi);
     Fx=trapz(psi(1,:),trapz(R(:,1),d_Fx));
 
@@ -104,7 +109,7 @@ if is_solution==1
     d_T=N*(0.5*density.*Ve.^2).*section_chord.*(CD.*cos(deltaA)-CL.*sin(deltaA)).*R./(2*pi);
     T=trapz(psi(1,:),trapz(R(:,1),d_T));
 
-    %calculate diving power
+    %calculate driven power
     P=T*angular_velocity;
 
     %calculate pitching and rolling moments
@@ -116,19 +121,19 @@ if is_solution==1
 
     %all values are worked out
 
-    disp(['The total thrust is',num2str(Fn),'N']);
+    disp(['The total thrust is ',num2str(Fn),'N']);
 
     disp(['The drag force is ',num2str(Fx),'N']);
 
-    disp(['The side force is',num2str(Fy),'N']);
+    disp(['The side force is ',num2str(Fy),'N']);
 
-    disp(['The moment about the rotor hub is',num2str(T),'Nm']);
+    disp(['The moment about the rotor hub is ',num2str(T),'Nm']);
 
     disp(['Average pitching moment is ',num2str(Mx),'Nm']);
 
-    disp(['Average rolling moment is',num2str(My),'Nm']);
+    disp(['Average rolling moment is ',num2str(My),'Nm']);
 
-    disp(['The average power to drive the rotor is',num2str(P),'W']);
-else
+    disp(['The average power to drive the rotor is ',num2str(P),'W']);
+else%if no analytical solution, nothing will display
     disp('Calculation failed');
 end    
