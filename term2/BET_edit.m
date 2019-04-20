@@ -62,7 +62,7 @@ polyArray_CD=CubicIn(AOA_list,CD_list);
 
 Diff=5;%set the initial difference
 is_solution=1;%set a condition for the invalid solution
-while (Diff>0.001)
+while (Diff>0.0001)
     %this nested loop is to create 200x360 array as both the blade section are divided by R_cut and
     %the azimuth angle are divided into psi_cut pieces 
     %i represents sections and j represents azimuth angle so one column
@@ -137,3 +137,10 @@ if is_solution==1%only if analytical solution exists, code below will show
 else%if no analytical solution, nothing will display
     disp('Calculation failed');
 end    
+x=R.*cos(psi);
+y=R.*sin(psi);
+z=polar(x,y);
+contourf(x,y,d_Fn);
+colorbar
+axis image 
+axis off
