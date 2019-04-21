@@ -23,18 +23,19 @@ psi_cut=input('input the slices of aziumuth angle you want to divide:');
 clc%just show the flying condition
 
 %show the user with display settings;
-disp('Here is the flight settings;');
+disp('Here are the helicopter settings;');
 
 %set the initial condition
-N=4;%blade numbers
-D=16.36;%diameter of the blade
-R0=1.55;
-Croot=0.53;
-Ctip=0.53;
-E=-18;%degree linear blade twist
-angular_velocity=27;%rads s^-1
+N=input('input the number of blades(e.g 4):');%blade numbers
+D=input('input the diameter of the blade in m(e.g 16.36):');%diameter of the blade
+R0=input('input the first airfoil section R0 in m:');
+Croot=input('input the root blade chord in m:');
+Ctip=input('input the tip blade chord in m:');
+E=input('input the linear blade twist in degree:');%degree linear blade twist
+angular_velocity=input('input the rotational speed in rad/sec:');%rads s^-1
 density=1.22;%density of air kg/m^3
 
+disp('Here are the flight condtion settings:');
 ic=input('input the blade setting angle(degree):')*pi/180;%get the blade setting angle,turn it into radian
 Vinf=input('input the forward airspeed(ft/s):')*0.551;%forwad speed,input here will be in knots so it should be turned into SI units
 Winf=input('input the rate of descent(ft/min):')*0.551/60;%vertical speed downwards
@@ -73,8 +74,7 @@ while (Diff>0.0001)
     elseif Winf >sqrt(8*Fn_init/(density*pi*D^2))
         W=(0.5*Winf)+0.5*sqrt(Winf^2-8*Fn_init/(pi*density*D^2));
     else
-        %if the w will not have solution,change the state of the
-        %is_solution
+        %if the w will not have solution,change the state of the is_solution
         disp('No analytical solution.');
         is_solution=0;
         break
@@ -116,7 +116,7 @@ if is_solution==1%only if analytical solution exists, code below will show
     d_Mx=-N*(0.5*density.*Ve.^2).*section_chord.*(CL.*cos(deltaA)+CD.*sin(deltaA)).*R.*cos(psi)./(2*pi);
     Mx=trapz(psi(1,:),trapz(R(:,1),d_Mx));
 
-    d_My=-N*(0.5*density.*Ve.^2).*section_chord.*(CD.*cos(deltaA)+CL.*sin(deltaA)).*R.*sin(psi)./(2*pi);
+    d_My=-N*(0.5*density.*Ve.^2).*section_chord.*(CL.*cos(deltaA)+CD.*sin(deltaA)).*R.*sin(psi)./(2*pi);
     My=trapz(psi(1,:),trapz(R(:,1),d_My));
 
     %all values are worked out
@@ -137,10 +137,4 @@ if is_solution==1%only if analytical solution exists, code below will show
 else%if no analytical solution, nothing will display
     disp('Calculation failed');
 end    
-x=R.*cos(psi);
-y=R.*sin(psi);
-z=polar(x,y);
-contourf(x,y,d_Fn);
-colorbar
-axis image 
-axis off
+
