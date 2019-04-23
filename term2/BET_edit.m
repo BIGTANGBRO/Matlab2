@@ -122,7 +122,7 @@ if is_solution==1%only if analytical solution exists, code below will show
     My=trapz(psi(1,:),trapz(R(:,1),d_My));
 
     %all values are worked out
-    fid1=fopen('results.txt','w');
+    fid1=fopen('results_bet.txt','w');
     fprintf(fid1,'The total thrust is %1$5.3e N \n',Fn);
 
     fprintf(fid1,'The drag force is %1$5.3e N \n',Fx);
