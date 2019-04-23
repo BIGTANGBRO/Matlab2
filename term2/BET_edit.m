@@ -63,6 +63,7 @@ polyArray_CD=CubicIn(AOA_list,CD_list);
 
 Diff=5;%set the initial difference
 is_solution=1;%set a condition for the invalid solution
+is_dangerous=1;
 while (Diff>0.0001)
     %this nested loop is to create 200x360 array as both the blade section are divided by R_cut and
     %the azimuth angle are divided into psi_cut pieces 
@@ -79,14 +80,14 @@ while (Diff>0.0001)
         is_solution=0;
         break
     end
-    %nested loops is used to calculate all the values in the matrix, easier
-    %to be understood than array operations(can also be changed to array operations instead of using loops)
+    %nested loops can also be used to calculate all the values in the matrix, easier
+    %to use array operations
+    VT=angular_velocity.*R+Vinf.*sin(psi);%to calculate tangential velocity
+    Ve=sqrt(VT.^2+W.^2);%to calculate downward velocity;
+    deltaA=atan(W./VT);
+    ae=ic+((R-R0)./(D/2-R0)).*twist+deltaA;%to calculate angle of attack(use degree)
     for i=1:R_cut
         for j=1:psi_cut
-            VT(i,j)=angular_velocity.*R(i,j)+Vinf.*sin(psi(i,j));%to calculate tangential velocity
-            Ve(i,j)=sqrt(VT(i,j)^2+W^2);%to calculate downward velocity;
-            deltaA(i,j)=atan(W./VT(i,j));
-            ae(i,j)=ic+((R(i,j)-R0)/(D/2-R0))*twist+deltaA(i,j);%to calculate angle of attack(use degree)
             CL(i,j)=cubicEval(AOA_list,polyArray_CL,(ae(i,j)*180)/pi);
             CD(i,j)=cubicEval(AOA_list,polyArray_CD,(ae(i,j)*180)/pi);%use function created before to find corresponding CD and CL
         end
@@ -98,7 +99,8 @@ while (Diff>0.0001)
 end
 %use trapz function of calculate double integrals
 %calculate total thrust of the rotor disc
-%fitsr integrate by Radius then by psi
+%first integrate by Radius then by psi
+
 if is_solution==1%only if analytical solution exists, code below will show
     d_Fx=N*(0.5*density.*Ve.^2).*section_chord.*(CD.*cos(deltaA)-CL.*sin(deltaA)).*sin(psi)./(2*pi);
     Fx=trapz(psi(1,:),trapz(R(:,1),d_Fx));
@@ -120,20 +122,21 @@ if is_solution==1%only if analytical solution exists, code below will show
     My=trapz(psi(1,:),trapz(R(:,1),d_My));
 
     %all values are worked out
+    fid1=fopen('results.txt','w');
+    fprintf(fid1,'The total thrust is %1$5.3e N \n',Fn);
 
-    disp(['The total thrust is ',num2str(Fn),'N']);
+    fprintf(fid1,'The drag force is %1$5.3e N \n',Fx);
 
-    disp(['The drag force is ',num2str(Fx),'N']);
+    fprintf(fid1,'The side force is %1$5.3e N \n',Fy);
 
-    disp(['The side force is ',num2str(Fy),'N']);
+    fprintf(fid1,'The moment about the rotor hub is %1$5.3e Nm \n',T);
 
-    disp(['The moment about the rotor hub is ',num2str(T),'Nm']);
+    fprintf(fid1,'Average pitching moment is %1$5.3e Nm \n',Mx);
 
-    disp(['Average pitching moment is ',num2str(Mx),'Nm']);
+    fprintf(fid1,'Average rolling moment is %1$5.3e Nm \n',My);
 
-    disp(['Average rolling moment is ',num2str(My),'Nm']);
-
-    disp(['The average power to drive the rotor is ',num2str(P),'W']);
+    fprintf(fid1,'The average power to drive the rotor is %1$5.3e W \n',P);
+    fclose(fid1);
 else%if no analytical solution, nothing will display
     disp('Calculation failed');
 end    
