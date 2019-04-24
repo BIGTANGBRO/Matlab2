@@ -87,6 +87,8 @@ while (Diff>0.0001)
     Ve=sqrt(VT.^2+W.^2);%to calculate downward velocity;
     deltaA=atan(W./VT);
     ae=ic+((R-R0)./(D/2-R0)).*twist+deltaA;%to calculate angle of attack(use degree)
+    %cubicEval function only receives scarlar,thus nested loops should be
+    %used here
     for i=1:R_cut
         for j=1:psi_cut
             CL(i,j)=cubicEval(AOA_list,polyArray_CL,(ae(i,j)*180)/pi);
