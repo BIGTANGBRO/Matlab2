@@ -1,6 +1,7 @@
 %This script is to analyse rotorcrafts and propellers using the way of
 %splitting blade into pieces
 %all the inputs about angles should be in radians except twist(degree)
+%the results will be written in a text file called results_bet.txt
 %written by Jiaxuan Tang for Computing coursework quesion 2
 clc
 clear
@@ -122,6 +123,7 @@ if is_solution==1%only if analytical solution exists, code below will show
     My=trapz(psi(1,:),trapz(R(:,1),d_My));
 
     %all values are worked out
+    %open a text file and write the value in it
     fid1=fopen('results_bet.txt','w');
     fprintf(fid1,'The total thrust is %1$5.3e N \n',Fn);
 
