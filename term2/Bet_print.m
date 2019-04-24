@@ -38,8 +38,8 @@ density=1.22;%density of air kg/m^3
 
 disp('Here are the flight condtion settings:');
 ic=input('input the blade setting angle(degree):')*pi/180;%get the blade setting angle,turn it into radian
-Vinf=input('input the forward airspeed(ft/s):')*0.551;%forwad speed,input here will be in knots so it should be turned into SI units
-Winf=input('input the rate of descent(ft/min):')*0.551/60;%vertical speed downwards
+Vinf=input('input the forward airspeed(kts):')*0.551;%forwad speed,input here will be in knots so it should be turned into SI units
+Winf=input('input the rate of descent(ft/min):')*0.3048/60;%vertical speed downwards, input is ft/min
 twist=E*pi/180;%input will be degree so turn in to radian
 
 %caluculate the local chord for each small section and the positions of
