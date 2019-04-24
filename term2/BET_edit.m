@@ -64,7 +64,6 @@ polyArray_CD=CubicIn(AOA_list,CD_list);
 
 Diff=5;%set the initial difference
 is_solution=1;%set a condition for the invalid solution
-is_dangerous=1;
 while (Diff>0.0001)
     %this nested loop is to create 200x360 array as both the blade section are divided by R_cut and
     %the azimuth angle are divided into psi_cut pieces 

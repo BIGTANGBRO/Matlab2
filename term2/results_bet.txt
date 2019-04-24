@@ -1,7 +1,7 @@
 The total thrust is 1.229e+05 N 
-The drag force is 1.599e-14 N 
-The side force is 1.535e-12 N 
+The drag force is 2.309e-13 N 
+The side force is 1.648e-12 N 
 The moment about the rotor hub is 2.272e+05 Nm 
-Average pitching moment is 3.001e-11 Nm 
-Average rolling moment is 1.276e-11 Nm 
+Average pitching moment is 2.456e-11 Nm 
+Average rolling moment is 3.240e-12 Nm 
 The average power to drive the rotor is 6.136e+06 W 

@@ -1,6 +1,7 @@
 %This script is to analyse rotorcrafts and propellers using the way of
 %splitting blade into pieces
 %all the inputs about angles should be in radians except twist(degree)
+%the results will be written in a text file called results_bet.txt
 %written by Jiaxuan Tang for Computing coursework quesion 2
 clc
 clear
@@ -79,14 +80,16 @@ while (Diff>0.0001)
         is_solution=0;
         break
     end
-    %nested loops is used to calculate all the values in the matrix, easier
-    %to be understood than array operations(can also be changed to array operations instead of using loops)
+    %nested loops can also be used to calculate all the values in the matrix, easier
+    %to use array operations
+    VT=angular_velocity.*R+Vinf.*sin(psi);%to calculate tangential velocity
+    Ve=sqrt(VT.^2+W.^2);%to calculate downward velocity;
+    deltaA=atan(W./VT);
+    ae=ic+((R-R0)./(D/2-R0)).*twist+deltaA;%to calculate angle of attack(use degree)
+    %cubicEval function only receives scarlar,thus nested loops should be
+    %used here
     for i=1:R_cut
         for j=1:psi_cut
-            VT(i,j)=angular_velocity.*R(i,j)+Vinf.*sin(psi(i,j));%to calculate tangential velocity
-            Ve(i,j)=sqrt(VT(i,j)^2+W^2);%to calculate downward velocity;
-            deltaA(i,j)=atan(W./VT(i,j));
-            ae(i,j)=ic+((R(i,j)-R0)/(D/2-R0))*twist+deltaA(i,j);%to calculate angle of attack(use degree)
             CL(i,j)=cubicEval(AOA_list,polyArray_CL,(ae(i,j)*180)/pi);
             CD(i,j)=cubicEval(AOA_list,polyArray_CD,(ae(i,j)*180)/pi);%use function created before to find corresponding CD and CL
         end
@@ -97,6 +100,7 @@ while (Diff>0.0001)
     Fn_init=Fn;
 end
 %use trapz function of calculate double integrals
+%calculate total thrust of the rotor disc%use trapz function of calculate double integrals
 %calculate total thrust of the rotor disc
 %fitsr integrate by Radius then by psi
 if is_solution==1%only if analytical solution exists, code below will show
