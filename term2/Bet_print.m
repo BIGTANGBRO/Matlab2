@@ -139,5 +139,6 @@ if is_solution==1%only if analytical solution exists, code below will show
 
     disp(['The average power to drive the rotor is ',num2str(P),'W']);
 else%if no analytical solution, nothing will display
+    disp('Vortex Ring State');
     disp('Calculation failed');
 end    
