@@ -29,12 +29,14 @@ end
 
 %solve the m by array operations from 2 to n-1 as 1 and n are both 0
 m(2:n-1,1)=mat_h\y;
-%can use array operations instead, but is will be more organized when using loops here
+%can use loops instead, but is will be more organized while array
+%operations will be faster
 a(1:n-1,1)=fx(1:n-1)';
 b(1:n-1,1)=((fx(2:n)'-fx(1:n-1)')./h(1:n-1)')-(h(1:n-1)'.*(2.*m(1:n-1,1)+m(2:n,1))./6);%the dimensions need to be the same
 c(1:n-1,1)=m(1:n-1,1)./2;
 d(1:n-1,1)=(m(2:n,1)-m(1:n-1,1))./(6.*h(1:n-1)');
-%fill the arguments using array operations
+%fill the arguments using array operations, the dimension of each
+%coefficients is (n-1)x1
 
 polyArray=[d,c,b,a];%the output is a N-1x4 array as there are n-1 intervals
 

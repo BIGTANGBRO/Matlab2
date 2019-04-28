@@ -7,7 +7,7 @@ fx=input('Input the value of y:');
 xval=input('Input the value of x that you want of interpolate:');
 if length(xval)>1
     disp('The input of xval should be a scalar')
-elseif length(x)~=length(fx)
+elseif length(x)~=length(fx)%prevent wrong inputs
     disp('The coordiantes have different dimensions')
 else
     polyArray=CubicIn(x,fx);%get the coefficients from function CubicIn
