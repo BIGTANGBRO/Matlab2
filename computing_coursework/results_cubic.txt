@@ -1,0 +1,10 @@
+Input the array of x:[-4 -3.289 -2 -1.088 0 1.088 2 3.289 4]
+Input the value of y:[0 116.206 0 -45.398 0 45.398 0 -116.206 0]
+Input the value of x that you want of interpolate:-2.5
+   67.4772
+
+
+Input the array of x:[-4 -3.289 -2 -1.088 0 1.088 2 3.289 4]
+Input the value of y:[0 116.206 0 -45.398 0 45.398 0 -116.206 0]
+Input the value of x that you want of interpolate:3.75
+  -52.0806
