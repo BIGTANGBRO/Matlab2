@@ -1,0 +1,72 @@
+Hover:
+Here are the helicopter settings;
+input the number of blades(e.g 4):4
+input the diameter of the blade in m(e.g 16.36):16.36
+input the first airfoil section R0 in m:1.55
+input the root blade chord in m:0.53
+input the tip blade chord in m:0.53
+input the linear blade twist in degree:-18
+input the rotational speed in rad/sec:27
+Here are the flight condtion settings:
+input the blade setting angle(degree):28
+input the forward airspeed(kts):0
+input the rate of descent(ft/min):0
+
+The total thrust is 122939.5409N
+The drag force is 3.5338e-13N
+The side force is 1.1866e-12N
+The moment about the rotor hub is 227250.4119Nm
+Average pitching moment is 2.7057e-11Nm
+Average rolling moment is 1.1315e-12Nm
+The average power to drive the rotor is 6135761.1212W
+>> 
+
+
+
+high speed forward flight:
+Here are the helicopter settings;
+input the number of blades(e.g 4):4
+input the diameter of the blade in m(e.g 16.36):16.36
+input the first airfoil section R0 in m:1.55
+input the root blade chord in m:0.53
+input the tip blade chord in m:0.53
+input the linear blade twist in degree:-18
+input the rotational speed in rad/sec:27
+Here are the flight condtion settings:
+input the blade setting angle(degree):28
+input the forward airspeed(kts):100
+input the rate of descent(ft/min):0
+
+The total thrust is 129246.3074N
+The drag force is 16350.9948N
+The side force is 0.07474N
+The moment about the rotor hub is 240987.6189Nm
+Average pitching moment is 0.26223Nm
+Average rolling moment is -250266.7552Nm
+The average power to drive the rotor is 6506665.7103W
+>> 
+
+
+
+Climbing flight:
+Here are the helicopter settings;
+input the number of blades(e.g 4):4
+input the diameter of the blade in m(e.g 16.36):16.36
+input the first airfoil section R0 in m:1.55
+input the root blade chord in m:0.53
+input the tip blade chord in m:0.53
+input the linear blade twist in degree:-18
+input the rotational speed in rad/sec:27
+Here are the flight condtion settings:
+input the blade setting angle(degree):28
+input the forward airspeed(kts):40
+input the rate of descent(ft/min):-1000
+
+The total thrust is 120740.3197N
+The drag force is 6591.7429N
+The side force is -2.7763e-08N
+The moment about the rotor hub is 221177.1639Nm
+Average pitching moment is -1.5593e-07Nm
+Average rolling moment is -101702.2923Nm
+The average power to drive the rotor is 5971783.4263W
+>> 
