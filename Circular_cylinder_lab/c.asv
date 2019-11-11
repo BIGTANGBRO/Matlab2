@@ -17,7 +17,7 @@ V(4)=30.05;
 g=9.81;
 rho=789; 
 pitch=20*pi/180;
-ha=8.1;%assume the height of the manometer is 6.55 inch here...
+ha=6.55;%assume the height of the manometer is 6.55 inch here...
 p1=pa-(D1(:,3)-ha).*g.*rho.*0.0254.*sin(pitch);
 p2=pa-(D2(:,3)-ha).*g.*rho.*0.0254.*sin(pitch);
 p3=pa-(D3(:,3)-ha).*g.*rho.*0.0254.*sin(pitch);
@@ -27,7 +27,7 @@ pressure=[p1,p2,p3,p4];
 Pf=pa-([6.05,2.6,6.35,3.4]-ha).*g.*rho.*0.0254.*sin(pitch);
 
 for time=1:4
-    Re(time)=1.225*V(time)*0.00102/(1.79*10^(-5));
+    Re=1.225*V(time)*0.00102/(1.79*10^(-5));
     Cp_measure(:,time)=(pressure(:,time)-Pf(time))./(0.5*1.225*V(time).^2);
     
    
@@ -68,20 +68,20 @@ plot(theta,Cp(:,1),'k-');
 hold on
 plot(theta,Cp(:,2),'k:');
 hold on
-plot(theta,Cp(:,3),'k--');
+plot(theta,Cp(:,3),'--k');
 hold on
-plot(theta,Cp(:,4),'ko');
+plot(theta,Cp(:,4),'k0');
 hold on
 plot(theta,Cp_corrected(:,1),'.k-');
 hold on
 plot(theta,Cp_corrected(:,2),'*k:');
 hold on
-plot(theta,Cp_corrected(:,3),'--k.');
+plot(theta,Cp_corrected(:,3),'--k*');
 hold on
-plot(theta,Cp_corrected(:,4),'ko-');
+plot(theta,Cp_corrected(:,4),'-ko');
 legend('Uncorrected1','Uncorrected2','Umcorrected3(tripwired)','Uncorrected4(tripwired)','Corrected1','corrected2','corrected3(tripwired)','corrected4(tripwired)');
 title('Second diagram');
-xlabel('Angle/бу');
+xlabel('Angle');
 ylabel('Pressure Coefficient');
 
 hold off
