@@ -1,5 +1,6 @@
 clear
 clc
+
 D1=load('First.mat');
 D2=load('second.mat');
 D3=load('Third.mat');
@@ -9,7 +10,7 @@ D2=table2array(D2.Second);
 D3=table2array(D3.Third);
 D4=table2array(D4.Fourth);
 
-pa=98730;
+
 V(1)=19.3;
 V(2)=30.1;
 V(3)=19.8;
@@ -17,46 +18,46 @@ V(4)=30.05;
 g=9.81;
 rho=789; 
 pitch=20*pi/180;
-ha=8.1;%assume the height of the manometer is 6.55 inch here...
-p1=pa-(D1(:,3)-ha).*g.*rho.*0.0254.*sin(pitch);
-p2=pa-(D2(:,3)-ha).*g.*rho.*0.0254.*sin(pitch);
-p3=pa-(D3(:,3)-ha).*g.*rho.*0.0254.*sin(pitch);
-p4=pa-(D4(:,3)-ha).*g.*rho.*0.0254.*sin(pitch);
-angle_measure=D1(:,2);
-pressure=[p1,p2,p3,p4];
-Pf=pa-([6.05,2.6,6.35,3.4]-ha).*g.*rho.*0.0254.*sin(pitch);
+hm=[D1(2:28,3),D2(2:28,3),D3(2:28,3),D4(2:28,3)];
+angle_measure=D1(2:28,2);
+hf=[8.55,8.6,8.9,9.4];
+theta_rad=deg2rad(angle_measure);
+theta_a=angle_measure;
 
+%iterate through each case from 1 to 4
 for time=1:4
     Re(time)=1.225*V(time)*0.00102/(1.79*10^(-5));
-    Cp_measure(:,time)=(pressure(:,time)-Pf(time))./(0.5*1.225*V(time).^2);
-    
+    Cp(:,time)=(hf(time)-hm(:,time)).*rho.*g.*sin(pitch).*0.0254./(0.5*1.225*V(time).^2);
    
-    for angle=0:1:180
-        Cp(angle+1,time)=interp1(angle_measure(2:28),Cp_measure(2:28,time),angle,'spline');
-    end
-    
-    CD(:,time)=trapz(0:pi/180:pi,Cp(1:181,time).*cos(0:pi/180:pi));
+    CD(time)=trapz(theta_rad,Cp(:,time).*cos(theta_rad));
+    %this is the incorrected CD
     
     %wall interference correction
     ratio=0.102/0.46;
-    V_corrected(:,time)=V(time).*(1+0.25.*CD(:,time).*ratio+0.82.*ratio^2);
-    CD_corrected(:,time)=CD(:,time).*(1-0.5.*CD(:,time).*ratio-2.5.*ratio^2);
-    Cp_corrected(:,time)=1+((V_corrected(:,time)./V(time)).^2).*(Cp(:,time)-1);
-    CD_eqn(:,time)=trapz(0:pi/180:pi,Cp_corrected(1:181,time).*cos(0:pi/180:pi));%the CD from the Roshko Equation
+    
+    V_corrected(:,time)=V(time).*(1+0.25.*CD(time).*ratio+0.82.*ratio^2);
+    Cp_corrected(:,time)=1+((V_corrected(time)./V(time)).^2).*(Cp(:,time)-1);
+    
+    CD_corrected(time)=trapz(theta_rad,Cp_corrected(:,time).*cos(theta_rad));
+    %corrected CD;
+    CD_eqn(time)=CD(time).*(1-0.5.*CD(time).*ratio-2.5.*ratio^2);
+    %correction using Roshko
 end
 
-theta=0:1:180;
-Cp_theoretical=1-4.*(sin(theta.*pi./180)).^2;
+%The value of the CD corrected, incorrected, CD_eqn.
+
+
+Cp_theoretical=1-4.*(sin(theta_a*pi/180)).^2;
         
-plot(theta,Cp(:,1),'k-');
+plot(theta_a,Cp(:,1),'kx-');
 hold on
-plot(theta,Cp(:,2),'k:');
+plot(theta_a,Cp(:,2),'bx-');
 hold on
-plot(theta,Cp(:,3),'k--');
+plot(theta_a,Cp(:,3),'rx-');
 hold on
-plot(theta,Cp(:,4),'k-.');
+plot(theta_a,Cp(:,4),'gx-');
 hold on
-plot(theta,Cp_theoretical,'ko');
+plot(theta_a,Cp_theoretical,'k-o');
 legend('case1','case2','case3','case4','Theoretical');
 title('First diagram');
 xlabel('Angle');
@@ -64,21 +65,21 @@ ylabel('Pressure Coefficient');
 
 hold off
 
-plot(theta,Cp(:,1),'k-');
+plot(theta_a,Cp(:,1),'k-');
 hold on
-plot(theta,Cp(:,2),'k:');
+plot(theta_a,Cp(:,2),'b-');
 hold on
-plot(theta,Cp(:,3),'k--');
+plot(theta_a,Cp(:,3),'r-');
 hold on
-plot(theta,Cp(:,4),'ko');
+plot(theta_a,Cp(:,4),'g-');
 hold on
-plot(theta,Cp_corrected(:,1),'.k-');
+plot(theta_a,Cp_corrected(:,1),'.k--');
 hold on
-plot(theta,Cp_corrected(:,2),'*k:');
+plot(theta_a,Cp_corrected(:,2),'.b--');
 hold on
-plot(theta,Cp_corrected(:,3),'--k.');
+plot(theta_a,Cp_corrected(:,3),'.r--');
 hold on
-plot(theta,Cp_corrected(:,4),'ko-');
+plot(theta_a,Cp_corrected(:,4),'.g--');
 legend('Uncorrected1','Uncorrected2','Umcorrected3(tripwired)','Uncorrected4(tripwired)','Corrected1','corrected2','corrected3(tripwired)','corrected4(tripwired)');
 title('Second diagram');
 xlabel('Angle/бу');
