@@ -13,10 +13,11 @@ D4=table2array(D4.Fourth);
 g=9.81;
 rho=789; 
 pitch=20*pi/180;
-V(1)=sqrt((8.55-6.05).*rho.*g.*sin(pitch).*0.0254.*2./1.225);
-V(2)=sqrt((8.6-2.6).*rho.*g.*sin(pitch).*0.0254.*2./1.225);
-V(3)=sqrt((8.9-6.35).*rho.*g.*sin(pitch).*0.0254.*2./1.225);
-V(4)=sqrt((9.4-3.4).*rho.*g.*sin(pitch).*0.0254.*2./1.225);
+V=[19.3,30.1,19.8,30.05];
+%V(1)=sqrt((8.55-6.05).*rho.*g.*sin(pitch).*0.0254.*2./1.225);
+%V(2)=sqrt((8.6-2.6).*rho.*g.*sin(pitch).*0.0254.*2./1.225);
+%V(3)=sqrt((8.9-6.35).*rho.*g.*sin(pitch).*0.0254.*2./1.225);
+%V(4)=sqrt((9.4-3.4).*rho.*g.*sin(pitch).*0.0254.*2./1.225);
 %use the pressure difference to calculate the free speed.
 
 hm=[D1(2:28,3),D2(2:28,3),D3(2:28,3),D4(2:28,3)];
