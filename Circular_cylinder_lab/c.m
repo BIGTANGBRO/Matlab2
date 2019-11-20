@@ -17,6 +17,8 @@ V(1)=sqrt((8.55-6.05).*rho.*g.*sin(pitch).*0.0254.*2./1.225);
 V(2)=sqrt((8.6-2.6).*rho.*g.*sin(pitch).*0.0254.*2./1.225);
 V(3)=sqrt((8.9-6.35).*rho.*g.*sin(pitch).*0.0254.*2./1.225);
 V(4)=sqrt((9.4-3.4).*rho.*g.*sin(pitch).*0.0254.*2./1.225);
+%use the pressure difference to calculate the free speed.
+
 hm=[D1(2:28,3),D2(2:28,3),D3(2:28,3),D4(2:28,3)];
 angle_measure=D1(2:28,2);
 hf=[8.55,8.6,8.9,9.4];
@@ -57,7 +59,7 @@ hold on
 plot(theta_a,Cp(:,4),'gx-');
 hold on
 plot(theta_a,Cp_theoretical,'k-o');
-legend('case1','case2','case3','case4','Theoretical');
+legend('case1','case2','case3(tripwired)','case4(tripwired)','Theoretical');
 title('First diagram');
 xlabel('Angle');
 ylabel('Pressure Coefficient');
@@ -79,7 +81,7 @@ hold on
 plot(theta_a,Cp_corrected(:,3),'*r--');
 hold on
 plot(theta_a,Cp_corrected(:,4),'*g--');
-legend('Uncorrected1','Uncorrected2','Umcorrected3(tripwired)','Uncorrected4(tripwired)','Corrected1','corrected2','corrected3(tripwired)','corrected4(tripwired)');
+legend('Uncorrected1','Uncorrected2','Uncorrected3(tripwired)','Uncorrected4(tripwired)','Corrected1','corrected2','corrected3(tripwired)','corrected4(tripwired)');
 title('Second diagram');
 xlabel('Angle/бу');
 ylabel('Pressure Coefficient');
