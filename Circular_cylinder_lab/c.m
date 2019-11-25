@@ -37,8 +37,9 @@ for time=1:4
     %wall interference correction
     ratio=0.102/0.46;
     
-    V_corrected(:,time)=V(time).*(1+0.25.*CD(time).*ratio+0.82.*ratio^2);
-    Cp_corrected(:,time)=1+((V_corrected(time)./V(time)).^2).*(Cp(:,time)-1);
+    V_corrected(:,time)=V(time).*(1+0.25.*CD(time).*ratio+0.82.*ratio.^2);
+    Re_c(time)=1.225*V_corrected(time)*0.102/(1.79*10^(-5));
+    Cp_corrected(:,time)=1+((V(time)./V_corrected(time)).^2).*(Cp(:,time)-1);
     
     CD_corrected(time)=trapz(theta_rad,Cp_corrected(:,time).*cos(theta_rad));
     %direct corrected CD;
@@ -62,7 +63,7 @@ hold on
 plot(theta_a,Cp_theoretical,'k-o');
 legend('case1','case2','case3(tripwired)','case4(tripwired)','Theoretical');
 title('First diagram');
-xlabel('Angle');
+xlabel('Angle/бу');
 ylabel('Pressure Coefficient');
 
 hold off
