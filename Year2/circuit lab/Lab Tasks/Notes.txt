@@ -1,0 +1,3 @@
+Command to check the ip address:
+	java.net.InetAddress.getLocalHost
+Make sure the same is configured at the Output to FlightGear block.
