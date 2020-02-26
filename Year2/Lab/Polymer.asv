@@ -5,11 +5,9 @@ kmean = calKmean;
 
 a=[0.001,0.002,0.003,0.004,0.005,0.006,0.007,0.008];
 c=[1.99e-6,2.43e-6,3.85e-6,3.89e-6,3.73e-6,1.21e-6,1.12e-5,3.89e-5];
-p = polyfit(a,c,2);
-scatter(a,c);
-hold on
+p = polyfit(a,c,3);
 range=linspace(0,9e-3,100);
-plot(range,p(1).*range.^2+p(2).*range.^1+p(3));
+plot(range,p(1).*range.^3+p(2).*range.^2+p(3).*range+p(4));
 
 function kmean = calKmean()
 Test1 = [4.78,9.91,4.95,49.94];

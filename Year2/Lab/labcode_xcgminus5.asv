@@ -32,4 +32,4 @@ plot(range,p2(1).*range+p2(2));
 legend('points for clean setup','line for clean setup','points for landing setup','line for landing setup');
 xlabel('Angel of attack in degree');
 ylabel('CL(Coefficient of life)');
-title('CL vs AoA for zero xcg - 5');
+title('CL vs AoA for zero xcg')
