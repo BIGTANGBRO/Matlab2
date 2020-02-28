@@ -33,6 +33,34 @@ legend('points for clean setup','line for clean setup','points for landing setup
 xlabel('Angel of attack in degree');
 ylabel('CL(Coefficient of life)');
 title('CL vs AoA for zero Xcg');
+hold off
 
+%%
+%clean 
+%delta e and Cl
+%cd = 0
 
+rangeCL=[0:0.01:0.9];
+deltaE=[-0.04*14,-0.02*14,0.01*30,0.025*30,0.055*30,0.095*30];
+scatter(CL,deltaE,'*');
+pdeltaE = polyfit(CL,deltaE,1);
+hold on
+plot(rangeCL,pdeltaE(1).*rangeCL+pdeltaE(2));
+title('Delta E vs CL when xcg = 0 at clean configuration')
+xlabel('CL')
+ylabel('Delta of Elvator in angle');
+hold on
 
+%landing
+deltaE_landing=[0*30,0.06*30,0.12*30,0.24*30,0.29*30,0.38*30];
+scatter(CL_landing,deltaE_landing,'*');
+pdeltaE_landing = polyfit(CL_landing,deltaE_landing,1);
+hold on
+plot(rangeCL,pdeltaE_landing(1).*rangeCL+pdeltaE_landing(2));
+title('Delta E vs CL when xcg = 0 at landing configuration')
+xlabel('CL')
+ylabel('Delta of Elvator in angle');
+legend('clean points','Line for clean setup','landing points','Line for landing setup');
+
+%clean dDeltaE/dCl = 15.7224
+%landing = 30.6803
