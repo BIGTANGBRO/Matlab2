@@ -39,7 +39,7 @@ hold off
 %for clean condition xcg-5
 
 rangeCL=[0:0.01:1.4];
-deltaE=[-0.01*14,0.01*30,0.02*30,0.015*30,0.068*30,0.111*30];
+deltaE=[+0.01*14,-0.01*30,-0.02*30,-0.015*30,-0.068*30,-0.111*30];
 scatter(CL,deltaE,'*');
 pdeltaE = polyfit(CL,deltaE,1);
 hold on
@@ -50,7 +50,7 @@ ylabel('Delta of Elvator in angle');
 hold on
 
 %landing
-deltaE_landing=[0.003*30,0.048*30,0.087*30,0.203*30,0.357*30,0.558*30];
+deltaE_landing=[-0.003*30,-0.048*30,-0.087*30,-0.203*30,-0.357*30,-0.558*30];
 scatter(CL_landing,deltaE_landing,'*');
 pdeltaE_landing = polyfit(CL_landing,deltaE_landing,1);
 hold on
