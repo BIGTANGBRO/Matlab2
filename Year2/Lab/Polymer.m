@@ -5,25 +5,17 @@ kmean = calKmean;
 
 a=[0.001,0.002,0.003,0.004,0.005,0.006,0.007,0.008];
 c=[1.5e-6,1.9e-6,2.4e-6,2.6e-6,3.73e-6,5.9e-6,1.16e-5,3.98e-5];
-plot(a,c)
-hold on
-p = polyfit(a,c,3);
-scatter(a,c);
-hold on
-range=linspace(1e-3,9e-3,100);
-plot(range,p(1).*range.^3+p(2).*range.^2+p(3).*range+p(4));
-x1=5.01e-3;
-x2=4.99e-3;
-dc_da = x1^3*p(1)+x1^2*p(2)+x1*p(3)+p(4)-(x2^3*p(1)+x2^2*p(2)+x2*p(3)+p(4));
+plot(a,c,'-*')
+title('Compliance C over Crack length a')
+xlabel('Crack length a(m)')
+ylabel('Compliance d/F(mN^-1)')
+
+
 F=[91.8949,83.9691,109.658,86.6504,87.3715];
-D=dc_da/0.02e-3;
+dcda=[0.0014,0.0014,0.0014,0.0014,0.0015];
 B=[4.78,4.91,4.8,5.07,5.05];
-Gic=D.*F.^2./(2.*B);
-% syms x;
-% y=1e10*x^6 - 3e8*x^5 + 3e6*x^4 - 12205*x^3 + 29.653*x^2 - 0.0343*x + 2e-5;
-% dy=diff(y,x);
-% val = subs(dy,x,0.005);
-% disp(val)
+Gic=dcda.*F.^2./(2.*B);
+Avg = sum(Gic)/5
 
 function kmean = calKmean()
 Test1 = [4.78,9.91,4.95,40];
