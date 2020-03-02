@@ -44,9 +44,6 @@ scatter(CL,deltaE,'*');
 pdeltaE = polyfit(CL,deltaE,1);
 hold on
 plot(rangeCL,pdeltaE(1).*rangeCL+pdeltaE(2));
-title('Delta E vs CL when xcg = 0 at clean configuration')
-xlabel('CL')
-ylabel('Delta of Elvator in angle');
 hold on
 
 %landing
@@ -55,12 +52,12 @@ scatter(CL_landing,deltaE_landing,'*');
 pdeltaE_landing = polyfit(CL_landing,deltaE_landing,1);
 hold on
 plot(rangeCL,pdeltaE_landing(1).*rangeCL+pdeltaE_landing(2));
-title('Delta E vs CL when xcg = 0 at landing configuration')
+title('Delta E vs CL when xcg - 5')
 xlabel('CL')
 ylabel('Delta of Elvator in angle');
 legend('clean points','Line for clean setup','landing points','Line for landing setup');
 
-%clean dDeltaE/dCl = 15.9628
-%landing = 19.7590
+%clean dDeltaE/dCl = -15.9628
+%landing = -19.7590
 
 
