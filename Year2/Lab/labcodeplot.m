@@ -1,9 +1,9 @@
 clear
 clc
 
-xrange = [3:0.01:5.5];
-xcg = 3.91+[-5,0,5]*0.0254;
-ddeltaEdcl = [-15.9628,-13.9851,-12.1741];
+xrange = [3:0.01:6];
+xcg = 3.51+[-5,0,5]*0.0254;
+ddeltaEdcl = [-14.1970,-13.9851,-12.1741];
 scatter(xcg,ddeltaEdcl,'*');
 p = polyfit(xcg,ddeltaEdcl,1);
 hold on
@@ -14,7 +14,7 @@ xlabel('Xcg(m)')
 ylabel('d(deltaE)/dCL')
 hold off
 
-ddeltaEdcl_landing = [-19.7590,-13.3372,-10.6681];
+ddeltaEdcl_landing = [-17.5534,-13.3372,-10.6681];
 scatter(xcg,ddeltaEdcl_landing,'o');
 p2 = polyfit(xcg,ddeltaEdcl_landing,1);
 hold on
@@ -24,5 +24,5 @@ title('d(deltaE)/dCL over Xcg for landing setup')
 xlabel('Xcg(m)')
 ylabel('d(deltaE)/dCL')
 
-%xp=4.85
-%xpnlanding = 4.32
+%xnp=5.20
+%xnplanding = 4.02
