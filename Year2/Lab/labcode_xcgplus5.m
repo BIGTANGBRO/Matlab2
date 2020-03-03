@@ -43,24 +43,24 @@ hold off
 %delta e and Cl
 %xcg + 5
 
-rangeCL=[0:0.01:1.6];
+rangeE=[-15:0.01:5];
 deltaE=[0.07*14,0.055*14,0.03*14,-0.05767*30,-0.02962*30,-0.05614*30];
-scatter(CL,deltaE,'*');
-pdeltaE = polyfit(CL,deltaE,1);
+scatter(deltaE,CL,'*');
+pdeltaE = polyfit(deltaE,CL,1);
 hold on
-plot(rangeCL,pdeltaE(1).*rangeCL+pdeltaE(2));
+plot(rangeE,pdeltaE(1).*rangeE+pdeltaE(2));
 hold on
 %%
 %landing
 %delta e and CL
 deltaE_landing=[0.1652*14,0.1071*14,0.01603*14,-0.03469*30,-0.1479*30,-0.2368*30];
-scatter(CL_landing,deltaE_landing,'*');
-pdeltaE_landing = polyfit(CL_landing,deltaE_landing,1);
+scatter(deltaE_landing,CL_landing,'*');
+pdeltaE_landing = polyfit(deltaE_landing,CL_landing,1);
 hold on
-plot(rangeCL,pdeltaE_landing(1).*rangeCL+pdeltaE_landing(2));
-title('Delta E vs CL when xcg + 5')
-xlabel('CL')
-ylabel('Delta of Elvator in angle');
+plot(rangeE,pdeltaE_landing(1).*rangeE+pdeltaE_landing(2));
+title('CL vs deltaE when xcg + 5')
+ylabel('CL')
+xlabel('Elvator deflection in angle');
 legend('clean points','Line for clean setup','landing points','Line for landing setup');
 
 %clean dDeltaE/dCl = -12.1741
