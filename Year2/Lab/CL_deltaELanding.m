@@ -17,6 +17,8 @@ pdeltaE_landing = polyfit(deltaE_landing,CL_landing,1);
 hold on
 plot(rangeE,pdeltaE_landing(1).*rangeE+pdeltaE_landing(2),'r');
 hold on
+
+
 %%
 %landing xcg-5
 IAS_landing = [119.3,111.3,100.6,90.5,80.2,69.6].*0.5144;
@@ -32,6 +34,7 @@ pdeltaE_landing = polyfit(deltaE_landing,CL_landing,1);
 hold on
 plot(rangeE,pdeltaE_landing(1).*rangeE+pdeltaE_landing(2),'g');
 hold on
+
 %%
 %landing xcg+5
 IAS_landing = ([119.4,109.7,99.13,90.9,80.6,69.72])*0.5144;
