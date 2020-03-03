@@ -2,7 +2,7 @@ clear
 clc
 
 %%Zero xcg AOA vs CL
-%%cleaAn
+%%clean 
 rho=1.225;
 IAS = [239.2,220.1,199.5,180.9,160.3,139]*0.5144;
 MassOfFuel=(3100+503+[980,976,971.8,968.6,965,959.4]).*0.453592;
@@ -38,7 +38,7 @@ hold off
 %%
 %clean 
 %delta e and Cl
-%cd = 0
+%xcg = 0
 
 rangeCL=[0:0.01:1.6];
 deltaE=[0.04*14,0.02*14,-0.01*30,-0.025*30,-0.055*30,-0.095*30];
@@ -48,6 +48,7 @@ hold on
 plot(rangeCL,pdeltaE(1).*rangeCL+pdeltaE(2));
 hold on
 
+%%
 %landing
 deltaE_landing=[0*30,-0.06*30,-0.12*30,-0.24*30,-0.29*30,-0.38*30];
 scatter(CL_landing,deltaE_landing,'*');

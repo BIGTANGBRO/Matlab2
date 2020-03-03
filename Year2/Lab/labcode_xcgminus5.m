@@ -1,5 +1,6 @@
 %%
-%for cg plus 5
+%for cg minus 5 AOA vs CL
+%clean
 clear 
 clc
 
@@ -16,7 +17,7 @@ range = [-10:0.1:10];
 hold on
 plot(range,p1(1).*range + p1(2));
 %%
-%High lift mode
+%landing
 IAS_landing = [119.3,111.3,100.6,90.5,80.2,69.6].*0.5144;
 rho = 1.225;
 MassOfFuel_landing=(3100+503+[936.8,926.9,920.8,917.6,917,914.6]).*0.453592;

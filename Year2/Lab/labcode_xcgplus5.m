@@ -1,8 +1,9 @@
 clear
 clc
 
-%%Zero xcg AOA vs CL
-%%cleaAn
+%%xcg+5 AOA vs CL
+%%clean
+
 rho=1.225;
 IAS = [240,221.25,203.8,180,158.9,142]*0.5144;
 MassOfFuel=(3100+503+[910.75,897,884.1,869.6,861.6,854]).*0.453592;
@@ -40,7 +41,7 @@ hold off
 %%
 %clean 
 %delta e and Cl
-%cd = 0
+%xcg + 5
 
 rangeCL=[0:0.01:1.6];
 deltaE=[0.07*14,0.055*14,0.03*14,-0.05767*30,-0.02962*30,-0.05614*30];
@@ -51,6 +52,7 @@ plot(rangeCL,pdeltaE(1).*rangeCL+pdeltaE(2));
 hold on
 %%
 %landing
+%delta e and CL
 deltaE_landing=[0.1652*14,0.1071*14,0.01603*14,-0.03469*30,-0.1479*30,-0.2368*30];
 scatter(CL_landing,deltaE_landing,'*');
 pdeltaE_landing = polyfit(CL_landing,deltaE_landing,1);
