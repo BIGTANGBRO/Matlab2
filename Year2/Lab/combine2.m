@@ -14,10 +14,10 @@ CL_landing = WeightofFuel_landing./(0.5.*rho.*IAS_landing.^2.*17.48);
 AoA_landing = [-4.3,-2.85,-1,2.1,3.6,5.7];
 
 hold on
-scatter(AoA_landing,CL_landing,'*');
+scatter(AoA_landing,CL_landing,'r*');
 p2 = polyfit(AoA_landing,CL_landing,1);
 hold on
-plot(range,p2(1).*range+p2(2));
+plot(range,p2(1).*range+p2(2),'r');
 hold on
 %%
 %landing
@@ -30,10 +30,10 @@ CL_landing = WeightOfFuel_landing./(0.5.*rho.*IAS_landing.^2.*17.48);
 AoA_landing=[-5.248,-4.286,-3.312,-0.781,2.33,6.249];
 
 hold on
-scatter(AoA_landing,CL_landing,'*');
+scatter(AoA_landing,CL_landing,'g*');
 p2 = polyfit(AoA_landing,CL_landing,1);
 hold on
-plot(range,p2(1).*range+p2(2));
+plot(range,p2(1).*range+p2(2),'g');
 hold on 
 %%
 %landing
@@ -46,10 +46,10 @@ CL_landing = WeightofFuel_landing./(0.5.*rho.*IAS_landing.^2.*17.48);
 AoA_landing = [-5.547,-4.593,-3.096,-1.731,1.525,4.986];
 
 hold on
-scatter(AoA_landing,CL_landing,'*');
+scatter(AoA_landing,CL_landing,'b*');
 p2 = polyfit(AoA_landing,CL_landing,1);
 hold on
-plot(range,p2(1).*range+p2(2));
+plot(range,p2(1).*range+p2(2),'b');
 
 legend('points for zero Xcg','line for zero Xg','points for Xcg-5','line for Xcg-5','points for Xcg+5','line for Xcg+5');
 xlabel('Angel of attack in degree');

@@ -5,7 +5,11 @@ kmean = calKmean;
 
 a=[0.001,0.002,0.003,0.004,0.005,0.006,0.007,0.008];
 c=[1.5e-6,1.9e-6,2.4e-6,2.6e-6,3.73e-6,5.9e-6,1.16e-5,3.98e-5];
-plot(a,c,'-*')
+scatter(a,c,'b*');
+hold on 
+range=linspace(0,0.008,100);
+fit = 1.144e-06.*exp(175.6.*range)+7.003e-10.*exp(1352.*range);
+plot(range,fit,'b')
 title('Compliance C over Crack length a')
 xlabel('Crack length a(m)')
 ylabel('Compliance d/F(mN^-1)')

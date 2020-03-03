@@ -11,10 +11,10 @@ CL = WeightOfFuel./(0.5.*rho.*IAS.^2.*17.48);
 AoA=[-0.6,-0.3,0.1,0.45,1.25,2.3];
 
 p1=polyfit(AoA,CL,1);
-scatter(AoA,CL);
+scatter(AoA,CL,'r*');
 range = [-2:0.1:4];
 hold on
-plot(range,p1(1).*range + p1(2));
+plot(range,p1(1).*range + p1(2),'r');
 hold on 
 %%
 %for cg - 5
@@ -30,10 +30,10 @@ CL = WeightOfFuel./(0.5.*rho.*IAS.^2.*17.48);
 AoA=[-0.55,-0.18,-0.15,-0.047,1.004,2.144];
 
 p1=polyfit(AoA,CL,1);
-scatter(AoA,CL);
+scatter(AoA,CL,'g*');
 range = [-2:0.1:4];
 hold on
-plot(range,p1(1).*range + p1(2));
+plot(range,p1(1).*range + p1(2),'g');
 hold on 
 %%
 %%xcg + 5AOA vs CL
@@ -46,10 +46,10 @@ CL = WeightOfFuel./(0.5.*rho.*IAS.^2.*17.48);
 AoA=[-0.8,-0.5,-0.197,0.4365,1.214,2.026];
 
 p1=polyfit(AoA,CL,1);
-scatter(AoA,CL);
+scatter(AoA,CL,'*b');
 range = [-2:0.1:4];
 hold on
-plot(range,p1(1).*range + p1(2));
+plot(range,p1(1).*range + p1(2),'b');
 
 legend('points for zero Xcg','line for zero Xg','points for Xcg-5','line for Xcg-5','points for Xcg+5','line for Xcg+5');
 xlabel('Angel of attack in degree');
