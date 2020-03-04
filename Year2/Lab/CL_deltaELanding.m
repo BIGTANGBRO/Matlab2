@@ -14,6 +14,7 @@ AoA_landing = [-4.3,-2.85,-1,2.1,3.6,5.7];
 deltaE_landing=[0*30,-0.06*30,-0.12*30,-0.24*30,-0.29*30,-0.38*30];
 scatter(deltaE_landing,CL_landing,'r*');
 pdeltaE_landing = polyfit(deltaE_landing,CL_landing,1);
+disp(pdeltaE_landing);
 hold on
 plot(rangeE,pdeltaE_landing(1).*rangeE+pdeltaE_landing(2),'r');
 hold on
@@ -31,6 +32,7 @@ AoA_landing=[-5.248,-4.286,-3.312,-0.781,2.33,6.249];
 deltaE_landing=[-0.003*30,-0.048*30,-0.087*30,-0.203*30,-0.357*30,-0.558*30];
 scatter(deltaE_landing,CL_landing,'g*');
 pdeltaE_landing = polyfit(deltaE_landing,CL_landing,1);
+disp(pdeltaE_landing);
 hold on
 plot(rangeE,pdeltaE_landing(1).*rangeE+pdeltaE_landing(2),'g');
 hold on
@@ -46,6 +48,7 @@ AoA_landing = [-5.547,-4.593,-3.096,-1.731,1.525,4.986];
 deltaE_landing=[0.1652*14,0.1071*14,0.01603*14,-0.03469*30,-0.1479*30,-0.2368*30];
 scatter(deltaE_landing,CL_landing,'b*');
 pdeltaE_landing = polyfit(deltaE_landing,CL_landing,1);
+disp(pdeltaE_landing);
 hold on
 plot(rangeE,pdeltaE_landing(1).*rangeE+pdeltaE_landing(2),'b');
 title('CL vs deltaE for landing setup')

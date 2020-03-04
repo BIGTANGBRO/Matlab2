@@ -14,6 +14,7 @@ rangeE=[-5:0.01:2];
 deltaE=[0.04*14,0.02*14,-0.01*30,-0.025*30,-0.055*30,-0.095*30];
 scatter(deltaE,CL,'r*');
 pdeltaE = polyfit(deltaE,CL,1);
+disp(pdeltaE);
 hold on
 plot(rangeE,pdeltaE(1).*rangeE+pdeltaE(2),'r');
 hold on
@@ -30,6 +31,7 @@ AoA=[-0.55,-0.18,-0.15,-0.047,1.004,2.144];
 deltaE=[+0.01*14,-0.01*30,-0.02*30,-0.015*30,-0.068*30,-0.111*30];
 scatter(deltaE,CL,'g*');
 pdeltaE = polyfit(deltaE,CL,1);
+disp(pdeltaE);
 hold on
 plot(rangeE,pdeltaE(1).*rangeE+pdeltaE(2),'g');
 hold on
@@ -44,9 +46,10 @@ WeightOfFuel = MassOfFuel.*9.81;
 CL = WeightOfFuel./(0.5.*rho.*IAS.^2.*17.48);
 AoA=[-0.8,-0.5,-0.197,0.4365,1.214,2.026];
 
-deltaE=[0.07*14,0.055*14,0.03*14,-0.05767*30,-0.02962*30,-0.05614*30];
+deltaE=[0.07*14,0.055*14,0.03*14,-0.005767*30,-0.02962*30,-0.05614*30];
 scatter(deltaE,CL,'b*');
 pdeltaE = polyfit(deltaE,CL,1);
+disp(pdeltaE);
 hold on
 plot(rangeE,pdeltaE(1).*rangeE+pdeltaE(2),'b');
 hold on

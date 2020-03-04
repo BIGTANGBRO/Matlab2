@@ -3,7 +3,7 @@ clc
 
 xrange = [3:0.01:6];
 xcg = 3.51+[-5,0,5]*0.0254;
-ddeltaEdcl = [-14.1970,-13.9851,-12.1741];
+ddeltaEdcl = [-15.2567,-14.0072,-12.0269];
 scatter(xcg,ddeltaEdcl,'*');
 p = polyfit(xcg,ddeltaEdcl,1);
 hold on
@@ -24,5 +24,5 @@ title('d(deltaE)/dCL over Xcg for landing setup')
 xlabel('Xcg(m)')
 ylabel('d(deltaE)/dCL')
 
-%xnp=5.20
+%xnp=4.59
 %xnplanding = 4.02
