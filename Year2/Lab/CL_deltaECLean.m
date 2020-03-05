@@ -10,11 +10,11 @@ WeightOfFuel = MassOfFuel.*9.81;
 CL = WeightOfFuel./(0.5.*rho.*IAS.^2.*17.48);
 AoA=[-0.6,-0.3,0.1,0.45,1.25,2.3];
 
-rangeE=[-5:0.01:2];
-deltaE=[0.04*14,0.02*14,-0.01*30,-0.025*30,-0.055*30,-0.095*30];
+rangeE=[-0.1:0.01:0.04];
+deltaE=[0.04*14,0.02*14,-0.01*30,-0.025*30,-0.055*30,-0.095*30].*pi./180;
 scatter(deltaE,CL,'r*');
 pdeltaE = polyfit(deltaE,CL,1);
-disp(pdeltaE);
+disp(1./pdeltaE);
 hold on
 plot(rangeE,pdeltaE(1).*rangeE+pdeltaE(2),'r');
 hold on
@@ -28,10 +28,10 @@ WeightOfFuel = MassOfFuel.*9.81;
 CL = WeightOfFuel./(0.5.*rho.*IAS.^2.*17.48);
 AoA=[-0.55,-0.18,-0.15,-0.047,1.004,2.144];
 
-deltaE=[+0.01*14,-0.01*30,-0.02*30,-0.015*30,-0.068*30,-0.111*30];
+deltaE=[+0.01*14,-0.01*30,-0.02*30,-0.015*30,-0.068*30,-0.111*30].*pi./180;
 scatter(deltaE,CL,'g*');
 pdeltaE = polyfit(deltaE,CL,1);
-disp(pdeltaE);
+disp(1./pdeltaE);
 hold on
 plot(rangeE,pdeltaE(1).*rangeE+pdeltaE(2),'g');
 hold on
@@ -46,15 +46,16 @@ WeightOfFuel = MassOfFuel.*9.81;
 CL = WeightOfFuel./(0.5.*rho.*IAS.^2.*17.48);
 AoA=[-0.8,-0.5,-0.197,0.4365,1.214,2.026];
 
-deltaE=[0.07*14,0.055*14,0.03*14,-0.005767*30,-0.02962*30,-0.05614*30];
+deltaE=[0.07*14,0.055*14,0.03*14,-0.005767*30,-0.02962*30,-0.05614*30].*pi./180;
 scatter(deltaE,CL,'b*');
 pdeltaE = polyfit(deltaE,CL,1);
-disp(pdeltaE);
+disp(1./pdeltaE);
 hold on
 plot(rangeE,pdeltaE(1).*rangeE+pdeltaE(2),'b');
 hold on
 
 title('CL vs deltaE for clean setup')
 ylabel('CL')
-xlabel('Elevator deflection in angle');
+grid on
+xlabel('Elevator deflection in radian');
 legend('Xcg=0 points','Line for Xcg=0','Xcg-5 points','Line for Xcg-5','Xcg+5 points','Line for Xcg+5');

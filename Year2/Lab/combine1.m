@@ -55,4 +55,5 @@ legend('points for zero Xcg','line for zero Xg','points for Xcg-5','line for Xcg
 xlabel('Angel of attack in degree');
 ylabel('CL(Coefficient of life)');
 title('CL vs AoA for clean setup');
+grid on
 hold off
