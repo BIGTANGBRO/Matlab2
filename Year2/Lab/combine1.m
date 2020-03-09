@@ -51,9 +51,9 @@ range = [-2:0.1:4];
 hold on
 plot(range,p1(1).*range + p1(2),'b');
 
-legend('points for zero Xcg','line for zero Xg','points for Xcg-5','line for Xcg-5','points for Xcg+5','line for Xcg+5');
-xlabel('Angel of attack in degree');
-ylabel('CL(Coefficient of life)');
+legend('points for zero Xcg','line for zero Xcg','points for Xcg-5','line for Xcg-5','points for Xcg+5','line for Xcg+5');
+xlabel('Angle of attack in degree');
+ylabel('CL(Coefficient of lift)');
 title('CL vs AoA for clean setup');
 grid on
 hold off
