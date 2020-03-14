@@ -23,6 +23,9 @@ hold on
 plot(SimTimeControl,SimAltitudeControl);
 hold on
 plot(SimTimeAuto,SimAltitudeAuto);
+grid on
+xlabel('time');
+ylabel('Altitude');
 hold off
 
 plot(SimTimeManual,SimDeviationManual);
@@ -30,5 +33,6 @@ hold on
 plot(SimTimeControl,SimDeviationControl);
 hold on
 plot(SimTimeAuto,SimDeviationAuto);
+grid on
 hold off
 
