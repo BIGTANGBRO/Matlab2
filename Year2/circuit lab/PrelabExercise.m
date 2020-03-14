@@ -1,14 +1,14 @@
-k1 = -0.59;
-k2 = 0.08;
-T=5.8;
+k1 = -0.5929;
+k2 = -1.6305;
+T=8.2;
 wd = 2*pi/T;
-
-qt = 0;
-qtT = -0.4699;
+load('response.mat');
+qt = output_pitch_rate_q(2);
+qtT = output_pitch_rate_q(2+82);
 AItem = (log((k1-qt)/(k1-qtT))).^2./(4.*pi.^2);
 dampRatio = sqrt(AItem./(1+AItem));
 wn = wd/(sqrt(1-dampRatio^2));
-load('response.mat');
+
 plot(time, output_pitch_rate_q);
 
 SteadyStateError = 0.188;
