@@ -18,21 +18,25 @@ SimTimeAuto = SimTime;
 SimAltitudeAuto = SimAltitude;
 SimDeviationAuto = SimDeviation;
 
-plot(SimTimeManual,SimAltitudeManual);
+plot(SimTimeManual,SimAltitudeManual,'r');
 hold on
-plot(SimTimeControl,SimAltitudeControl);
+plot(SimTimeControl,SimAltitudeControl,'g');
 hold on
-plot(SimTimeAuto,SimAltitudeAuto);
+plot(SimTimeAuto,SimAltitudeAuto,'b');
 grid on
 xlabel('time');
 ylabel('Altitude');
+legend('Manual','Augmented Manual','Automatic');
 hold off
 
-plot(SimTimeManual,SimDeviationManual);
+plot(SimTimeManual,SimDeviationManual,'r');
 hold on
-plot(SimTimeControl,SimDeviationControl);
+plot(SimTimeControl,SimDeviationControl,'g');
 hold on
-plot(SimTimeAuto,SimDeviationAuto);
+plot(SimTimeAuto,SimDeviationAuto,'b');
+xlabel('time');
+ylabel('Deviation')
+legend('Manual','Augmented Manual','Automatic');
 grid on
 hold off
 
