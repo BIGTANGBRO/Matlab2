@@ -12,7 +12,7 @@ AItem = (log((k1-qt)/(k1-qtT))).^2./(4.*pi.^2);
 dampRatio = sqrt(AItem./(1+AItem));
 wn = wd/(sqrt(1-dampRatio^2));
 
-plot(time, output_pitch_rate_q);
+plot(time, output_pitch_rate_q,'r');
 
 SteadyStateError = 0.188;
 
@@ -26,4 +26,5 @@ s=tf('s');
 sys = (n1*s + n2)/(d1*s^2+d2*s+d3);
 step(sys);
 axis([0 60 -1.4 0]);
+legend('Original','New model');
 hold off
