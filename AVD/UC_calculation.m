@@ -41,6 +41,19 @@ if overturnAngle/pi*180 <= 63
 end
 
 
+%%
+%tire selection
+%load on each tire of main landing gear
+Ww = Wmg*9.81*1.07/4;
+%dynamic loading on nose gear
+WnucS = Wng * 1.07/2;
+WnucD = 10 * heightOfCg * W0 *9.81/(9.81*PosNgMg);
+%p is the pressure of the tire on main landing gear
+%ApMain = Ww/P;
+%pnose is the pressure of the tire on nose gear
+%ApNode = Wnuc/(2*Pnose);
+
+%% LCN check
 
 
 
