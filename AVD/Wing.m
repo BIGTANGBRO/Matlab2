@@ -13,7 +13,7 @@ SLE2 = tan(SQC/180*pi) + ((1-lambda)/(AR*(1+lambda)));
 disp(atan(SLE2)/pi*180);
 
 %% sf
-sf = 0.907;
+sf = 248.1644/273.6;
 Length = 4.9605 * (sf)^0.4;
 Diameter = 3.49 * (sf)^0.5;
 Weight = 6147.1 * (sf)^1.1;
