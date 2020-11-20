@@ -15,6 +15,6 @@ disp(atan(SLE2)/pi*180);
 %% sf
 sf = 248.1644/273.6;
 Length = 4.9605 * (sf)^0.4;
-Diameter = 3.49 * (sf)^0.5;
+Diameter = 2.8448 * (sf)^0.5;
 Weight = 6147.1 * (sf)^1.1;
 

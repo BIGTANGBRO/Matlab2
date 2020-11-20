@@ -9,3 +9,5 @@ unload = input("Input the voltage when unloading");
 Vout = load - unload;
 q = input("input the shear flow");
 
+%calculate the shear strain
+
