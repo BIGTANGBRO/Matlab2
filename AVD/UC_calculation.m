@@ -32,7 +32,7 @@ end
 %% check overturn
 PosNgMg = Xmg - Xng;
 Ymg = input("type the y pos of the main gear");
-angle1 = atan(Ymg/(Xmg - Xcg));
+angle1 = atan(Ymg/(Xmg - Xng));
 staticGroundLine = (Xcg - Xng)*sin(angle1);
 overturnAngle = atan(heightOfCg/staticGroundLine);
 willOverTurn = true;
