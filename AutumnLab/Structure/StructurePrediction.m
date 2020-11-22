@@ -60,7 +60,7 @@ ylabel('Shear strain');
 hold off
 
 %% Code for structure lab
-%load = 0;
+%load = 10;
 VoutCDE = [0.0335 0.0005 -0.031];
 VoutFGH = [-0.031 -0.0895 -0.0775];
 VoutIJK = [0.079 0.163 0.046];
