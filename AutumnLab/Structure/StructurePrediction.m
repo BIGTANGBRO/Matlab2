@@ -48,6 +48,7 @@ shearStrainBottom = (values(:,2))./(G*t23);
 
 %plot the diagram for pure torque loading shear strain vs applied load
 figure(1)
+hold on 
 plot(load,shearStrainFront,"r-*");
 hold on
 plot(load,shearStrainBottom,"b-o");
@@ -60,26 +61,68 @@ ylabel('Shear strain');
 hold off
 
 %% Code for structure lab
-%load = 10;
-VoutCDE = [0.0335 0.0005 -0.031];
-VoutFGH = [-0.031 -0.0895 -0.0775];
-VoutIJK = [0.079 0.163 0.046];
+%front matrix
+%9 is C D E F G H I J K
+%6 is 0 10 20 30 40 50; 5 is 50 40 30 20 10 0
+frontShearDataLoading = zeros(9,6);
+frontShearDataUnloading = zeros(9,6);
 
-%calculate the experimental strains
-strainC = 4*VoutCDE(1)/(15*2.09*1000);
-strainD = 4*VoutCDE(2)/(15*2.09*1000);
-strainE = 4*VoutCDE(3)/(15*2.09*1000);
+%rear matrix
+rearShearDataLoading = zeros(9,6);
+rearShearDataUnloading = zeros(9,6);
 
-strainF = 4*VoutFGH(1)/(15*2.09*1000);
-strainG = 4*VoutFGH(2)/(15*2.09*1000);
-strainH = 4*VoutFGH(3)/(15*2.09*1000);
+%front loading; shear strain calculation
+frontShearStrainLoadingCDE = frontShearDataLoading(1,:) - frontShearDataLoading(3,:);
+frontShearStrainLoadingFGH = frontShearDataLoading(4,:) - frontShearDataLoading(6,:);
+frontShearStrainLoadingIJK = frontShearDataLoading(9,:) - frontShearDataLoading(9,:);
 
-strainI = 4*VoutIJK(1)/(15*2.09*1000);
-strainJ = 4*VoutIJK(2)/(15*2.09*1000);
-strainK = 4*VoutIJK(3)/(15*2.09*1000);
+frontShearStrainUnloadingCDE = frontShearDataUnloading(1,:) - frontShearDataUnloading(3,:);
+frontShearStrainUnloadingFGH = frontShearDataUnloading(4,:) - frontShearDataUnloading(6,:);
+frontShearStrainUnloadingIJK = frontShearDataUnloading(9,:) - frontShearDataUnloading(9,:);
+
+%rear loading; shear strain calculation
+rearShearStrainLoadingCDE = rearShearDataLoading(1,:) - rearShearDataLoading(3,:);
+rearShearStrainLoadingFGH = rearShearDataLoading(4,:) - rearShearDataLoading(6,:);
+rearShearStrainLoadingIJK = rearShearDataLoading(9,:) - rearShearDataLoading(9,:);
+
+rearShearStrainUnloadingCDE = rearShearDataUnloading(1,:) - rearShearDataUnloading(3,:);
+rearShearStrainUnloadingFGH = rearShearDataUnloading(4,:) - rearShearDataUnloading(6,:);
+rearShearStrainUnloadingIJK = rearShearDataUnloading(9,:) - rearShearDataUnloading(9,:);
+
+loadsLoadingFront = [0,10,20,30,40,50];
+loadsUnloadingFront = [50,40,30,20,10,0];
+%need interpolation to make load front the same as load rear
+loadsLoadingRear = [0,10,20,30,40,50];
+loadsUnloadingRear = [50,40,30,20,10,0];
+
+ShearStrainFrontLoading = rearShearStrainLoadingCDE - frontShearStrainLoadingCDE;
+ShearStrainUpperLoading = rearShearStrainLoadingFGH- frontShearStrainLoadingFGH;
+ShearStrainBottomLoading = rearShearStrainLoadingIJK - frontShearStrainLoadingIJK;
+
+ShearStrainFrontUnLoading = rearShearStrainUnloadingCDE - frontShearStrainUnloadingCDE;
+ShearStrainUpperUnloading = rearShearStrainUnloadingFGH- frontShearStrainUnloadingFGH;
+ShearStrainBottomUnloading = rearShearStrainUnloadingIJK - frontShearStrainUnloadingIJK;
+
+figure(2)
+plot(loadsLoadingFront,ShearStrainFrontLoading,'r*');
+hold on
+plot(loadsUnloadingFront,ShearStrainFrontUnLoading,'ro');
+hold off
+
+figure(3)
+plot(loadsLoadingFront,ShearStrainUpperLoading,'r*');
+hold on
+plot(loadsUnloadingFront,ShearStrainUpperUnloading,'ro');
+hold on
+plot(loadsLoadingFront,ShearStrainBottomLoading,'b--');
+hold on
+plot(loadsUnloadingFront,ShearStrainBottomUnloading,'b--');
+hold off
+
 
 %% functions
 function x = varSolver(var1,var2)
     x = var1^(-1) * var2; 
 end
+
 
