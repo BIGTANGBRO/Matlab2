@@ -53,7 +53,5 @@ WnucD = 10 * heightOfCg * W0 *9.81/(9.81*PosNgMg);
 %pnose is the pressure of the tire on nose gear
 %ApNode = Wnuc/(2*Pnose);
 
-%% LCN check
-
 
 
