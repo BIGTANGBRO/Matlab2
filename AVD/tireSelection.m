@@ -12,4 +12,4 @@ pressureMg = psiMg*703.0696;
 ApNg = staticNg/pressureNg;
 ApMg = staticMg/pressureMg;
 RrNg = -ApNg/(2.3*sqrt(0.23495*0.8636))+0.8636/2;
-RrMg = -ApMg/(2.3*sqrt(0.3937*1.016))+1.016/2;
+RrMg = -ApMg/(2.3*sqrt(0.4191*1.13036))+1.1303/2;
