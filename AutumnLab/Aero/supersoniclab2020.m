@@ -271,15 +271,16 @@ function [x,h,t,p0,p,xt,ts,prf] = supersoniclab2020(runtime, pe_inp, te)
         prf(ii,:) = mean(pn(is(ii,1):is(ii,2),:),1);
 
         p1 = plot(xt,prf(ii,:),[mrk{ii},col{ii}],...
-            'MarkerSize',10,'LineWidth',2);
+            'MarkerSize',10,'LineWidth',2,'LineStyle','--');
     end, clear ii
     %%%%%%%%%%%
     end
-    plot(x,pisen,'k')
-    fplot(0.37,[min(xt) max(xt)],'m--')
-    fplot(0.1247,[min(xt) max(xt)],'k--')
+    plot(x,pisen,'k') 
+    
+    fplot(0.6479,[min(xt) max(xt)],'g-.')
+    fplot(0.2183,[min(xt) max(xt)],'m--')
     %fplot(0.,[min(xt) max(xt)],'g--')
-    fplot(0.759,[min(xt) max(xt)],'g-.')
+    fplot(0.1278,[min(xt) max(xt)],'k--')
       %fplot(0.,[min(xt) max(xt)],'b--')
     %%%%%%%%%%%%%%%
     % Format plot
@@ -288,6 +289,7 @@ function [x,h,t,p0,p,xt,ts,prf] = supersoniclab2020(runtime, pe_inp, te)
     xlabel('Nozzle location - x [mm]','FontSize',14)
     ylabel('Mean normalised pressure - p/p_0 [-]','FontSize',14)
     title('Normalised pressure profile plots','FontSize',14)
+    legend('p0/pe = 1.03','p0/pe = 1.3','p0/pe = 1.8','Isentropic & Inviscid','Theoretical pressure rise for normal shock','Theoretical pressure rise after oblique shock','Pressure for isentropic flow');
      
     %%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%%%%%%%%%%%%%%%%%%%%%%%%

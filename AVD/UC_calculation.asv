@@ -16,12 +16,12 @@ Wmg = W0*0.9;
 Wng = W0*0.1;
 
 Xng = 2.5;
-Xmg = 22.5;
+Xmg = 25;
 Xcg = (Wng*Xng + Wmg*Xmg)/W0;
 %now check the 6'' clearence
 %% check the tip back angle
 totalLength = 56;
-tipBackAngle = atan((2+2.8)/(totalLength - Xmg))/pi*180;
+tipBackAngle = atan(heightOfCg/(totalLength - Xmg))/pi*180;
 tipBack = true;
 verticalCgAngle = (atan((Xmg - Xcg)/heightOfCg)/pi*180);
 if verticalCgAngle > tipBackAngle
@@ -29,12 +29,13 @@ if verticalCgAngle > tipBackAngle
 end
 
 %% check overturn
-yPosMg = 2.3;
+PosNgMg = Xmg - Xng;
+yPosMg = 3;
 angle1 = atan(yPosMg/(Xmg - Xng));
 staticGroundLine = (Xcg - Xng)*sin(angle1);
-overturnAngle = atan(heightOfCg/staticGroundLine)/pi*180;
+overturnAngle = atan(heightOfCg/staticGroundLine);
 willOverTurn = true;
-if overturnAngle <= 63
+if overturnAngle/pi*180 <= 63
     willOverTurn = false;
 end
 
