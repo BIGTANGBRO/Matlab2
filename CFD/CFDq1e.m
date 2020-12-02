@@ -2,6 +2,7 @@ clear
 clc
 
 deltaXMatrix = [1/10,1/20,1/50,1/100,1/200,1/500];
+epsilonIter = zeros(6,1);
 for x = 1:length(deltaXMatrix)
 %assume lambda=1,m=3;
 lambda = 1;
@@ -41,6 +42,7 @@ end
 ubar = transpose(sin(3*pi*mdx));
 ufinal = [0;u(:,length(u(1,:)));0];
 epsilon = max(abs(ufinal-ubar));
+epsilonIter(x) = epsilon;
 fprintf('The maximum epsilon of iteration is %3.5f\n',epsilon);
 
 figure()
@@ -52,3 +54,6 @@ grid on
 legend('Predicted','Actual');
 hold off
 end
+
+figure(10);
+plot(log10(deltaXMatrix),log10(epsilonIter));
