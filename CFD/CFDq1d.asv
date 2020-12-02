@@ -4,7 +4,7 @@ clear
 
 deltaXMatrix = [1/10,1/20,1/50,1/100,1/200,1/500];
 for x = 1:length(deltaXMatrix)
-clear vars u fMatrix
+clear vars a
 deltaX = deltaXMatrix(x);
 mdx = 0:deltaX:1;
 %number of points
@@ -58,7 +58,7 @@ hold off
 %calculate the theoretical values
 ubar = transpose(sin(3*pi*mdx));
 epsilon = max(abs(u-ubar));
-fprintf('The maximum epsilon of direct is %3.5f\n',epsilon);
+fprintf('The maximum epsilon of direct is %3.5f',epsilon);
 
 end
 
