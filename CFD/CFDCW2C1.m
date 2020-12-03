@@ -3,7 +3,7 @@ clc
 
 sigma=4;
 dt=2e-5;
-dx=1/50;
+dx=1/500;
 N=1/dx+1; %Number of mesh points
 T=0.05;
 
@@ -27,8 +27,19 @@ b=1+2*K;
 c=-K;
 A=(diag(b*ones(1,N))+diag(c*ones(1,N-1),1)+diag(a*ones(1,N-1),-1));
 
+%Apply Neumann condition
+A(N,N-1)=-1;
+A(N,N)=1;
+
 t=1;
 for i=0:dt:T
+    
+    %Neumann condition for u(1,i)
+    b=0;
+    for m=0:50
+        b=b+((-1)^m*(40/((2*m+1)*pi)*cos((2*m+1)*pi))*exp(-sigma*(2*m+1)^2*pi^2*i));
+    end
+    u(t,N)=b*dx;
     
     beta(t,1)=A(1,1);
     gamma(t,1)=u(t,1)/beta(t,1);
@@ -52,4 +63,15 @@ for i=1:t
     plot(x,u(i,:))
     hold on
 end
+
+%Analytical solution at T=0.05
+
+
+% plot(x,u(t,:))
+
+% plot(x,u(1,:))
+% xlabel({'$x$'},'Interpreter','latex')
+% ylabel({'$u(x,0)$'},'Interpreter','latex')
+% title('Initial Conditions')
+% grid on
 

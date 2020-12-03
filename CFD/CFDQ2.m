@@ -2,7 +2,7 @@
 clc
 clear
 
-deltaX = 1/1000;
+deltaX = 1/500;
 deltaT = 2*10^(-5);
 sig = 4;
 T = 0.05;
@@ -23,6 +23,7 @@ for i=1:length(x)
 end
 
 %plot the initial conditions
+figure(1);
 plot(x,uValues);
 grid on
 xlabel('x');
@@ -34,10 +35,10 @@ hold off
 k = sig*deltaT/deltaX^2;
 a = ones(N-1,1)*(-k);
 a(1)=0;
+a(N-1) = -1;
 b = ones(N-1,1)*(1+2*k);
 b(N-1,1) = 1;
 c = ones(N-1,1)*(-k);
-c(N-2,1) = -1;
 c(N-1)=0;
 
 for i = 1:length(t)
@@ -55,34 +56,42 @@ for i = 1:length(t)
     for m = 0:1:50
         betaN = betaN + (-1)^(m+1)*40/((2*m+1)*pi)*exp(-sig*(2*m+1)^2*pi^2*t(i));
     end
-
+    
+    uValues(i,N) = deltaX*betaN;
+    
     %forward
     beta(i,1) = b(1);
     %for u starts from the first row
-    gamma(i,1) = uValues(i,1)/beta(1);
+    gamma(i,1) = uValues(i,2)/beta(i,1);
     for k = 2:N-1
         beta(i,k) = b(k)-a(k)*c(k-1)/beta(i,k-1);
-        gamma(k) = (-a(k)*gamma(i,k-1)+uValues(i,k))/beta(i,k);
+        gamma(i,k) = (-a(k)*gamma(i,k-1)+uValues(i,k+1))/beta(i,k);
     end
     
     %backward
     uNum(i,N-1) = gamma(i,N-1); 
     for j = N-2:-1:1
-        uNum(i,j) = gamma(i,j)-(uValues(i,j+1)*c(j))/beta(i,j);
+        uNum(i,j) = gamma(i,j)-(uNum(i,j+1)*c(j))/beta(i,j);
     end 
     uValues(i+1,:) = [0,uNum(i,:)];
 end
 
 uNum = [zeros(length(t),1),uNum];
 
+%numerical solution
 for i = 1:length(t)
     plot(x,uNum(i,:));
     hold on
 end
 hold off
 
-
-
+%exact solution
+figure(2)
+for i = 1:length(t)
+    plot(x,uAll(i,:));
+    hold on
+end
+hold off
 
 
 
