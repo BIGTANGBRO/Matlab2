@@ -14,3 +14,7 @@ N = 100;
 %initial condition
 denRatio = 8;
 preRatio = 10;
+deltaX = -2:100:2;
+
+
+
