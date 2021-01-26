@@ -14,7 +14,17 @@ N = 100;
 %initial condition
 denRatio = 8;
 preRatio = 10;
-deltaX = -2:100:2;
+dt = [-2:deltaX:2];
+deltaX = 4/100;
+
+%u0 = u1
+u(:,1) =[0;0;0];
+for i = 2:length(deltaX)
+    
+    
+    
+end
+
 
 
 
