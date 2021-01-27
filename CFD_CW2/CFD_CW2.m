@@ -9,7 +9,7 @@ gamma = 1.4;
 xBegin = -2;
 xEnd = 2;
 %set the space
-N = 100;
+N = 99;
 
 %initial condition
 denRatio = 8;
@@ -17,14 +17,14 @@ preRatio = 10;
 %set the deltaX and deltaT
 deltaX = 4/N;
 dX = [-2:deltaX:2];
-deltaT = 0.05;
+deltaT = 0.001;
 dT = [0:deltaT:0.5];
 
 %initial conditions
 rho = ones(1,length(dX));
-rho(:,1:round(length(rho)/2)) = denRatio;
+rho(:,1:ceil(length(rho)/2)) = denRatio;
 pressure = ones(1,length(dX));
-pressure(:,1:round(length(pressure)/2)) = preRatio;
+pressure(:,1:ceil(length(pressure)/2)) = preRatio;
 u = zeros(1,length(dX));
 E=pressure./((gamma-1).*rho)+u.^2/2;
 BigU = [rho;rho.*u;rho.*E];
@@ -35,26 +35,34 @@ for n = 1:length(dT)
         %initial value of u is 0;
         %for each dx
         mA = getMatrixA(u(i),E(i));
-        eigValues(:,i) = sort(eig(mA)); 
-        uvalue = eigValues(2,i);
-        cvalue = eigValues(3,i) - eigValues(2,i);
-        
-        %from eig to get F+ F-
-        %get F+;
-        %get F-;    
-        if (eigValues(1,i)>=0)
-            FPlus(:,i)= [rho(i)*u(i);rho(i)*u(i)^2+pressure(i);rho(i)*u(i)*(E(i)+pressure(i)/rho(i))];
-            FMinus(:,i)= [0;0;0];
-        else
-            FPlus(:,i) =rho(i)/(2*gamma)*[(2*gamma-1)*uvalue+cvalue;2*(gamma-1)*uvalue^2+(uvalue + cvalue)^2;(gamma-1)*uvalue^3+(uvalue-cvalue)^3/2+(3-gamma)/(2*(gamma-1))*(uvalue+cvalue)*cvalue^2];
-            FMinus(:,i)= rho(i)*(uvalue-cvalue)/(2*gamma)*[1;uvalue-cvalue;(uvalue-cvalue)^2/2+(3-gamma)/(gamma-1)*cvalue^2/2];
-        end
+%         eigValues(:,i) = sort(eig(mA)); 
+%         uvalue = eigValues(2,i);
+%         cvalue = eigValues(3,i) - eigValues(2,i);
+%         
+%         %from eig to get F+ F-
+%         %get F+;
+%         %get F-;    
+%         if (eigValues(1,i)>=0)
+%             FPlus(:,i)= [rho(i)*u(i);rho(i)*u(i)^2+pressure(i);rho(i)*u(i)*(E(i)+pressure(i)/rho(i))];
+%             FMinus(:,i)= [0;0;0];
+%         else
+%             FPlus(:,i) =rho(i)/(2*gamma)*[(2*gamma-1)*uvalue+cvalue;2*(gamma-1)*uvalue^2+(uvalue + cvalue)^2;(gamma-1)*uvalue^3+(uvalue-cvalue)^3/2+(3-gamma)/(2*(gamma-1))*(uvalue+cvalue)*cvalue^2];
+%             FMinus(:,i)= rho(i)*(uvalue-cvalue)/(2*gamma)*[1;uvalue-cvalue;(uvalue-cvalue)^2/2+(3-gamma)/(gamma-1)*cvalue^2/2];
+%         end
+
+        [eigenVectors,eigenValues] = eig(mA);
+        Vplus = 0.5.*(eigenValues + abs(eigenValues));
+        Vminus = 0.5.*(eigenValues - abs(eigenValues));
+        Aplus = eigenVectors * Vplus * inv(eigenVectors);
+        Aminus = eigenVectors * Vminus * inv(eigenVectors);
+        FPlus(:,i) = Aplus * BigU(:,i);
+        FMinus(:,i) = Aminus * BigU(:,i);
     end
     
    %get the new Bigu
     for i2 = 2:length(dX)-1 
         %BigU n+1 = BigU n + fun(F+,F-);
-        BigU(:,i2) = BigU(:,i2) - deltaT/deltaX.*(FPlus(:,i2)-FPlus(:,i2-1)+(FMinus(i2+1)-FMinus(i2)));
+        BigU(:,i2) = BigU(:,i2) - (deltaT/deltaX).*(FPlus(:,i2)-FPlus(:,i2-1)+(FMinus(i2+1)-FMinus(i2)));
         %update the big U
     end
     
@@ -72,7 +80,6 @@ for n = 1:length(dT)
     end
 
 end
-
 plot(dX,u);
 
 %functions
