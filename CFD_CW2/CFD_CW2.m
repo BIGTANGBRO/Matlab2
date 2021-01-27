@@ -32,11 +32,19 @@ for n = 1:length(dT)
     for i = 1:length(dX)
         %initial value of u is 0;        
         mA = getMatrixA(u(i),entropy(i));
-        eigValue(:,i) = eig(mA);
+        eigValues(:,i) = sort(eig(mA)); 
         %from eig to get F+ F-
         %get F+;
-        %get F-;
+        %get F-;    
+        if (eigValues(1,i)>=0)
+            FPlus(:,i)= [rho(i);rho(i)*u(i)^2+pressure(i);]
+            FMinus(:,i)=
+        else
+            FPlus(:,i) =
+            FMinus(:,i)=
+        end
     end
+    
    %get the new Bigu
     for i2 = 2:length(dX)-1 
         %BigU n+1 = BigU n + fun(F+,F-);

@@ -20,23 +20,31 @@ deltaT = 0.05;
 dT = [0:deltaT:0.5];
 
 %u0 = u1
-BigU(:,1) =[0;0;0];
 rho = ones(1,length(dX));
 rho(:,floor(length(rho)/2):length(rho)) = denRatio;
 pressure = ones(1,length(dX));
 pressure(:,floor(length(pressure)/2):length(pressure)) = preRatio;
 u = zeros(1,length(dX));
 entropy=log(pressure./(rho.^1.4));
+BigU = [rho;rho.*u;rho.*entropy];
 
 for n = 1:length(dT)
     for i = 1:length(dX)
         %initial value of u is 0;        
         mA = getMatrixA(u(i),entropy(i));
-        eigValue(:,i) = eig(mA);
+        eigValues(:,i) = sort(eig(mA)); 
         %from eig to get F+ F-
         %get F+;
-        %get F-;
+        %get F-;    
+        if (eigValues(1,i)>=0)
+            FPlus(:,i)= [rho(i);rho(i)*u(i)^2+pressure(i);];
+            FMinus(:,i)= [0;0;0];
+        else
+            FPlus(:,i) =[]
+            FMinus(:,i)=[(2*gamma-1)]
+        end
     end
+    
    %get the new Bigu
     for i2 = 2:length(dX)-1 
         %BigU n+1 = BigU n + fun(F+,F-);
