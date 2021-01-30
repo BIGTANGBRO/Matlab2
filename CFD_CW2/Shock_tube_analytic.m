@@ -101,7 +101,7 @@ p(2+ii)=p(2)*(alpha/alpha4)^((2.*gamma)/(gamma-1));
 rho(2+ii)=(p(2+ii)/p(1))^(1./gamma)*rho(1);
 mach(2+ii)=u(2+ii)/alpha;
 entropy(2+ii)=log(p(2+ii)/(rho(2+ii)^gamma));
-end;
+end
 p3=p(2+nfan);
 rho3=rho(2+nfan);
 mach3=mach(2+ii);
