@@ -9,7 +9,7 @@ gamma = 1.4;
 xBegin = -2;
 xEnd = 2;
 %set the space
-N = 300;
+N = 200;
 
 %initial condition
 denRatio = 8;
