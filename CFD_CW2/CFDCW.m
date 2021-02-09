@@ -64,7 +64,7 @@ for n=1:length(t)
     
 end
 
-plot(x,p,'LineWidth',1.5)
+plot(x,u./c,'LineWidth',1.5)
 grid minor
 
 

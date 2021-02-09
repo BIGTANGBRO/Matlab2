@@ -45,7 +45,7 @@ for n = 1:length(dT)
 %method1
 %get mach
          eigValues1(:,i) = sort(eig(mA1)); 
-         cValue1(i) = eigValues1(3) - eigValues1(2);
+         cValue1(i) = eigValues1(3,i) - eigValues1(2,i);
 %         uValue(i) = eigValues(2);
 %         H = E+pressure./rho;
 %          %from eig to get F+ F-
@@ -118,7 +118,7 @@ for n = 1:length(dT)
         %get F-;   
         %get mach
         eigValues2(:,i) = sort(eig(mA2)); 
-        cValue2(i) = eigValues2(3) - eigValues2(2);
+        cValue2(i) = eigValues2(3,i) - eigValues2(2,i);
         mF = getMatrixF(rho2(i),u2(i),pressure2(i),E2(i));
         [eigenVectors,eigenValues] = eig(mA2);
         Vplus = 0.5.*(eigenValues + abs(eigenValues));
@@ -182,7 +182,7 @@ for n = 1:length(dT)
         %2 methods
         %get mach
         eigValues3(:,i) = sort(eig(mA3)); 
-        cValue3(i) = eigValues3(3) - eigValues3(2);
+        cValue3(i) = eigValues3(3,i) - eigValues3(2,i);
         mF = getMatrixF(rho3(i),u3(i),pressure3(i),E3(i));
         [eigenVectors,eigenValues] = eig(mA3);
         Vplus = 0.5.*(eigenValues + abs(eigenValues));
