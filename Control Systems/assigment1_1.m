@@ -45,12 +45,13 @@ f6 = -cos(rho) ^ 3 * Lh * (mf - mb) * La / cos(epsilon) / ((mf + mb) * La ^ 2 + 
 % Fix the code below and add any code if necessary
 %A_sym(epsilon,rho,lambda,epsilon_dot,rho_dot,lambda_dot,u1,u2)=1;
 %B_sym(epsilon,rho,lambda,epsilon_dot,rho_dot,lambda_dot,u1,u2)=1;
-A = [diff([f1;f2;f3],epsilon),diff([f1;f2;f3],rho),diff([f1;f2;f3],lambda),diff([f1;f2;f3],epsilon_dot),diff([f1;f2;f3],rho_dot),diff([f1;f2;f3],lambda_dot)];
-B = [diff([f1;f2;f3],u1),diff([f1;f2;f3],u2)];
-
-A=double(A);
-B=double(B);
-C=1;
-D=1;
+A = [diff([f1;f2;f3;f4;f5;f6],epsilon),diff([f1;f2;f3;f4;f5;f6],rho),diff([f1;f2;f3;f4;f5;f6],lambda),diff([f1;f2;f3;f4;f5;f6],epsilon_dot),diff([f1;f2;f3;f4;f5;f6],rho_dot),diff([f1;f2;f3;f4;f5;f6],lambda_dot)];
+B = [diff([f1;f2;f3;f4;f5;f6],u1),diff([f1;f2;f3;f4;f5;f6],u2)];
+A = subs(A,[epsilon,rho,lambda,epsilon_dot,rho_dot,lambda_dot],[x1_0,x2_0,x3_0,x4_0,x5_0,x6_0]);
+B = subs(B,[u1,u2],[u1_0,u2_0]);
+A = double(A);
+B = double(B);
+C=eye(6,6);
+D=zeros(6,2);
 
 end
