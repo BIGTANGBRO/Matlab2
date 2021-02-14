@@ -29,7 +29,7 @@ if verticalCgAngle > tipBackAngle
 end
 
 %% check overturn
-yPosMg = 2.6;
+yPosMg = 3.9;
 angle1 = atan(yPosMg/(Xmg - Xng));
 staticGroundLine = (Xcg - Xng)*sin(angle1);
 overturnAngle = atan(heightOfCg/staticGroundLine)/pi*180;
