@@ -7,7 +7,7 @@ close all
 [~,a_cruise,~,rho_cruise]=atmosisa(35000*0.3048);
 M = 0.8;
 V_cruise = M * a_cruise;
-V_max = V_cruise*1.25;% V_cruise = 0.8 V_max FAR 25
+V_max = 0.82*a_cruise;% V_cruise = 0.8 V_max FAR 25
 
 bf = (53.19-3.9)/2;  %wing semispan from the root at fuselage joint
 n = 3.75;   %ultimate load factor
@@ -19,21 +19,21 @@ W = 1341419/9.81; % weight at cruise altitude with no fuel
 L = n*W*9.81/2; % lift on one side of the wing
 Ln = nn*W*9.81/2; % lift on one side of the wing
 
-c_r = 8.5742; % root chord
-c_t = 2.7437; % tip chord
+croot = 8.5742; % root chord
+ctip = 2.7437; % tip chord
 %angle of flexural axis
 sweep = deg2rad(33.2);
-theta = atan((tan(sweep)*bf+0.15*(c_t-c_r))/bf);
-c = c_r : -(c_r-c_t)/(N-1) :c_t; % aero chord length distribution
+theta = atan((tan(sweep)*bf+0.15*(ctip-croot))/bf);
+c = croot : -(croot-ctip)/(N-1) :ctip; % aero chord length distribution
 %% structural coordinate
 %structural span
 bs = bf/cos(theta);
 dx = bs/(N-1);
 x = 0 : dx : bs;
 %leading and trailing edge sweep angle
-alead = atan((tan(sweep)*bf-0.25*(c_t-c_r))/bf);
-atrai = atan((tan(sweep)*bf+0.75*(c_t-c_r))/bf);
-lright = c_r/(tan(alead)-tan(atrai));
+alead = atan((tan(sweep)*bf-0.25*(ctip-croot))/bf);
+atrai = atan((tan(sweep)*bf+0.75*(ctip-croot))/bf);
+lright = croot/(tan(alead)-tan(atrai));
 lflex = lright/cos(theta);
 cs = (lflex-x/cos(theta))*(tan(alead-theta)+tan(theta-atrai));
 %% load distribution
@@ -80,15 +80,15 @@ plot(x,totalLoadN);
 hold on;
 plot(x(91:210),-w_fuel(91:210));
 hold on
-plot(x(floor(N*1.95/bf):floor(N*2.2/bf)),-w_lg(floor(N*1.95/bf):floor(N*2.2/bf)));
+plot(x(floor(N*1.95/bf):floor(N*2.2/bf)),-w_lg(floor(N*1.95/bf):floor(N*2.2/bf)),'b-.');
 hold on;
 plot(x,l_wing);
 hold on;
 plot(x,-w_wing);
 hold on
-plot(x(floor(N*7.23/bf):floor(N*8.23/bf)),-w_engine(floor(N*7.23/bf):floor(N*8.23/bf)));
+plot(x(floor(N*7.23/bf):floor(N*8.23/bf)),-w_engine(floor(N*7.23/bf):floor(N*8.23/bf)),'-.');
 legend("Total load for N = 3.75","Total load for N = -1.5","Fuel tank","Landing gear","Lift","Own weight","Engine");
-xlabel('Distance along flexural axis/m')
+xlabel('Wing span/m')
 ylabel('Load Distribution/N/m')
 hold off;
 
@@ -104,10 +104,11 @@ for i = 1:N
     shearForceN(i) = sum(shearForceN(i:N));
 end
 figure(2)
-plot(x,shearForce)
+plot(x,shearForce,'b')
 hold on
 plot(x,shearForceN)
-xlabel('Distance along flexural axis/m')
+legend("N=3.75","N=-1.5");
+xlabel('Wing span/m')
 ylabel('Local shear force/N')
 grid on
 
@@ -125,10 +126,11 @@ for i = 1:N
 end
 
 figure(3)
-plot(x,bendMoment)
+plot(x,bendMoment,'b')
 hold on
 plot(x,bendMomentN)
-xlabel('Distance along flexural axis/m')
+legend("N=3.75","N=-1.5");
+xlabel('Wing span/m')
 ylabel('Local bending moment/Nm')
 grid on
 %% Torque
@@ -137,19 +139,18 @@ T = zeros(1,N);
 Tn = zeros(1,N);
 cm0 = ones(1,N)*-0.07;
 dM0 = 0.5*rho_cruise*(cos(theta)*V_max)^2*cs.^2.*cm0;%moment with respect to flexural axis. this could be better as this is more conservative and this is calculated with respect to the flexural axis.
-%assume flexural axis at (.15+.65)/2=40% chord -- centre of wing box
-x_flex = 0.4;
+%assume flexural axis at (.15+.60)/2=37.5% chord -- centre of wing box
+xCenter = 0.375;
 %moment arm of lift
-al = (x_flex-0.25)*c;
-dLa = al.*l_wing;
-dLan = al.*l_wingn;
-x_wing = 0.5;
+liftArm = (xCenter-0.25)*cs;
+deltaLa = liftArm.*l_wing;
+deltaLaN = liftArm.*l_wingn;
 %moment arm of inertial loads
-bw = (x_flex-x_wing);
-dnWbw = n*w_wing.*bw.*cs;
+weightArm = (xCenter-0.5).*cs;
+deltaNWb = n*w_wing.*weightArm;
 %sectional torque
-dT = dM0+dLa+dnWbw;
-dTn = dM0+dLan+dnWbw;
+dT =deltaLa+deltaNWb+dM0;
+dTn = deltaLaN+deltaNWb+dM0;
 %total torque
 for i = 1:N
     T(N-i+1) = sum(dT(N-i+1:N));  % sum from tip to root
@@ -157,10 +158,11 @@ for i = 1:N
 end
 
 figure(4)
-plot(x,T);
+plot(x,T,'b');
 hold on
 plot(x,Tn);
-xlabel('Distance along flexural axis/m')
+legend("N=3.75","N=-1.5");
+xlabel('Wing span/m')
 ylabel('Local twisting moment/Nm')
 grid on
 
