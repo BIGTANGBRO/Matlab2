@@ -33,7 +33,8 @@ CMD_ELEV_POS_LIMIT_UPPER = -CMD_ELEV_POS_LIMIT_LOWER;
 CMD_RATE_LIMIT = 45.0 * pi / 180;
 
 %% Controller design
-K=...
+K=[37.9315   18.8463  -41.6699   21.9400    6.0742  -61.8190   10.0000  -10.0000
+   37.9315  -18.8463   41.6699   21.9400   -6.0742   61.8190   10.0000   10.0000];
 
 
 %% Non-linear model parameters (for closed-loop simulation only):
