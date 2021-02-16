@@ -86,7 +86,7 @@ hold on;
 plot(x,-w_wing);
 hold on
 plot(x(floor(N*7.23/bf):floor(N*8.23/bf)),-w_engine(floor(N*7.23/bf):floor(N*8.23/bf)));
-legend("Total load for N = 3.75","Total load for N = -1.5","Fuel tank","Landing gear","Lift","Own weight","Engine");
+le
 xlabel('Distance along flexural axis/m')
 ylabel('Load Distribution/N/m')
 hold off;

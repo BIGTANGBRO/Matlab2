@@ -7,7 +7,6 @@ croot = 8.5742;
 ctip = 2.7437;
 c = linspace(ctip,croot,300);
 halfSpan = (53.19-3.9)/2;
-loadFactor = 3.4;
 rho = 0.33;
 mass_MG = 2550;%kg
 mass_NG = 580;%kg
