@@ -37,13 +37,13 @@ lright = c_r/(tan(alead)-tan(atrai));
 lflex = lright/cos(theta);
 cs = (lflex-x/cos(theta))*(tan(alead-theta)+tan(theta-atrai));
 %% load distribution
-% elliptic lift distribution
+% lift distribution
 elli = (1-(y./bf).^2).^0.5;
 % elli (1,1:floor(1.5/11.52*N))=zeros(1,floor(1.5/11.52*N));
 l_wing = elli*L/(trapz(y,elli));
 l_wingn = elli*Ln/(trapz(y,elli));
 
-% distributed wing self-weight
+%own weight
 W_wing = 5150*9.81; % weight of wing
 t2c = ones(1,300)*0.15;% thickness to chord ratio
 % assume wing weight is proportional to c^2*t2c
@@ -59,23 +59,24 @@ cfuel(91:210) = c(91:210);
 w_fuel = t2cFuel.*cfuel.^2.*W_fuel./trapz(y,t2cFuel.*cfuel.^2);
 plot(x,w_fuel,'b');
 
-% consider main landing gear as a point load
+%landing gear
 W_lg = 1275*9.81 ; % weight of main landin gear
 y_lg = zeros(1,N);
 y_lg(floor(N*1.95/bf):floor(N*2.2/bf)) = 1;% y position of mail landing gear
 w_lg = W_lg*y_lg/trapz(y,y_lg);
 
+%engine
 W_engine = 6030*9.81;
 y_engine = zeros(1,N);
 y_engine(floor(N*7.23/bf):floor(N*8.23/bf)) = 1;
 w_engine = W_engine*y_engine/trapz(y,y_engine);
 
-ly = l_wing-w_wing-w_lg-w_engine;
-lyN = l_wingn-w_wing-w_fuel-w_lg-w_engine;
+totalLoad = l_wing-w_wing-w_lg-w_engine;
+totalLoadN = l_wingn-w_wing-w_fuel-w_lg-w_engine;
 figure(1)
-plot(x,ly);
+plot(x,totalLoad);
 hold on;
-plot(x,lyN);
+plot(x,totalLoadN);
 hold on;
 plot(x(91:210),-w_fuel(91:210));
 hold on
@@ -93,44 +94,48 @@ hold off;
 
 %% shear force&bending moment
 SF = zeros(1,N);
-SFn = zeros(1,N);% initialise
-BM = zeros(1,N); 
-BMn = zeros(1,N);
-T = SF;Tn = T;
+SFn = zeros(1,N);
+% initialise
 %Shear force
+shearForce = totalLoad.*dx;
+shearForceN = totalLoadN.*dx;
 for i = 1:N
-    SF(N-i+1) = dx*sum(ly(N-i+1:N)); % sum from tip to root
-    SFn(N-i+1) = dx*sum(lyN(N-i+1:N)); % sum from tip to root
+    shearForce(i) = sum(shearForce(i:N));
+    shearForceN(i) = sum(shearForceN(i:N));
 end
-%Bending moment
-dBM = ly*dx;    % differential bending moment
-dBMn = lyN*dx; 
-for i = 1:N
-    BM(N-i+1) = sum(dBM(N-i+1:N).*(x(N-i+1:N)-x(N-i+1)));  % sum from tip to root
-    BMn(N-i+1) = sum(dBMn(N-i+1:N).*(x(N-i+1:N)-x(N-i+1)));
-end
-
 figure(2)
-plot(x,SF)
+plot(x,shearForce)
 hold on
-plot(x,SFn)
-% title('Shear Forces','interpreter','latex')
+plot(x,shearForceN)
 xlabel('Distance along flexural axis/m')
 ylabel('Local shear force/N')
 grid on
-    
-figure(3)
-plot(x,BM)
-hold on
-plot(x,BMn)
 
-% title('Bending Moments','interpreter','latex')
+%% Bending moment
+shearForce(301)=0;
+shearForceN(301)=0;
+for i = 1:N
+    dbendMoment(i) = (shearForce(i)+shearForce(i+1))*(dx)/2;
+    dbendMomentN(i) = (shearForceN(i)+shearForceN(i+1))*(dx)/2;
+end
+
+for i = 1:N
+    bendMoment(i) = sum(dbendMoment(i:N));
+    bendMomentN(i) = sum(dbendMomentN(i:N));
+end
+
+figure(3)
+plot(x,bendMoment)
+hold on
+plot(x,bendMomentN)
 xlabel('Distance along flexural axis/m')
 ylabel('Local bending moment/Nm')
 grid on
 %% Torque
 %from xfoil
-cm0 = [ones(1,floor((0.3*11.52-1.5)/10.02*N))*-0.09 ones(1,N-floor((0.3*11.52-1.5)/10.02*N))*-0.07];
+T = zeros(1,N);
+Tn = zeros(1,N);
+cm0 = ones(1,N)*-0.07;
 dM0 = 0.5*rho_cruise*(cos(theta)*V_max)^2*cs.^2.*cm0;%moment with respect to flexural axis. this could be better as this is more conservative and this is calculated with respect to the flexural axis.
 %assume flexural axis at (.15+.65)/2=40% chord -- centre of wing box
 x_flex = 0.4;
@@ -151,13 +156,12 @@ for i = 1:N
     Tn(N-i+1) = sum(dTn(N-i+1:N));
 end
 
-save('loads.mat')
-
 figure(4)
-plot(x,T,'linewidth',2)
+plot(x,T);
 hold on
-plot(x,Tn,'linewidth',2)
-% title('Torque','interpreter','latex')
-xlabel('Distance along flexural axis, m','interpreter','latex')
-ylabel('Local twisting moment, Nm','interpreter','latex')
+plot(x,Tn);
+xlabel('Distance along flexural axis/m')
+ylabel('Local twisting moment/Nm')
 grid on
+
+save('loads.mat')

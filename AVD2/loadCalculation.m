@@ -81,7 +81,7 @@ xlabel('Wing span loaction(m)');
 grid on
 hold off
 
-%%
+%% 
 figure(3)
 dx = halfSpan/300;
 shearForce = totalLoad.*dx;

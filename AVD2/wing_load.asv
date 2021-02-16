@@ -70,12 +70,12 @@ y_engine = zeros(1,N);
 y_engine(floor(N*7.23/bf):floor(N*8.23/bf)) = 1;
 w_engine = W_engine*y_engine/trapz(y,y_engine);
 
-ly = l_wing-w_wing-w_lg-w_engine;
-lyN = l_wingn-w_wing-w_fuel-w_lg-w_engine;
+totalLoad = l_wing-w_wing-w_lg-w_engine;
+totalLoad2 = l_wingn-w_wing-w_fuel-w_lg-w_engine;
 figure(1)
-plot(x,ly);
+plot(x,totalLoad);
 hold on;
-plot(x,lyN);
+plot(x,totalLoad2);
 hold on;
 plot(x(91:210),-w_fuel(91:210));
 hold on
@@ -86,7 +86,7 @@ hold on;
 plot(x,-w_wing);
 hold on
 plot(x(floor(N*7.23/bf):floor(N*8.23/bf)),-w_engine(floor(N*7.23/bf):floor(N*8.23/bf)));
-le
+legend("Total load for N = 3.75","Total load for N = -1.5","Fuel tank","Landing gear","Lift","Own weight","Engine");
 xlabel('Distance along flexural axis/m')
 ylabel('Load Distribution/N/m')
 hold off;
@@ -96,15 +96,17 @@ SF = zeros(1,N);
 SFn = zeros(1,N);% initialise
 BM = zeros(1,N); 
 BMn = zeros(1,N);
-T = SF;Tn = T;
+T = zeros(1,N);
+Tn = zeros(1,N);
+
 %Shear force
 for i = 1:N
-    SF(N-i+1) = dx*sum(ly(N-i+1:N)); % sum from tip to root
-    SFn(N-i+1) = dx*sum(lyN(N-i+1:N)); % sum from tip to root
+    SF(N-i+1) = dx*sum(totalLoad(N-i+1:N)); % sum from tip to root
+    SFn(N-i+1) = dx*sum(totalLoad2(N-i+1:N)); % sum from tip to root
 end
 %Bending moment
-dBM = ly*dx;    % differential bending moment
-dBMn = lyN*dx; 
+dBM = totalLoad*dx;    % differential bending moment
+dBMn = totalLoad2*dx; 
 for i = 1:N
     BM(N-i+1) = sum(dBM(N-i+1:N).*(x(N-i+1:N)-x(N-i+1)));  % sum from tip to root
     BMn(N-i+1) = sum(dBMn(N-i+1:N).*(x(N-i+1:N)-x(N-i+1)));
