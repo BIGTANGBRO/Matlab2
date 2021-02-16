@@ -121,6 +121,7 @@ grid on;
 legend("n=3.75","n=-1.5");
 ylabel("Bending Moment/Nm");
 xlabel("WingSpan/m");
+grid on
 hold off;
 
 
