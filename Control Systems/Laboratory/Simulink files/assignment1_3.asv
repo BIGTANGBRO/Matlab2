@@ -17,25 +17,25 @@ K
 
 % [Q3a/b]
 % LQR-PID Controller design (slight improvement)
-Q_si = diag([100 50 10 0 0 2 10 0.1]);
+Q_si = diag([100 1 300 0 0 2 10 0.1]);
 R_si = diag([0.05 0.05]);
 % Calculate the LQR controller gain
 K_si=lqr(Ai,Bi,Q_si,R_si);
 
 % LQR-PID Controller design (best elevation)
-Q_be = diag([400 50 10 0 0 2 5 0.1]);
+Q_be = diag([400 1 300 0 0 2 10 0.1]);
 R_be = diag([0.05 0.05]);
 % Calculate the LQR controller gain
 K_be = lqr(Ai,Bi,Q_be,R_be);
     
 % LQR-PID Controller design (best travel)
-Q_bt = diag([100 50 600 0 0 2 10 0.5]);
+Q_bt = diag([100 1 10 0 0 2 10 0.1]);
 R_bt = diag([0.05 0.05]);
 % Calculate the LQR controller gain
 K_bt = lqr(Ai,Bi,Q_bt,R_bt);
     
 % LQR-PID Controller design (best overall)
-Q_bo = diag([400 50 600 0 0 2 5 0.5]);
+Q_bo = diag([100 1 10 0 0 2 10 0.1]);
 R_bo = diag([0.05 0.05]);
 % Calculate the LQR controller gain
 K_bo = lqr(Ai,Bi,Q_bo,R_bo);
