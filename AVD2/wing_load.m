@@ -107,6 +107,7 @@ for i = 1:N
     shearForce(i) = sum(shearForce(i:N));
     shearForceN(i) = sum(shearForceN(i:N));
 end
+
 figure(2)
 plot(x,shearForce,'b')
 hold on
@@ -142,7 +143,7 @@ grid on
 T = zeros(1,N);
 Tn = zeros(1,N);
 cm0 = ones(1,N)*-0.07;
-dM0 = 0.5*rho*(cos(theta)*V_max)^2*chordS.^2.*cm0;%moment with respect to flexural axis. this could be better as this is more conservative and this is calculated with respect to the flexural axis.
+dM0 = -0.5*rho*(cos(theta)*V_max)^2*chordS.^2.*cm0;%moment with respect to flexural axis. this could be better as this is more conservative and this is calculated with respect to the flexural axis.
 %assume flexural axis at (.15+.60)/2=37.5% chord -- centre of wing box
 xCenter = 0.375;
 %moment arm of lift
@@ -151,7 +152,7 @@ deltaLa = liftArm.*l_wing*dx;
 deltaLaN = liftArm.*l_wingn*dx;
 
 %moment arm of inertia loads
-weightArm = (xCenter-0.5).*chordS;
+weightArm = (-xCenter+0.5).*chordS;
 deltaNWb = n*w_wing.*weightArm*dx;
 %sectional torque
 dT =deltaLa+deltaNWb+dM0;
