@@ -170,3 +170,5 @@ legend("N=3.75","N=-1.5");
 xlabel('Wing semispan/m')
 ylabel('Torque/Nm')
 grid on
+
+save('loads.mat')
