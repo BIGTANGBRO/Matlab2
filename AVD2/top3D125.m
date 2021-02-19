@@ -2,7 +2,7 @@ function top3D125(nelx,nely,nelz,volfrac,penal,rmin,ft,ftBC,eta,beta,move,maxit)
 % ---------------------------- PRE. 1) MATERIAL AND CONTINUATION PARAMETERS
 E0 = 1;                                                                    % Young modulus of solid
 Emin = 1e-9;                                                               % Young modulus of "void"
-nu = 0.3;                                                                  % Poisson ratio
+nu = 0.35;                                                                  % Poisson ratio
 penalCnt = { 1, 1, 25, 0.25 };                                             % continuation scheme on penal
 betaCnt  = { 1, 1, 25,    2 };                                             % continuation scheme on beta
 if ftBC == 'N', bcF = 'symmetric'; else, bcF = 0; end                      % filter BC selector
