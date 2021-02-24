@@ -129,7 +129,8 @@ for i = 1:N
     bendMoment(i) = sum(dbendMoment(i:N));
     bendMomentN(i) = sum(dbendMomentN(i:N));
 end
-compressionLoad = bendMoment./(t);
+
+NforWing= bendMoment./(t.*(c.*0.45));
 
 figure(3)
 plot(x,bendMoment,'b')
