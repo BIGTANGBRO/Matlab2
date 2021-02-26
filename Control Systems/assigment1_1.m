@@ -45,12 +45,17 @@ f6 = -cos(rho) ^ 3 * Lh * (mf - mb) * La / cos(epsilon) / ((mf + mb) * La ^ 2 + 
 % Fix the code below and add any code if necessary
 %A_sym(epsilon,rho,lambda,epsilon_dot,rho_dot,lambda_dot,u1,u2)=1;
 %B_sym(epsilon,rho,lambda,epsilon_dot,rho_dot,lambda_dot,u1,u2)=1;
+%Jacobian linearization for matrix A;
 A = [diff([f1;f2;f3;f4;f5;f6],epsilon),diff([f1;f2;f3;f4;f5;f6],rho),diff([f1;f2;f3;f4;f5;f6],lambda),diff([f1;f2;f3;f4;f5;f6],epsilon_dot),diff([f1;f2;f3;f4;f5;f6],rho_dot),diff([f1;f2;f3;f4;f5;f6],lambda_dot)];
+%Jacobian linearization for matrix, differentiate with u1 and u2;
 B = [diff([f1;f2;f3;f4;f5;f6],u1),diff([f1;f2;f3;f4;f5;f6],u2)];
+%substitutu the value into matrix A and B
 A = subs(A,[epsilon,rho,lambda,epsilon_dot,rho_dot,lambda_dot,u1,u2],[x1_0,x2_0,x3_0,x4_0,x5_0,x6_0,u1_0,u2_0]);
 B = subs(B,[epsilon,rho,lambda,epsilon_dot,rho_dot,lambda_dot,u1,u2],[x1_0,x2_0,x3_0,x4_0,x5_0,x6_0,u1_0,u2_0]);
+%make sure the matrix in double format
 A = double(A);
 B = double(B);
+%get from prelabtask.pdf, y has the same dimension as x_dot, C = 1, D = 0;
 C=eye(6,6);
 D=zeros(6,2);
 

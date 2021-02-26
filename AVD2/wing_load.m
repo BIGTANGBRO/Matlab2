@@ -60,7 +60,6 @@ cfuel = zeros(1,N);
 t2cFuel(91:210) = t2c(91:210);
 cfuel(91:210) = c(91:210);
 w_fuel = t2cFuel.*cfuel.^2.*W_fuel./trapz(y,t2cFuel.*cfuel.^2);
-plot(x,w_fuel,'b');
 
 %landing gear
 W_lg = 1275*9.81 ; % weight of main landin gear
@@ -169,8 +168,8 @@ ylabel('Torque for n = 3.75/Nm')
 grid on
 
 %% calculation of shear flow
-bBox = 1;
-cBox = 3.86;
+bBox = t.*(1/1.2861);
+cBox = 0.45.*c;
 NormalLoad = bendMoment./(bBox.*cBox);
 NormalLoadN = -bendMomentN./(bBox.*cBox);
 
@@ -178,7 +177,6 @@ NormalLoadN = -bendMomentN./(bBox.*cBox);
 qTorque = -T./(2*bBox.*cBox);
 % qTorque2 = -Tn./(2*bBox*cBox);
 
-bBox = t.*(1/1.2861);
 %SF/2Bw
 qS = shearForce(1:300)./(2.*bBox);
 
@@ -197,24 +195,54 @@ plot(x,qTorque,'b');
 % plot(x,qTorque2);
 % legend("N=3.75","N=-1.5");
 xlabel('Wing semispan/m')
-ylabel('Total Shear Flow for n = 3.75/Nm^-1')
+ylabel('Shear Flow from torque/Nm^-1')
 grid on
-
+ 
 figure(7)
 plot(x,qS,'b');
 xlabel('Wing semispan/m')
-ylabel('Total shear flow/Nm^-1')
+ylabel('Shear flow from shear force/Nm^-1')
 grid on
 
 %% spar sizing
-ks = 8.1;
+ks = 8.2;
 q1 = abs(qS+qTorque);
 q2 = abs(qS-qTorque);
 E = 76E9;
-tFrontSpar = 1000*((q1.*bBox)./(2*ks*E)).^(1/3);
-tRearSpar = 1000*((q2.*bBox)./(2*ks*E)).^(1/3);
+tFrontSpar = 1000*((q1.*bBox.^2)./(ks*E)).^(1/3);
+tRearSpar = 1000*((q2.*bBox.^2)./(ks*E)).^(1/3);
+tFrontSpar = ceil(tFrontSpar.*10)/10;
+tRearSpar = ceil(tRearSpar.*10)/10;
 figure(8)
 plot(x,tFrontSpar);
 hold on;
 plot(x,tRearSpar);
+xlabel("Wing span/m");
+ylabel("Thickness/mm");
+legend("Front spar","Rear spar");
+shearStress1 = q1./tFrontSpar;
+shearStress2 = q2./tRearSpar;
+disp(max(shearStress1));
+disp(max(shearStress2));
 
+%% web stiffeners sizing
+gradient = (bBox(300)-bBox(1))./x(300);
+spacing(1) = bBox(1);
+for i = 2:100
+    spacing(i) = spacing(i-1)+spacing(i-1).*gradient;
+    if (abs(sum(spacing) - x(300)) <= 0.01)
+        break;
+    end
+end
+spacing = ceil(100.*spacing)./100;
+webDistribution(1)=0;
+for i = 1:48
+webDistribution(i+1) = webDistribution(i)+spacing(i); 
+end
+figure(9)
+for i = 1:48
+    plot(webDistribution(i:i+1),[spacing(i),spacing(i)]);
+    hold on
+end
+ylabel('Web stiffeners spacing/m');
+xlabel("Position in half span/m");
