@@ -249,5 +249,9 @@ xlabel("Position in half span/m");
 
 %% weight calculation for spar and web stiffeners
 %volume of the web
-volumeSpar = tFrontSpar.*bBox.*x + tRearSpar.*bBox.*x;
-volumeWebStiffeners = spacing
+volumeSpar = sum(tFrontSpar.*bBox.*dx) + sum(tRearSpar.*bBox.*dx);
+flangeBreath = bBox.*0.05/1;
+flangthickness = bBox.*0.006/1;
+volumeSpar = volumeSpar + 2.*sum(flangeBreath.*flangthickness);
+
+% volumeWebStiffeners = sum(space.*thickness.*height)

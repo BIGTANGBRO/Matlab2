@@ -13,7 +13,7 @@ g0 = 9.81;
 %% Open-loop response
 % Check the eigenvalues. Note the bad damping of the Dutch roll and
 % spiral modes
-eigA = eig(A);
+eigA = eig(A)
 
 % Aileron control only. 
 Ba = B(:,1);
@@ -83,7 +83,8 @@ Bc = Ba*K;
 % Remember that u = \delta_a = K (xref - x)
 % Thus, we can augment the output of the system with the aileron input also as an output. Formulate the augmented system here.
 sc1 = ss(Ac,Bc,Cc1,Dc1);
-
+% 
+% sc1 = ss(Ac,Bc,C,zeros(4));
 
 % Recall from the flight mechanics course, for constant sideslip angle in a level flight turn, the following relationship can be obtained using kinematics.
 %       \phi(roll angle) * g0(gravitational acceleration)     =(approximately)       V (true airspeed)*r (yaw rate)
