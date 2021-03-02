@@ -227,11 +227,6 @@ disp(max(shearStress2));
 
 %% web stiffeners sizing
 load("L.mat");
-for i = 2:length(L)+1
-    RibPos(i-1) = sum(L(1:i-1));
-end
-%start from 13m
-
 gradient = (bBox(300)-bBox(1))./x(300);
 spacing(1) = bBox(1);
 for i = 2:100
@@ -249,18 +244,6 @@ webDistribution(i+1) = webDistribution(i)+spacing(i);
 end
 figure(9)
 for i = 1:48
-    plot(webDistribution(i:i+1),[spacing(i),spacing(i)]);
-    hold on
-end
-hold on
-plot(RibPos,0.4*linspace(1,1,length(RibPos)),"*");
-ylabel('Web stiffeners spacing/m');
-xlabel("Position in half span/m");
-
-spacing = spacing(16:length(spacing));
-webDistribution = webDistribution(16:length(webDistribution));
-figure(10)
-for i = 1:length(spacing)
     plot(webDistribution(i:i+1),[spacing(i),spacing(i)]);
     hold on
 end
