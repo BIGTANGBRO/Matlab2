@@ -51,48 +51,15 @@ t2c = ones(1,300)*0.15;% thickness to chord ratio
 t = t2c.*c;
 % assume wing weight is proportional to c^2*t2c
 w_wing = t2c.*c.^2*W_wing/trapz(y,t2c.*c.^2); % assuming quadratic
-
-%fuel tank calcualtion
-W_fuel = 27800*9.81;
-yFuel = linspace(8.6949,20.2882,120);
-t2cFuel = zeros(1,N);
-cfuel = zeros(1,N);
-t2cFuel(91:210) = t2c(91:210);
-cfuel(91:210) = c(91:210);
-w_fuel = t2cFuel.*cfuel.^2.*W_fuel./trapz(y,t2cFuel.*cfuel.^2);
-
-%landing gear
-W_lg = 1275*9.81 ; % weight of main landin gear
-y_lg = zeros(1,N);
-y_lg(floor(N*1.95/halfSpan):floor(N*2.2/halfSpan)) = 1;% y position of mail landing gear
-w_lg = W_lg*y_lg/trapz(y,y_lg);
-
-%engine
-W_engine = 6030*9.81;
-y_engine = zeros(1,N);
-y_engine(floor(N*7.23/halfSpan):floor(N*8.23/halfSpan)) = 1;
-w_engine = W_engine*y_engine/trapz(y,y_engine);
-
-%without the fuel
-totalLoad = l_wing-w_wing-w_lg-w_engine;
-totalLoadN = l_wingn-w_wing-w_fuel-w_lg-w_engine;
+totalLoad = l_wing + w_wing;
+totalLoadN = l_wingn + w_wing;
 
 %plot
 figure(1)
 plot(x,totalLoad);
 hold on;
-plot(x,totalLoadN);
-hold on;
-plot(x(91:210),-w_fuel(91:210));
-hold on
-plot(x(floor(N*1.95/halfSpan):floor(N*2.2/halfSpan)),-w_lg(floor(N*1.95/halfSpan):floor(N*2.2/halfSpan)),'b-.');
-hold on;
-plot(x,l_wing);
-hold on;
 plot(x,-w_wing);
 hold on
-plot(x(floor(N*7.23/halfSpan):floor(N*8.23/halfSpan)),-w_engine(floor(N*7.23/halfSpan):floor(N*8.23/halfSpan)),'-.');
-legend("Total load for N = 3.75","Total load for N = -1.5","Fuel tank","Landing gear","Lift","Own weight","Engine");
 xlabel('Wing semispan/m')
 ylabel('Load Distribution/N/m')
 hold off;
@@ -225,30 +192,6 @@ shearStress2 = q2./tRearSpar;
 disp(max(shearStress1));
 disp(max(shearStress2));
 
-%% web stiffeners sizing
-load("L.mat");
-gradient = (bBox(300)-bBox(1))./x(300);
-spacing(1) = bBox(1);
-for i = 2:100
-    spacing(i) = spacing(i-1)+spacing(i-1).*gradient;
-    if (abs(sum(spacing) - x(300)) <= 0.01)
-        break;
-    end
-end
-spacing = ceil(100.*spacing)./100;
-
-
-webDistribution(1)=0;
-for i = 1:48
-webDistribution(i+1) = webDistribution(i)+spacing(i); 
-end
-figure(9)
-for i = 1:48
-    plot(webDistribution(i:i+1),[spacing(i),spacing(i)]);
-    hold on
-end
-ylabel('Web stiffeners spacing/m');
-xlabel("Position in half span/m");
 
 %% weight calculation for spar and web stiffeners
 %volume of the web
@@ -261,4 +204,3 @@ volumeStiffeners = 2.*sum(spacing.*0.005.*0.002);
 % volumeWebStiffeners = sum(space.*thickness.*height)
 volumeSparTotal = volumeSpar+volumeStiffeners
 massSparTotal = volumeSparTotal*2710
-save("N.mat");

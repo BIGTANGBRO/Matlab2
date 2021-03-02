@@ -138,14 +138,14 @@ pressuredistribution3 = [
 ];
 
 figure(1)
-plot(pressuredistribution1(:,1),pressuredistribution1(:,2),'r');
+plot(pressuredistribution1(:,1),-pressuredistribution1(:,2),'r');
 hold on
-plot(pressuredistribution2(:,1),pressuredistribution2(:,2),'b');
+plot(pressuredistribution2(:,1),-pressuredistribution2(:,2),'b');
 hold on
-plot(pressuredistribution3(:,1),pressuredistribution3(:,2),'g');
+plot(pressuredistribution3(:,1),-pressuredistribution3(:,2),'g');
 title("0 degree");
 xlabel("Chordwise")
-ylabel("Cp");
+ylabel("-Cp");
 legend("Red","Yellow","Green")
 
 %% degree8
@@ -283,14 +283,14 @@ pressuredistribution6 = [
 
 
 figure(2)
-plot(pressuredistribution4(:,1),pressuredistribution4(:,2),'r');
+plot(pressuredistribution4(:,1),-pressuredistribution4(:,2),'r');
 hold on
-plot(pressuredistribution5(:,1),pressuredistribution5(:,2),'b');
+plot(pressuredistribution5(:,1),-pressuredistribution5(:,2),'b');
 hold on
-plot(pressuredistribution6(:,1),pressuredistribution6(:,2),'g');
+plot(pressuredistribution6(:,1),-pressuredistribution6(:,2),'g');
 title("8 degree");
 xlabel("Chordwise")
-ylabel("Cp");
+ylabel("-Cp");
 legend("Red","Yellow","Green")
 
 %% degree 12
@@ -424,14 +424,14 @@ pressuredistribution9 = [   2.43799156E-03  -1.72299528    ;
 
 
 figure(3)
-plot(pressuredistribution7(:,1),pressuredistribution7(:,2),'r');
+plot(pressuredistribution7(:,1),-pressuredistribution7(:,2),'r');
 hold on
-plot(pressuredistribution8(:,1),pressuredistribution8(:,2),'b');
+plot(pressuredistribution8(:,1),-pressuredistribution8(:,2),'b');
 hold on
-plot(pressuredistribution9(:,1),pressuredistribution9(:,2),'g');
+plot(pressuredistribution9(:,1),-pressuredistribution9(:,2),'g');
 title("12 degree");
 xlabel("Chordwise")
-ylabel("Cp");
+ylabel("-Cp");
 legend("Red","Yellow","Green")
 %% cl calculation
 for i = 1:20
