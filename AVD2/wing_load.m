@@ -235,6 +235,8 @@ for i = 2:100
     end
 end
 spacing = ceil(100.*spacing)./100;
+
+
 webDistribution(1)=0;
 for i = 1:48
 webDistribution(i+1) = webDistribution(i)+spacing(i); 
@@ -252,9 +254,10 @@ xlabel("Position in half span/m");
 volumeSpar = sum(0.001.*tFrontSpar.*bBox.*dx) + sum(0.001.*tRearSpar.*bBox.*dx);
 flangeBreath = bBox.*0.05/1;
 flangthickness = bBox.*0.006/1;
-volumeSpar = volumeSpar + 2.*sum(flangeBreath.*flangthickness.*dx);
+volumeSpar = volumeSpar + 4.*sum(flangeBreath.*flangthickness.*dx);
 %assume 5mm width and 2mm thick for web stiffeners. 
-volumeStiffeners = sum(spacing.*0.005.*0.002);
+volumeStiffeners = 2.*sum(spacing.*0.005.*0.002);
 % volumeWebStiffeners = sum(space.*thickness.*height)
 volumeSparTotal = volumeSpar+volumeStiffeners
 massSparTotal = volumeSparTotal*2710
+save("N.mat");
