@@ -151,7 +151,7 @@ deltaLa = liftArm.*l_wing*dx;
 weightArm = (-xCenter+0.5).*chordS;
 deltaNWb = n*w_wing.*weightArm*dx;
 %sectional torque
-dT =deltaLa+deltaNWb+dM0;
+dT =-deltaLa-deltaNWb+dM0;
 % dTn = deltaLaN+deltaNWb+dM0;
 %total torque
 for i = 1:N

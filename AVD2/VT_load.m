@@ -113,3 +113,5 @@ plot(x,qS,'b');
 xlabel('Wing semispan/m')
 ylabel('Shear flow from shear force/Nm^-1')
 grid on
+
+
