@@ -134,7 +134,7 @@ qS = shearForce(1:300)./(2.*bBox);
 
 figure(5)
 plot(x,NormalLoad,'b');
-xlabel('Wing semispan/m')
+xlabel('Horizontal tailplane semispan/m')
 ylabel('Compression per unit length/Nm^-1')
 grid on
 
@@ -143,14 +143,38 @@ plot(x,qTorque,'b');
 % hold on
 % plot(x,qTorque2);
 % legend("N=3.75","N=-1.5");
-xlabel('Wing semispan/m')
+xlabel('Horizontal tailplane semispan/m')
 ylabel('Shear Flow from torque/Nm^-1')
 grid on
  
 figure(7)
 plot(x,qS,'b');
-xlabel('Wing semispan/m')
+xlabel('Horizontal tailplane semispan/m')
 ylabel('Shear flow from shear force/Nm^-1')
 grid on
 
+%%
+ks = 8.2;
+q1 = abs(qS+qTorque);
+q2 = abs(qS-qTorque);
+E = 76E9;
+tFrontSpar = 1000*((q1.*bBox.^2)./(ks*E)).^(1/3);
+tRearSpar = 1000*((q2.*bBox.^2)./(ks*E)).^(1/3);
+tFrontSpar = ceil(tFrontSpar.*10)/10;
+tRearSpar = ceil(tRearSpar.*10)/10;
+figure(8)
+plot(x,tFrontSpar);
+hold on;
+plot(x,tRearSpar);
+xlabel("Horizontal stabilizer semispan/m");
+ylabel("Thickness/mm");
+legend("Front spar","Rear spar");
+shearStress1 = q1./tFrontSpar;
+shearStress2 = q2./tRearSpar;
+disp(max(shearStress1));
+disp(max(shearStress2));
 
+volumeSpar1 = sum(0.001.*tFrontSpar.*bBox.*dx);
+volumeSpar2 = sum(0.001.*tRearSpar.*bBox.*dx);
+massSparTotal = volumeSpar1*2710
+massSparTota2 = volumeSpar2*2710
