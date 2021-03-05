@@ -143,7 +143,7 @@ dM0 = 0.5*rho*(cos(theta)*V_max)^2*chordS.^2.*cm0;%moment with respect to flexur
 %assume flexural axis at (.15+.60)/2=37.5% chord -- centre of wing box
 xCenter = 0.375;
 %moment arm of lift
-liftArm = (-xCenter+0.25)*chordS;
+liftArm = (xCenter-0.25)*chordS;
 deltaLa = liftArm.*l_wing*dx;
 % deltaLaN = liftArm.*l_wingn*dx;
 
@@ -151,7 +151,7 @@ deltaLa = liftArm.*l_wing*dx;
 weightArm = (-xCenter+0.5).*chordS;
 deltaNWb = n*w_wing.*weightArm*dx;
 %sectional torque
-dT =-deltaLa-deltaNWb+dM0;
+dT =deltaLa+deltaNWb+dM0;
 % dTn = deltaLaN+deltaNWb+dM0;
 %total torque
 for i = 1:N
@@ -219,6 +219,7 @@ hold on;
 plot(x,tRearSpar);
 xlabel("Wing span/m");
 ylabel("Thickness/mm");
+grid on
 legend("Front spar","Rear spar");
 shearStress1 = q1./tFrontSpar;
 shearStress2 = q2./tRearSpar;
