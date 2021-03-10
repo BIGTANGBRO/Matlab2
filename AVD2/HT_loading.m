@@ -91,7 +91,7 @@ xlabel('Wing semispan/m')
 ylabel('Bending moment/Nm')
 grid on
 %% Torque
-cm0 = ones(1,N)*0;
+cm0 = ones(1,N)*0.2;
 dM0 = 0.5*rho*(cos(theta)*V_max)^2*chordS.^2.*cm0;%moment with respect to flexural axis. this could be better as this is more conservative and this is calculated with respect to the flexural axis.
 %assume flexural axis at (.15+.60)/2=37.5% chord -- centre of wing box
 xCenter = 0.375;
