@@ -48,7 +48,6 @@ Tsigma90 = [c^2,s^2;s^2,c^2];
 Teta90 = [c^2,s^2;s^2,c^2];
 sigmaX90 = Fx90./cross_area;
 plot(eta_x90,sigmaX90);
-hold on
 
 % for 30 degree
 c = cos(30);
