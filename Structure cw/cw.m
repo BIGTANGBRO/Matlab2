@@ -20,12 +20,13 @@ height = 1e-3;
 cross_area = width*height;
 
 % [0_8]
-epx_x0 = eps_dot_x0.*t;
+eps_x0 = eps_dot_x0.*t;
 eps_y0 = eta_dot_y0.*t;
 Fx0 = F_dot_x0.*t;
 
 %[90_8]
 eps_x90 = eps_dot_x90.*t;
+eps_y90 = -eps_x0;
 Fx90 = F_dot_x90.*t;
 
 %[30_8]
@@ -53,41 +54,93 @@ Tsigma30 = [c^2,s^2,2*c*s;s^2,c^2,-2*c*s;-c*s,c*s,(c^2-s^2)];
 Teta30 = [c^2,s^2,c*s;s^2,c^2,-c*s;-2*c*s,2*c*s,(c^2-s^2)];
 sigmaXX30 = Fx30./cross_area;
 
-figure(1)
-plot(epx_x0,sigmaXX0);
-hold on
-plot(eps_x90,sigmaXX90);
-hold on
-plot(eps_x30,sigmaXX30);
 
-figure(2);
-plot(epx_x0,-eps_y0);
 
 %% solve the matrix
 syms G12 gammaXY30 epsYY30;
-v12 = -eps_y0(200)/epx_x0(200);
+v12 = -eps_y0(200)/eps_x0(200);
 
 epsilonMatrix30 = [eps_x30(200),epsYY30,gammaXY30];
 sigmaMatrix30 = [sigmaXX30(200),0,0];
-E1 = sigmaXX0(200)/epx_x0(200);
+E1 = sigmaXX0(200)/eps_x0(200);
 E2 = sigmaXX90(200)/eps_x90(200);
 v21 = v12*E2/E1;
 
 Q = [E1/(1-v12*v21),v21*E1/(1-v12*v21),0;
      v12*E2/(1-v12*v21),E2/(1-v12*v21),0;
      0, 0, G12];
- Qbar = Tsigma30^(-1)*Q*Teta30;
+Qbar30 = Tsigma30^(-1)*Q*Teta30;
+
+eqns = [Qbar30(1,1)*epsilonMatrix30(1)+Qbar30(1,2)*epsilonMatrix30(2)+Qbar30(1,3)*epsilonMatrix30(3)==sigmaMatrix30(1),
+        Qbar30(2,1)*epsilonMatrix30(1)+Qbar30(2,2)*epsilonMatrix30(2)+Qbar30(2,3)*epsilonMatrix30(3)==sigmaMatrix30(2),
+        Qbar30(3,1)*epsilonMatrix30(1)+Qbar30(3,2)*epsilonMatrix30(2)+Qbar30(3,3)*epsilonMatrix30(3)==sigmaMatrix30(3)];
+vars = [G12,gammaXY30,epsYY30];
+nums = solve(eqns,vars);
  
- eqns = [Qbar(1,1)*epsilonMatrix30(1)+Qbar(1,2)*epsilonMatrix30(2)+Qbar(1,3)*epsilonMatrix30(3)==sigmaMatrix30(1),
-         Qbar(2,1)*epsilonMatrix30(1)+Qbar(2,2)*epsilonMatrix30(2)+Qbar(2,3)*epsilonMatrix30(3)==sigmaMatrix30(2),
-         Qbar(3,1)*epsilonMatrix30(1)+Qbar(3,2)*epsilonMatrix30(2)+Qbar(3,3)*epsilonMatrix30(3)==sigmaMatrix30(3)];
- vars = [G12,gammaXY30,epsYY30];
- nums = solve(eqns,vars);
- fprintf("The value of G12 is %3.5f \n",nums.G12);
- fprintf("The value of gammaXY30 is %3.5f \n",nums.gammaXY30);
- fprintf("The value of epsYY30 is %3.5f \n",nums.epsYY30);
- 
- 
- 
- 
- 
+fprintf("The value of G12 is %3.5f \n",nums.G12);
+fprintf("The value of gammaXY30 is %3.5f \n",nums.gammaXY30);
+fprintf("The value of epsYY30 is %3.5f \n",nums.epsYY30);
+vxy30 = -nums.epsYY30/eps_x30(200);
+fprintf("The value of Vxy30 is %3.5f \n",vxy30);
+
+Gxy = nums.G12;
+gammaXY30 = nums.gammaXY30;
+epsYY30 = nums.epsYY30;
+Qbar0 = Tsigma0^(-1)*Q*Teta0;
+Qbar90 = Tsigma90^(-1)*Q*Teta90;
+
+c = cos(45/180*pi);
+s = sin(45/180*pi);
+Tsigma45 = [c^2,s^2,2*c*s;s^2,c^2,-2*c*s;-c*s,c*s,(c^2-s^2)];
+Teta45 = [c^2,s^2,c*s;s^2,c^2,-c*s;-2*c*s,2*c*s,(c^2-s^2)];
+c = cos(-45/180*pi);
+s = sin(-45/180*pi);
+TsigmaMinus45 = [c^2,s^2,2*c*s;s^2,c^2,-2*c*s;-c*s,c*s,(c^2-s^2)];
+TetaMinus45 = [c^2,s^2,c*s;s^2,c^2,-c*s;-2*c*s,2*c*s,(c^2-s^2)];
+Qbar45 = Tsigma45^(-1)*Q*Teta45;
+QbarMinus45 = TsigmaMinus45^(-1)*Q*TetaMinus45;
+
+A11 = (Qbar0(1,1)*0.125e-3+Qbar45(1,1)*0.125e-3+Qbar90(1,1)*0.125e-3+QbarMinus45(1,1)*0.125e-3)*2;
+A11 = subs(A11,G12,Gxy);
+A12 = (Qbar0(1,2)*0.125e-3+Qbar45(1,2)*0.125e-3+Qbar90(1,2)*0.125e-3+QbarMinus45(1,2)*0.125e-3)*2;
+A12 = subs(A12,G12,Gxy);
+A22 = (Qbar0(2,2)*0.125e-3+Qbar45(2,2)*0.125e-3+Qbar90(2,2)*0.125e-3+QbarMinus45(2,2)*0.125e-3)*2;
+A22= subs(A22,G12,Gxy);
+fprintf("The value of A11 is %3.5f \n",A11);
+fprintf("The value of A12 is %3.5f \n",A12);
+fprintf("The value of A22 is %3.5f \n",A22);
+
+Eqi = 1/(1e-3)*(A11-A12^2/A22);
+vqi = A12/A22;
+fprintf("The value of Eqi is %3.5f \n",Eqi);
+fprintf("The value of vqi is %3.5f \n",vqi);
+
+%% plot section
+figure(1)
+plot(eps_x0,sigmaXX0);
+hold on
+plot(eps_x90,sigmaXX90);
+hold on
+plot(eps_x30,sigmaXX30);
+hold on
+plot(eps_x0,double(Eqi)*eps_x0);
+xlim([0 1e-03]), ylim([0 1e-03*E1])
+xlabel('Strain');
+ylabel('Stress/Pa');
+legend('[0_8]','[90_8]','[30_8]','Quasi-isotropic');
+grid on
+
+figure(2);
+epsYY30 = linspace(0,epsYY30,200);
+xlim([0 1e-03])
+plot(eps_x0,-eps_y0);
+hold on
+plot(eps_x90,-eps_y90);
+hold on
+plot(eps_x30,-epsYY30);
+hold on
+plot(eps_x0,eps_x0*vqi);
+xlabel('Strain X');
+ylabel('- Strain Y');
+legend('[0_8]','[90_8]','[30_8]','Quasi-isotropic');
+grid on
