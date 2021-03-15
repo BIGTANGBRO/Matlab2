@@ -26,7 +26,7 @@ Fx0 = F_dot_x0.*t;
 
 %[90_8]
 eps_x90 = eps_dot_x90.*t;
-eps_y90 = -eps_x0;
+eps_y90 = -eps_x0/10;
 Fx90 = F_dot_x90.*t;
 
 %[30_8]
@@ -64,6 +64,8 @@ epsilonMatrix30 = [eps_x30(200),epsYY30,gammaXY30];
 sigmaMatrix30 = [sigmaXX30(200),0,0];
 E1 = sigmaXX0(200)/eps_x0(200);
 E2 = sigmaXX90(200)/eps_x90(200);
+E3 = sigmaXX30(200)/eps_x30(200);
+
 v21 = v12*E2/E1;
 
 Q = [E1/(1-v12*v21),v21*E1/(1-v12*v21),0;
@@ -114,7 +116,7 @@ Eqi = 1/(1e-3)*(A11-A12^2/A22);
 vqi = A12/A22;
 fprintf("The value of Eqi is %3.5f \n",Eqi);
 fprintf("The value of vqi is %3.5f \n",vqi);
-
+E4 = Eqi;
 %% plot section
 figure(1)
 plot(eps_x0,sigmaXX0);
@@ -127,11 +129,16 @@ plot(eps_x0,double(Eqi)*eps_x0);
 xlim([0 1e-03]), ylim([0 1e-03*E1])
 xlabel('Strain');
 ylabel('Stress/Pa');
-legend('[0_8]','[90_8]','[30_8]','Quasi-isotropic');
+legend('[0_8]-193GPa','[90_8]-19.3GPa','[30_8]-43.7GPa','Quasi-isotropic-79.6GPa');
 grid on
 
-figure(2);
+
+figure(2)
 epsYY30 = linspace(0,epsYY30,200);
+v1 = -eps_y0(200)/eps_x0(200);
+v2 = -eps_y90(200)/eps_x90(200);
+v3 = -epsYY30(200)/eps_x30(200);
+v4 = vqi;
 xlim([0 1e-03])
 plot(eps_x0,-eps_y0);
 hold on
@@ -142,5 +149,7 @@ hold on
 plot(eps_x0,eps_x0*vqi);
 xlabel('Strain X');
 ylabel('- Strain Y');
-legend('[0_8]','[90_8]','[30_8]','Quasi-isotropic');
+legend('[0_8]-0.2','[90_8]-0.1','[30_8]-0.308','Quasi-isotropic-0.279');
 grid on
+fprintf("The value of v3 is %3.5f \n",v3);
+fprintf("The value of v4 is %3.5f \n",v4);
