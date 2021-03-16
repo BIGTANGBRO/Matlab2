@@ -26,7 +26,6 @@ Fx0 = F_dot_x0.*t;
 
 %[90_8]
 eps_x90 = eps_dot_x90.*t;
-eps_y90 = -eps_x0/10;
 Fx90 = F_dot_x90.*t;
 
 %[30_8]
@@ -136,7 +135,8 @@ grid on
 figure(2)
 epsYY30 = linspace(0,epsYY30,200);
 v1 = -eps_y0(200)/eps_x0(200);
-v2 = -eps_y90(200)/eps_x90(200);
+v2 = v21;
+eps_y90 = -v21.*eps_x90;
 v3 = -epsYY30(200)/eps_x30(200);
 v4 = vqi;
 xlim([0 1e-03])
@@ -149,7 +149,7 @@ hold on
 plot(eps_x0,eps_x0*vqi);
 xlabel('Strain X');
 ylabel('- Strain Y');
-legend('[0_8]-0.2','[90_8]-0.1','[30_8]-0.308','Quasi-isotropic-0.279');
+legend('[0_8]-0.2','[90_8]-0.02','[30_8]-0.308','Quasi-isotropic-0.279');
 grid on
 fprintf("The value of v3 is %3.5f \n",v3);
 fprintf("The value of v4 is %3.5f \n",v4);
