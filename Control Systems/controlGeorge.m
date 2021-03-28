@@ -1,66 +1,3 @@
-% Governing differential equation
-% x_dot=k_v*V/A;
-
-% Parameters
-k_v=0.5;
-A=0.02;
-
-
-% [Task 1]
-% Open-loop transfer function
-s=tf('s');
-tf_actuator=(k_v/A)*(1/s);
-
-
-% [Task 2]
-% Closed-loop transfer function when K=1.25
-K=1.25;
-tf_servo=K/(1/tf_actuator + K);
-
-
-
-% [Task 3]
-% Closed-loop system pole when K=1.25
-lambda=-31.25;
-
-
-
-% [Task 4]
-% Root Locus
-rlocus(tf_servo,0:0.1:2)
-
-% From the root locus, do you expect the system response to be oscillatory
-% for certain values of K?
-% Yes, it can become oscillatory - 1
-% No, it can never become oscillatory - 0
-Sys_resp_periodic = 0;
-
-
-
-% [Task 5]
-% Expression for time domain response
-syms t
-y(t)= 1 - exp(-(125*t)/4);
-
-
-
-% [Task 6]
-% Numerical value for time domain response from expression
-t=0:0.01:0.5;
-y_num=double(y(t));
-
-% Numerical value for time domain response using Matlab step command, use t as the time vector
-y_num_s=step(tf_servo,t);
-
-figure 
-plot(t, y_num, 'Linewidth', 2)
-hold on
-plot( t, y_num_s, 'Linewidth', 2, 'LineStyle', '-.')
-ylabel('Servo valve displacement x [m]', 'fontsize', 14)
-xlabel('Time [s]', 'fontsize', 14)
-legend('From expression','From Matlab step function')
-set(gca,'FontSize',13)
-grid on
 % Parameters
 K_p=5;
 K_d=2;
@@ -71,7 +8,7 @@ J=1;
 % Open-loop transfer function
 s=tf('s');
 tf_satellite_ol=...;
-
+    
 % DEMO
 tf_satellite_cl=tf_satellite_ol/(1+tf_satellite_ol);
 disp(['System poles before minreal command: '])
@@ -131,7 +68,9 @@ legend(['K_p = ' num2str(K_p)], ['K_p = ' num2str(K_p_2)])
 set(gca,'FontSize',13)
 grid on
 
-%State-space model
+
+
+%% State-space model
 A=[-0.0243261995104248,-8.58890563787065,-32.1699999992382,-2.50121964477236;-0.000544714905096391,-0.510791146488329,3.34868149905484e-13,0.927063537778952;0,0,0,1.00000000000000;1.26163057090700e-18,-1.16268944316632,0,-0.779147979197433];
 B=[0.00393687238578542;-0.00108619425626488;0;-0.0620467050765111];
 C=eye(4);
@@ -183,7 +122,7 @@ ylabel('CAP [1/(gsec^2)]')
 
 
 
-%State-space model
+%% State-space model
 A=[-0.0243261995104248,-8.58890563787065,-32.1699999992382,-2.50121964477236;-0.000544714905096391,-0.510791146488329,3.34868149905484e-13,0.927063537778952;0,0,0,1.00000000000000;1.26163057090700e-18,-1.16268944316632,0,-0.779147979197433];
 B=[0.00393687238578542;-0.00108619425626488;0;-0.0620467050765111];
 C=eye(4);
@@ -234,6 +173,7 @@ zeta_sp=-re/omega_n_sp
 P_sp=2*pi/im
 
 
+%%
 %State-space model
 A=[-0.0243261995104248,-8.58890563787065,-32.1699999992382,-2.50121964477236;-0.000544714905096391,-0.510791146488329,3.34868149905484e-13,0.927063537778952;0,0,0,1.00000000000000;1.26163057090700e-18,-1.16268944316632,0,-0.779147979197433];
 B=[0.00393687238578542;-0.00108619425626488;0;-0.0620467050765111];
@@ -301,59 +241,11 @@ ylabel('Angle of attack [deg]', 'fontsize', 14)
 legend('open-loop', 'closed-loop')
 subplot(2,1,2)
 plot(t, rad2deg(y_ol(:,2)), 'LineWidth', 2);hold on
-p
+plot(t, rad2deg(y_cl(:,2)), 'LineWidth', 2)
+grid on
+xlabel('Time [s]', 'fontsize', 14)
+ylabel('Pitch rate [deg/s]', 'fontsize', 14)
+legend('open-loop', 'closed-loop')
 
 
-%State-space model
-A=[-0.0243261995104248,-8.58890563787065,-32.1699999992382,-2.50121964477236;-0.000544714905096391,-0.510791146488329,3.34868149905484e-13,0.927063537778952;0,0,0,1.00000000000000;1.26163057090700e-18,-1.16268944316632,0,-0.779147979197433];
-B=[0.00393687238578542;-0.00108619425626488;0;-0.0620467050765111];
-C=eye(4);
-D=zeros(4,1);
-sys_long = ss(A,B,C,D);
-
-%Flight condition
-V=340; %ft/s
-V_meters=V/3.28;
-g=9.81;
-
-% [Q1]
-%% Longitudinal Eigenmotion analysis
-[Vs,DDs]=eig(A);
-
-% FOR YOUR OWN VISUALIZATION ONLY, uncomment when needed
-figure
-pzmap(sys_long, 'r');
-title_string = sprintf('Altitude = 10000 ft Velocity = %.2f ft/s', V);
-title(title_string);
-sgrid;
-
-% [Q2]
-% Select short period eigenvalue, compute natural frequency, damping ratio
-% and the period of oscillations
-lambda=-0.6518 + 1.0247i
-re = real(lambda);
-im = imag(lambda);
-omega_n=sqrt(re^2+im^2)
-zeta=-re/omega_n
-P=2*pi/im
-
-
-% [Q3]
-% DEMO Check CAP criteria
-CAP_org=calcCAP( V_meters, g, omega_n, sys_long );
-
-% DEMO: FOR YOUR OWN VISUALIZATION ONLY
-figure
-xlim([0.1 10])
-ylim([0.1 10])
-fill([0.12 0.12 10 10],[0.1 10 10 0.1],'y');hold on
-fill([0.2 0.2 2 2],[0.16 10 10 0.16],'c');
-fill([0.35 0.35 1.2 1.2],[0.28 3.6 3.6 0.28],'g');
-plot(zeta,CAP_org,'rd','Linewidth', 2)
-legend('Level 3','Level 2','Level 1','Original Design Point')
-set(gca, 'YScale', 'log')
-set(gca, 'XScale', 'log')
-title('Control Anticipation Parameter requirements (Flight Phase Category A)')
-xlabel('Short period damping ratio \zeta_{sp}')
-ylabel('CAP [1/(gsec^2)]')
 
