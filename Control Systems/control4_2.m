@@ -8,7 +8,7 @@ J=1;
 % [Task 1]
 % Open-loop transfer function
 s=tf('s');
-tf_satellite_ol=K_p*(1+K_d/J*s)/(J*s)*(1/s);
+tf_satellite_ol=K_p*(1/(J*s*(1+K_d/(J*s))))*(1/s);
 
 % DEMO
 tf_satellite_cl=tf_satellite_ol/(1+tf_satellite_ol);
@@ -29,7 +29,7 @@ disp(['  '])
 omega_0=sqrt(5);
 
 % Damping ratio
-zeta=sqrt(5);
+zeta=sqrt(5)/5;
 
 
 % [Task 3]
@@ -40,12 +40,13 @@ zeta=sqrt(5);
 Sys_resp_aperiodic=1;
 
 % if yes, with K_d and J fixed, calculate the largest K_p which has a non-oscillatory response
-K_p_2=...;
+K_p_2=1;
 
 
 % [Task 4]
 % form the closed-loop transfer function using K_p_2
-tf_satellite_cl_2=...;
+tf_satellite_ol_2=K_p_2*(1/(J*s*(1+K_d/(J*s))))*(1/s);
+tf_satellite_cl_2=tf_satellite_ol_2/(1+tf_satellite_ol_2);
 
 % System poles
 disp(['System poles with Kp=' num2str(K_p_2)])
@@ -56,10 +57,10 @@ disp(pole(tf_satellite_cl_2))
 t=0:0.01:20;
 
 % with K_p=5, use system 'tf_satellite_cl' directly
-y_num_cl=...;
+y_num_cl=step(tf_satellite_cl,t);
     
 % with the newly calculated K_p_2, use system 'tf_satellite_cl_2' directly
-y_num_cl_2=...;
+y_num_cl_2=step(tf_satellite_cl_2,t);
 
 
 plot(t, y_num_cl, 'Linewidth', 2);hold on
