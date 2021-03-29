@@ -1,6 +1,6 @@
 %control 4_2
 % Parameters
-K_p=5;
+K_p=3;
 K_d=2;
 J=1;
 
@@ -40,7 +40,7 @@ zeta=sqrt(5);
 Sys_resp_aperiodic=1;
 
 % if yes, with K_d and J fixed, calculate the largest K_p which has a non-oscillatory response
-K_p_2=...;
+K_p_2=1;
 
 
 % [Task 4]
