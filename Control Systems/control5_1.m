@@ -26,7 +26,8 @@ sgrid;
 % [Q2]
 % Select short period eigenvalue, compute natural frequency, damping ratio
 % and the period of oscillations
-lambda= -0.6518 - 1.0247i;
+%Select the eigenvlues
+lambda= -0.6518 + 1.0247i;
 re = real(lambda);
 img = imag(lambda);
 omega_n=sqrt(re^2+img^2);

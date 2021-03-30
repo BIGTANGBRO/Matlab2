@@ -41,7 +41,7 @@ grid on
 % [Q3]
 % Compare the natural frequency, damping ratio and period of the short
 % period mode
-[Vs_sp,DDs_sp]=eig(A_SP)
+[Vs_sp,DDs_sp]=eig(A_SP);
 lambda_sp=-0.6450 + 1.0295i;
 re = real(lambda_sp);
 img = imag(lambda_sp);
