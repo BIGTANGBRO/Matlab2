@@ -8,7 +8,7 @@ J=1;
 % [Task 1]
 % Open-loop transfer function
 s=tf('s');
-tf_satellite_ol=K_p*(1+K_d/J*s)/(J*s)*(1/s);
+tf_satellite_ol=K_p*1/(J*s*(1+K_d/(J*s)))*(1/s);
 
 % DEMO
 tf_satellite_cl=tf_satellite_ol/(1+tf_satellite_ol);
@@ -45,7 +45,7 @@ K_p_2=1;
 
 % [Task 4]
 % form the closed-loop transfer function using K_p_2
-tf_satellite_ol_2=K_p_2*(1+K_d/J*s)/(J*s)*(1/s);
+tf_satellite_ol_2=K_p_2*1/(J*s*(1+K_d/(J*s)))*(1/s);
 tf_satellite_cl_2=tf_satellite_ol_2/(1+tf_satellite_ol_2);
 
 % System poles
