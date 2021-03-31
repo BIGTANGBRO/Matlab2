@@ -17,7 +17,7 @@ g=9.81;
 A_SP=[A(2,2),A(2,4);A(4,2),A(4,4)];
 B_SP=[B(2,1);B(4,1)];
 C_SP=eye(2);
-D_SP=zeros(2,1)
+D_SP=zeros(2,1);
 sys_long_sp = ss(A_SP,B_SP,C_SP,D_SP);
 
 
@@ -42,29 +42,9 @@ grid on
 % Compare the natural frequency, damping ratio and period of the short
 % period mode
 [Vs_sp,DDs_sp]=eig(A_SP);
-lambda_sp=0.6450 + 1.0295i;
+lambda_sp=-0.6450 + 1.0295i;
 re = real(lambda_sp);
 img = imag(lambda_sp);
 omega_n_sp=sqrt(img^2+re^2);
 zeta_sp=-re/omega_n_sp;
 P_sp=2*pi/img;
-
-
-% [Q3]
-% DEMO Check CAP criteria
-CAP_org=calcCAP( V_meters, g, omega_n, sys_long );
-
-% DEMO: FOR YOUR OWN VISUALIZATION ONLY
-figure
-xlim([0.1 10])
-ylim([0.1 10])
-fill([0.12 0.12 10 10],[0.1 10 10 0.1],'y');hold on
-fill([0.2 0.2 2 2],[0.16 10 10 0.16],'c');
-fill([0.35 0.35 1.2 1.2],[0.28 3.6 3.6 0.28],'g');
-plot(zeta,CAP_org,'rd','Linewidth', 2)
-legend('Level 3','Level 2','Level 1','Original Design Point')
-set(gca, 'YScale', 'log')
-set(gca, 'XScale', 'log')
-title('Control Anticipation Parameter requirements (Flight Phase Category A)')
-xlabel('Short period damping ratio \zeta_{sp}')
-ylabel('CAP [1/(gsec^2)]')
