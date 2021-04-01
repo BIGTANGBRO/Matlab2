@@ -24,11 +24,10 @@ sys_long_sp = ss(A_SP,B_SP,C_SP,D_SP);
 omega_n_sp_req=0.03*V_meters;
 zeta_sp_req=0.5;
 
-
 % [Q1]
 % Obtain required short period frequency and damping through pole placement 
 Realpart=-zeta_sp_req*omega_n_sp_req;
-Imagpart=omega_n_sp_req*sqrt(1-(zeta_sp_req^2));
+Imagpart=sqrt(omega_n_sp_req^2-Realpart^2);
 p=[complex(Realpart,Imagpart) complex(Realpart,-Imagpart)];
 
 % [Q2]
@@ -41,20 +40,19 @@ sys_long_sp_cl = feedback(sys_long_sp*CalculatedK,eye(2));
 
 % [Q4]
 % check the eigenvalues of the closed-loop system. 
-eig_op=eig(A_SP);
-eig_cl=eig(A_SP-B_SP*CalculatedK);
+eig_op=eig(A_SP)
+eig_cl=eig(A_SP-B_SP*CalculatedK)
 
 figure
 pzmap(sys_long_sp, 'r', sys_long_sp_cl, 'b');
 title('Altitude = 10000 ft Velocity = 300 ft/s, Red = Open-loop Blue = Closed-loop');
 sgrid;
 
-
 % [Q5]
 % Check vertical gust stability
 initialconditions_vertgust=[atan(4.572*3.2/V); 0];
 t=0:0.1:6;
-[y_cl,t_cl,x_cl] = initial(sys_long_sp_cl,initialconditions_vertgust,t);%Closed loop system
+[y_cl,t_cl,x_cl] = initial(sys_long_sp_cl,initialconditions_vertgust,t); %Closed loop system
 [y_ol,t_ol,x_ol] = initial(sys_long_sp,initialconditions_vertgust,t); %Open loop system
 
 figure
@@ -72,6 +70,8 @@ xlabel('Time [s]', 'fontsize', 14)
 ylabel('Pitch rate [deg/s]', 'fontsize', 14)
 legend('open-loop', 'closed-loop')
 
+
+
 %% Obtain required time constant T_theta_2 through a lead-lag prefilter
 
 % CAP & Gibson design requirements reformulated
@@ -88,13 +88,13 @@ tf_q_cl = tf_sp_cl(2,2);
 
 % [Q8]
 % Design the filter by zero cancellation and placement
-[num,den] = tfdata(tf_q_cl);
-num = cell2mat(num);
-den = cell2mat(den);
-numH = [T_theta2_req 1];
-denH=[num(2)/num(3) 1];
-H = tf(numH,denH) 
-
+[num,den]=tfdata(tf_q_cl);
+num=cell2mat(num);
+den=cell2mat(den);
+num_H=[T_theta2_req 1];
+den_H=[num(2)/num(3) 1];
+H=tf(num_H,den_H)
+    
 % [Q9]
 % expression for the overall system
 tf_placed_zero = series(H,tf_q_cl);
@@ -103,13 +103,11 @@ tf_placed_zero = minreal(tf_placed_zero);
 %% Requirement Checks - gain and phase margin
 w = logspace(-1,2,10000);
 [mag, ph] = bode(tf_placed_zero, w);
-
 % [Q10]
-[Gm,Pm,~,~] =  margin(tf_placed_zero);
+[Gm,Pm,~,~] = margin(tf_placed_zero);
 Gm_dB = 20*log10(Gm);
 disp(['Gain margin: ',num2str(Gm_dB), '[dB]'])
 disp(['Phase margin: ',num2str(Pm),' [deg]'])
-
 
 % create figures
 mag = squeeze(mag);
@@ -131,5 +129,8 @@ xlabel('Frequency [rad/s]', 'fontsize', 14)
 ylabel('Phase [deg]', 'fontsize', 14)
 set(gca,'FontSize',13)
 
+
+
 %% Requirement Checks
 CheckCAPGibson( tf_placed_zero, V_meters );
+
