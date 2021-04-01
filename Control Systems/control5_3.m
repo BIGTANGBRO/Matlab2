@@ -12,7 +12,7 @@ g=9.81;
 
 % Copy from previous Task (code, not numerical values!)
 % Create the simplied short period model
-A_SP=[A(2,2),A(2,4),A(4,2),A(4,4)];
+A_SP=[A(2,2),A(2,4);A(4,2),A(4,4)];
 B_SP=[B(2,1);B(4,1)];
 C_SP=eye(2);
 D_SP=zeros(2,1);
@@ -30,7 +30,7 @@ Imagpart=omega_n_sp_req*sqrt(1-(zeta_sp_req^2));
 p=[complex(Realpart,Imagpart) complex(Realpart,-Imagpart)];
 
 % [Q2]
-CalculatedK=place(A_SP,B_SP,p) %Use Matlab place command
+CalculatedK=place(A_SP,B_SP,p); %Use Matlab place command
 
 % [Q3]
 % create a closed-loop system, unity feedback, the four states to their
@@ -39,8 +39,8 @@ sys_long_sp_cl = feedback(sys_long_sp*CalculatedK,eye(2))
 
 % [Q4]
 % check the eigenvalues of the closed-loop system. 
-eig_op=eig(A_SP)
-eig_cl=eig(A_SP-B_SP*CalculatedK)
+eig_op=eig(A_SP);
+eig_cl=eig(A_SP-B_SP*CalculatedK);
 
 figure
 pzmap(sys_long_sp, 'r', sys_long_sp_cl, 'b');
@@ -52,8 +52,8 @@ sgrid;
 % Check vertical gust stability
 initialconditions_vertgust=[atan(4.572*3.2/V); 0];
 t=0:0.1:6;
-[y_cl,t_cl,x_cl] = initial(sys_long_sp_cl,initialconditions_vertgust,t)%Closed loop system
-[y_ol,t_ol,x_ol] = initial(sys_long_sp,initialconditions_vertgust,t) %Open loop system
+[y_cl,t_cl,x_cl] = initial(sys_long_sp_cl,initialconditions_vertgust,t);%Closed loop system
+[y_ol,t_ol,x_ol] = initial(sys_long_sp,initialconditions_vertgust,t); %Open loop system
 
 figure
 subplot(2,1,1)
