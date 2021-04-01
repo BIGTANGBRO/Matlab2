@@ -89,10 +89,10 @@ tf_q_cl = tf_sp_cl(2,2);
 % [Q8]
 % Design the filter by zero cancellation and placement
 [num,den] = tfdata(tf_q_cl);
-A = T_theta2_req/(num{1}(2)/num{1}(2));
-num{1}(2)
+T_theta2 = num{1}(2)/num{1}(3);
+A = T_theta2_req/T_theta2;
 s=tf('s');
-H = A-(A-1)*num{1}(2)/(num{1}(1)*s+num{1}(2));
+H = (A*num{1}(2)*s+num{1}(3))/(num{1}(2)*s+num{1}(3))
 
 % [Q9]
 % expression for the overall system
