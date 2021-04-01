@@ -88,47 +88,46 @@ tf_q_cl = tf_sp_cl(2,2);
 
 % [Q8]
 % Design the filter by zero cancellation and placement
-[num,den] = tfdata(tf_q_cl);
-A = T_theta2_req/(num{1}(2)/num{1}(2));
-num{1}(2)
-s=tf('s');
-H = A-(A-1)*num{1}(2)/(num{1}(1)*s+num{1}(2));
-
-% [Q9]
-% expression for the overall system
-tf_placed_zero = series(H,tf_q_cl);
-tf_placed_zero = minreal(tf_placed_zero);
-
-%% Requirement Checks - gain and phase margin
-w = logspace(-1,2,10000);
-[mag, ph] = bode(tf_placed_zero, w);
-
-% [Q10]
-[Gm,Pm,~,~] =  margin(tf_placed_zero);
-Gm_dB = 20*log10(Gm);
-disp(['Gain margin: ',num2str(Gm_dB), '[dB]'])
-disp(['Phase margin: ',num2str(Pm),' [deg]'])
-
-
-% create figures
-mag = squeeze(mag);
-mag = 20*log10(mag);
-ph = squeeze(ph);
-
-figure
-subplot(2,1,1)
-semilogx(w,mag, 'Linewidth', 2)
-grid on
-xlabel('Frequency [rad/s]', 'fontsize', 14)
-ylabel('Magnitude [dB]', 'fontsize', 14)
-set(gca,'FontSize',13)
-
-subplot(2,1,2)
-semilogx(w,ph, 'Linewidth', 2)
-grid on
-xlabel('Frequency [rad/s]', 'fontsize', 14)
-ylabel('Phase [deg]', 'fontsize', 14)
-set(gca,'FontSize',13)
-
-%% Requirement Checks
-CheckCAPGibson( tf_placed_zero, V_meters );
+[num,den] = tfdata(tf_q_cl)
+Treq = 1/(0.0225*V_meters);
+A = Treq/(num(2)/CalculatedK(2));
+H = A;
+%     
+% % [Q9]
+% % expression for the overall system
+% tf_placed_zero = ...;
+% tf_placed_zero = minreal(tf_placed_zero);
+% 
+% %% Requirement Checks - gain and phase margin
+% w = logspace(-1,2,10000);
+% [mag, ph] = bode(tf_placed_zero, w);
+% 
+% % [Q10]
+% [Gm,Pm,~,~] = ...;
+% Gm_dB = 20*log10(Gm);
+% disp(['Gain margin: ',num2str(Gm_dB), '[dB]'])
+% disp(['Phase margin: ',num2str(Pm),' [deg]'])
+% 
+% 
+% % create figures
+% mag = squeeze(mag);
+% mag = 20*log10(mag);
+% ph = squeeze(ph);
+% 
+% figure
+% subplot(2,1,1)
+% semilogx(w,mag, 'Linewidth', 2)
+% grid on
+% xlabel('Frequency [rad/s]', 'fontsize', 14)
+% ylabel('Magnitude [dB]', 'fontsize', 14)
+% set(gca,'FontSize',13)
+% 
+% subplot(2,1,2)
+% semilogx(w,ph, 'Linewidth', 2)
+% grid on
+% xlabel('Frequency [rad/s]', 'fontsize', 14)
+% ylabel('Phase [deg]', 'fontsize', 14)
+% set(gca,'FontSize',13)
+% 
+% %% Requirement Checks
+% CheckCAPGibson( tf_placed_zero, V_meters );
