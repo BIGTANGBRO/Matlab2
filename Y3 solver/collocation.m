@@ -6,20 +6,20 @@ clear
 %first get the expression for alpha = alphaZero(1-xx|y/s|)
 %substitute with the theta
 %the input parameters
-AR = 12;
+AR = 48/7;
 
 theta1 = pi/5;
 theta2 = 2*pi/5;
 %should be cbar = xxx*C0, but eliminate during the equation
-cbar =2/3;
+cbar =7/8;
 
 %angle of attack
-alpha1=5*(1-1*cos(theta1)^2);
-alpha2=5*(1-1*cos(theta2)^2);
+alpha1=8*(1-1/4*cos(theta1));
+alpha2=8*(1-1/4*cos(theta2));
 
 %miu calculation involves the use of chord distribution
-chord1 = (1-2/3*cos(theta1));
-chord2 = (1-2/3*cos(theta2));
+chord1 = (3/2-1*cos(theta1));
+chord2 = (1-0*cos(theta2));
 
 %lift curve slope
 a0 = 6;
