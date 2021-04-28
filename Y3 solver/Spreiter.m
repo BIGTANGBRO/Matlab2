@@ -1,6 +1,5 @@
 %use of spreiter method
 %transonic flow
-
 clear
 clc
 
