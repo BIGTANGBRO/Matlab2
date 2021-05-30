@@ -1,0 +1,9 @@
+m = 80;
+g = 9.81;
+rho = 1.2;
+A = 1; %as cdA is reported
+cd = 0.0328;
+mi = 0.00082;
+R = 0.22;
+speed = 6.7056;
+motorEff = 0.88;
