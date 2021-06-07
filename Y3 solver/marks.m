@@ -1,5 +1,6 @@
 clear
 clc
+
 fe = 67.5;
 cfd = 66.5;
 
@@ -7,8 +8,8 @@ structure = 82;
 aero = 69;
 control = 82;
 maths =68;
-avd = 62;
-gdp = 71;
+avd = 63;
+gdp = 70;
 
 coeff1 = 0.122;
 coeff2 = 0.0833;
@@ -17,7 +18,7 @@ coeffGDP = 0.25;
 
 total = structure * coeff1 + aero *coeff1+control*coeff2+fe*coeff2+maths*coeff2+cfd*coeff2+avd*coeffAVD + gdp*coeffGDP
 all = (0.111*79.45+0.222*76.02+0.333*total)/0.667
-all2 = (0.111*79.45+0.222*76.02+0.333*total+70*0.333)
+
 
 %% year2 raw
 aero = 69;
