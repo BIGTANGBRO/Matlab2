@@ -6,9 +6,9 @@ cfd = 66.5;
 
 structure = 82;
 aero = 69;
-control = 82;
+control = 83;
 maths =68;
-avd = 63;
+avd = 62;
 gdp = 70;
 
 coeff1 = 0.122;
