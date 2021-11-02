@@ -49,6 +49,8 @@ plot(alpha, CL);
 grid on
 figure(2)
 plot(CD,CL);
+xlabel("CD");
+ylabel("CL");
 grid on
 figure(3)
 plot(alpha, lOverD)
