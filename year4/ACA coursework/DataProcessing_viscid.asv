@@ -73,20 +73,15 @@ figure(1)
 plot(x2,-cp);
 xlabel("x/c");
 ylabel("-Cp");
-title("Viscid flow when Re = 1e5 and M = 0.3")
 grid on
 figure(2)
 plot(x,cf);
 xlabel("x/c");
 ylabel("Cf");
-title("Viscid flow when Re = 1e5 and M = 0.3")
 grid on
 figure(3)
 plot(x,delta);
 hold on
 plot(x,theta);
-xlabel("x/c");
-ylabel("Thickness")
-title("Viscid flow when Re = 1e5 and M = 0.3")
 grid on
 

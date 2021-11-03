@@ -41,20 +41,16 @@ lOverD = CL./CD;
 figure(1)
 plot(alpha, CL);
 title("Viscid flow when Re = 3e5");
-xlabel("AoA");
-ylabel("Cl");
 grid on
 figure(2)
 plot(CD,CL);
 xlabel("CD");
 ylabel("CL");
 title("Viscid flow when Re = 3e5");
+
 grid on
 figure(3)
 plot(alpha, lOverD)
-xlabel("AoA");
-ylabel("L/D");
-title("Viscid flow when Re = 3e5");
 grid on
 
 

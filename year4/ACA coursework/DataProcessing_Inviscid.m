@@ -1,14 +1,5 @@
-%% 导入文本文件中的数据。
-% 用于从以下文本文件导入数据的脚本:
-%
-%    C:\Users\msipc\Desktop\code\Matlab2\year4\ACA coursework\dataInviscid.dat
-%
-% 要将代码扩展到其他选定数据或其他文本文件，请生成函数来代替脚本。
-
-% 由 MATLAB 自动生成于 2021/11/01 18:37:09
-
 %% 初始化变量。
-filename = 'C:\Users\msipc\Desktop\code\Matlab2\year4\ACA coursework\dataInviscid.dat';
+filename = 'C:\Users\msipc\Desktop\code\Matlab2\year4\ACA coursework\data_Inviscid.dat';
 startRow = 4;
 
 %% 每个文本行的格式:
@@ -40,4 +31,7 @@ clearvars filename startRow formatSpec fileID dataArray ans;
 x = data(:,1);
 cp = data(:,3);
 plot(x,-cp);
+title("Inviscid flow at M = 0.3")
+xlabel("x/c");
+ylabel("cp");
 grid on
