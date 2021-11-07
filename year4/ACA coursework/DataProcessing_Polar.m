@@ -1,11 +1,11 @@
 %% 设置导入选项并导入数据
-clear 
+clear
 clc
 
 opts = delimitedTextImportOptions("NumVariables", 12);
 
 % 指定范围和分隔符
-opts.DataLines = [13, Inf];
+opts.DataLines = [13, 36];
 opts.Delimiter = " ";
 
 % 指定列名称和类型
@@ -26,10 +26,11 @@ opts = setvaropts(opts, "VarName1", "TrimNonNumeric", true);
 opts = setvaropts(opts, "VarName1", "ThousandsSeparator", ",");
 
 % 导入数据
-polarData = readtable("C:\Users\msipc\Desktop\code\Matlab2\year4\ACA coursework\polarData.dat", opts);
+polarNew = readtable("C:\Users\msipc\Desktop\code\Matlab2\year4\ACA coursework\polarNew.dat", opts);
 
 %% 转换为输出类型
-dataFinal = table2array(polarData);
+dataFinal = table2array(polarNew);
+
 %% 清除临时变量
 clear opts
 alpha = dataFinal(:,1);
@@ -37,12 +38,12 @@ CL = dataFinal(:,2);
 CD = dataFinal(:,3);
 lOverD = CL./CD;
 
-%iter = 20
+%iter = 200
 figure(1)
 plot(alpha, CL);
 title("Viscid flow when Re = 3e5");
 xlabel("AoA");
-ylabel("Cl");
+ylabel("CL");
 grid on
 figure(2)
 plot(CD,CL);
@@ -56,5 +57,3 @@ xlabel("AoA");
 ylabel("L/D");
 title("Viscid flow when Re = 3e5");
 grid on
-
-
