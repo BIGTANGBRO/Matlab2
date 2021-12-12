@@ -71,9 +71,9 @@ plot(alpha, cl);
 hold on
 plot(alphaExp,clExp);
 title("CL Comparison");
-xlabel("AoA/degree");
+xlabel("AoA");
 ylabel("CL");
-legend("Xfoil","Experimental");
+legend("Xfoil",)
 grid on
 hold off
 
@@ -84,8 +84,7 @@ hold on
 plot(cdExp, clExp);
 xlabel("CD");
 ylabel("CL");
-legend("Xfoil","Experimental");
-title("CL over CD");
+title("Viscid flow when Re = 3e5");
 grid on
 hold off
 
@@ -93,8 +92,7 @@ figure(3)
 plot(alpha, cl./cd);
 hold on
 plot(alphaExp, clExp./cdExp);
-xlabel("AoA/degree");
+xlabel("AoA");
 ylabel("L/D");
-legend("Xfoil", "Experimental");
-title("L/D vs AoA");
+title("Viscid flow when Re = 3e5");
 grid on
