@@ -35,7 +35,7 @@ CLexp = exp(:,2);
 CDexp = exp(:,3);
 aoaexp = exp(:,1);
 figure(1)
-plot(aoa(2:9),CL(2:9)./CD(2:9));
+plot(aoa,CL./CD);
 hold on
 plot(aoaexp,CLexp./CDexp);
 grid on
@@ -47,7 +47,7 @@ legend("AVL results", "Experimental results");
 figure(2)
 plot(CD,CL);
 hold on;
-plot(CDexp,CLexp);
+plot(CDexp(1:8),CLexp(1:8));
 grid on
 title("Wing polar curve");
 xlabel("CD");

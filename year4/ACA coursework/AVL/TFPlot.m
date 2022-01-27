@@ -51,4 +51,4 @@ hold off
 xlabel("y/b");
 ylabel("CL & CL c/cRef");
 title("Lift distribution");
-legend("Sectional CL","Lift distribution");
+legend("Lift distribution", "Sectional Lift");

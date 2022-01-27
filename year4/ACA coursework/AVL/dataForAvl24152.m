@@ -31,14 +31,14 @@ fclose(fileID);
 curve2415 = [dataArray{1:end-1}];
 %% 清除临时变量
 clearvars filename startRow formatSpec fileID dataArray ans;
-CL = curve2415(:,2);
-CD = curve2415(:,3);
+CL = curve2415(1:27,2);
+CD = curve2415(1:27,3);
 plot(CD, CL);
 hold on
 x = [0.0183,0.00607,0.01299];
-y = [-1.3877,0.143,1.3635];
+y = [-1.3877,0.343,1.3635];
 p = polyfit(y,x,2);
-y1 = linspace(-1.5,1.5,20);
+y1 = linspace(-1.5,1.7,30);
 x1 = polyval(p,y1);
 plot(x1,y1);
 xlabel("Drag coefficient");

@@ -28,7 +28,7 @@ polar1 = readtable("C:\Users\tangj\Desktop\Code\Matlab2\year4\ACA coursework\Com
 opts = delimitedTextImportOptions("NumVariables", 3);
 
 % Specify range and delimiter
-opts.DataLines = [3, 11];
+opts.DataLines = [3, 16];
 opts.Delimiter = " ";
 
 % Specify column names and types
@@ -80,7 +80,7 @@ CDExp = exppolar(:,3);
 yyaxis left
 plot(aoaExp, CLExp, "-*k");
 yyaxis right
-plot(aoaExp, CDExp, '-*b');
+plot(aoaExp(1:8), CDExp(1:8), '-*b');
 hold on
 
 %% xFoil

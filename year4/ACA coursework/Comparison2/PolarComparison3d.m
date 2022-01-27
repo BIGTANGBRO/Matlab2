@@ -5,7 +5,7 @@ clc
 opts = delimitedTextImportOptions("NumVariables", 3);
 
 % Specify range and delimiter
-opts.DataLines = [3, 10];
+opts.DataLines = [3, 11];
 opts.Delimiter = " ";
 
 % Specify column names and types
@@ -56,7 +56,7 @@ yyaxis left
 plot(aoaExp, CLExp);
 ylabel("Lift Coefficients");
 yyaxis right
-plot(aoaExp, CDExp);
+plot(aoaExp(1:7), CDExp(1:7));
 ylabel("Drag Coefficients");
 grid on
 xlabel("Angle of Attack/Degrees")
