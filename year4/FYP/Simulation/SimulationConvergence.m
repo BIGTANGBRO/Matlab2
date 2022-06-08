@@ -32,10 +32,10 @@ plot(hloop,cdLoop,'o-');
 hold on
 plot(hMb,cdMb,'*-');
 hold on
-plot(hRoot,cdRoot,'.-');
+plot(hRoot,cdRoot,'->');
 hold on
-plot(hSTL,cdSTL,'->');
+plot(hSTL,cdSTL,'.-');
 grid on
 xlabel("Element size/mm")
 ylabel("Simulation error for drag coefficient")
-legend("Loop","Modified Butterfly","$\sqrt{3}$","STL refined model");
+legend("Loop","Modified Butterfly","$\sqrt{3}$","STL refined surface");

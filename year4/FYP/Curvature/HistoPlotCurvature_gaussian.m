@@ -16,18 +16,29 @@ opts.ExtraColumnsRule = "ignore";
 opts.EmptyLineRule = "read";
 
 % Import the data
-distribution1 = readtable("C:\Users\tangj\Downloads\Fyp_Quant_data\Cow_data\333\distributionAngleEdge.dat", opts);
+distribution1 = readtable("C:\Users\tangj\Downloads\Fyp_Quant_data\Cow_data\333\distribution_curvature_gaussian.dat", opts);
 
 %% Convert to output type
 distribution1 = table2array(distribution1);
-avg = sum(distribution1)/length(distribution1)
+
+sumAvg = 0;
+count = 0;
+for i = 1:length(distribution1)
+    if (distribution1(i) < 500 && distribution1(i) > -500)
+        sumAvg = sumAvg + abs(distribution1(i));
+        count = count + 1;
+    end
+end
+avg = sumAvg/count
 
 %% Clear temporary variables
 clear opts
 
-edges = [120:0.5:180];
-histogram(distribution1,edges);
-%set(gca,'XLim',[80 180]);
-xlabel("Angle/Degrees")
-ylabel("Number of edges")
+edges = [-500:7.5:500];
+histogram(distribution1, edges);
+%set(gca,'XLim',[-1800 1800]);
+
+xlabel("Gaussian Curvature")
+ylabel("Number of vertices")
+
 grid on

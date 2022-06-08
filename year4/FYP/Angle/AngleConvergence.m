@@ -9,7 +9,7 @@ hLoop = [5804,23216,92864,371456];
 hMb = [5804,23217,92864,371456];
 hRoot = [5804,17412,52236,156708];
 
-plot(hLoop,dihedralLoop,'-*');
+plot(hLoop,dihedralLoop, '-*');
 hold on
 plot(hMb, dihedralMB,'-o');
 hold on

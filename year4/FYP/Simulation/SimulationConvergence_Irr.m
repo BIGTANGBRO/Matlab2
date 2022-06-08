@@ -27,7 +27,7 @@ plot(hloop,cdLoop,'o-');
 hold on
 plot(hMb,cdMb,'*-');
 hold on
-plot(hRoot,cdRoot,'.-');
+plot(hRoot,cdRoot,'->');
 grid on
 xlabel("Element size/mm")
 ylabel("Simulation error for drag coefficient")

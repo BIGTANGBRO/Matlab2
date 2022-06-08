@@ -15,17 +15,17 @@ opts.VariableTypes = "double";
 opts.ExtraColumnsRule = "ignore";
 opts.EmptyLineRule = "read";
 
-% Import the data
-distribution1 = readtable("C:\Users\tangj\Downloads\Fyp_Quant_data\sphere_Regular_data\111\distribution_hausorff.dat", opts);
-distribution2 = readtable("C:\Users\tangj\Downloads\Fyp_Quant_data\sphere_Regular_data\222\distribution_hausorff.dat", opts);
-distribution3 = readtable("C:\Users\tangj\Downloads\Fyp_Quant_data\sphere_Regular_data\333\distribution_hausorff.dat", opts);
+% Import the data2
+distribution1 = readtable("C:\Users\tangj\Downloads\Fyp_Quant_data\sphere_Regular_data\111\distribution_hausorff1.dat", opts);
+distribution2 = readtable("C:\Users\tangj\Downloads\Fyp_Quant_data\sphere_Regular_data\222\distribution_hausorff1.dat", opts);
+distribution3 = readtable("C:\Users\tangj\Downloads\Fyp_Quant_data\sphere_Regular_data\333\distribution_hausorff1.dat", opts);
 %distribution4 = readtable("C:\Users\tangj\Downloads\Fyp_Quant_data\sphere_Irr_data\coarse\distribution_hausorff1.dat", opts);
 
 %% Convert to output type
 distribution1 = table2array(distribution1);
 distribution2 = table2array(distribution2);
 distribution3 = table2array(distribution3);
-%zdistribution4 = table2array(distribution4);
+%distribution4 = table2array(distribution4);
 
 %% Clear temporary variables
 clear opts
